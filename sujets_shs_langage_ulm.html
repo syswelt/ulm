@@ -1,0 +1,289 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  h2.main-title { font-size: 18px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 24px; }
+  .cat { margin-bottom: 28px; }
+  .cat-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+  .cat-title { font-size: 15px; font-weight: 500; }
+  .cat-count { font-size: 12px; color: var(--color-text-secondary); }
+  .toggle-btn { font-size: 12px; color: var(--color-text-tertiary); margin-left: auto; }
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-size: 12px; padding: 3px 9px; border-radius: 99px;
+    border: 1px solid var(--color-border-secondary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+    transition: background .15s; cursor: default;
+  }
+  .pill:hover { background: var(--color-background-tertiary); }
+  .divider { height: 1px; background: var(--color-border-tertiary); margin: 4px 0 22px; }
+
+  .c-purple .pill { background:#EEEDFE; color:#3C3489; border-color:#AFA9EC; }
+  .c-teal   .pill { background:#E1F5EE; color:#0F6E56; border-color:#5DCAA5; }
+  .c-coral  .pill { background:#FAECE7; color:#993C1D; border-color:#F0997B; }
+  .c-amber  .pill { background:#FAEEDA; color:#854F0B; border-color:#EF9F27; }
+  .c-blue   .pill { background:#E6F1FB; color:#185FA5; border-color:#85B7EB; }
+  .c-green  .pill { background:#EAF3DE; color:#3B6D11; border-color:#97C459; }
+  .c-pink   .pill { background:#FBEAF0; color:#993556; border-color:#ED93B1; }
+  .c-red    .pill { background:#FCEBEB; color:#A32D2D; border-color:#F09595; }
+
+  @media (prefers-color-scheme: dark) {
+    .c-purple .pill { background:#26215C; color:#CECBF6; border-color:#534AB7; }
+    .c-teal   .pill { background:#04342C; color:#9FE1CB; border-color:#0F6E56; }
+    .c-coral  .pill { background:#4A1B0C; color:#F5C4B3; border-color:#993C1D; }
+    .c-amber  .pill { background:#412402; color:#FAC775; border-color:#854F0B; }
+    .c-blue   .pill { background:#042C53; color:#B5D4F4; border-color:#185FA5; }
+    .c-green  .pill { background:#173404; color:#C0DD97; border-color:#3B6D11; }
+    .c-pink   .pill { background:#4B1528; color:#F4C0D1; border-color:#993356; }
+    .c-red    .pill { background:#501313; color:#F7C1C1; border-color:#A32D2D; }
+  }
+</style>
+
+<div class="wrap">
+  <h2 class="main-title">Sujets d'oral ENS Ulm — Philosophie</h2>
+  <p class="subtitle">Thèmes « Sciences humaines » et « Langage » · Compilation 2000–2025 · Classement par grandes catégories</p>
+  <div id="cats"></div>
+</div>
+
+<script>
+const data = [
+  {
+    id:"statut_shs",
+    label:"Statut épistémologique des sciences humaines",
+    color:"c-purple",
+    sujets:[
+      ["Les sciences humaines sont-elles des sciences ?","2022"],
+      ["Y a-t-il une spécificité des sciences humaines ?","2022×2"],
+      ["Une science de l'homme est-elle possible ?","2021"],
+      ["Une science de la culture est-elle possible ?","2025"],
+      ["Peut-il y avoir une science de l'éducation ?","2025"],
+      ["Quel est l'objet des sciences humaines ?","2025"],
+      ["La science politique est-elle une science ?","2025"],
+      ["L'écologie est-elle une science naturelle ou une science sociale ?","2025"],
+      ["Comprendre et expliquer","2019×2"],
+      ["Expliquer et comprendre","2019"],
+      ["Faut-il considérer les faits sociaux comme des choses ?","2021"],
+      ["Qu'est-ce qu'un fait social ?","2025"],
+      ["Les rapports sociaux sont-ils des rapports entre individus ?","2025"],
+      ["L'observation participante","2025"],
+      ["Le travail sur le terrain","2025"],
+      ["A-t-on besoin de spécialistes ?","2025"],
+      ["Sociologie et anthropologie","2021"],
+      ["Suffit-il d'être informé pour comprendre ?","2022"],
+    ]
+  },
+  {
+    id:"histoire_sciences",
+    label:"Histoire, mémoire et sciences historiques",
+    color:"c-teal",
+    sujets:[
+      ["L'historien est-il un homme qui se souvient du passé ?","2025"],
+      ["Qu'est-ce qu'un fait historique ?","2025"],
+      ["L'histoire a-t-elle un sens ?","2024×2"],
+      ["L'histoire a-t-elle une fin ?","2024"],
+      ["L'histoire se répète-t-elle ?","2025"],
+      ["Peut-on penser l'histoire comme progrès ?","2024"],
+      ["Y a-t-il des sociétés sans histoire ?","2025"],
+      ["En histoire, tout est-il affaire d'interprétation ?","2021"],
+      ["Y a-t-il une vérité en histoire ?","2021"],
+      ["Faut-il tirer des leçons de l'histoire ?","2025"],
+      ["La réalité du passé","2022"],
+      ["Qui fait l'histoire ?","2019×2"],
+      ["L'histoire est-elle rationnelle ?","2019"],
+      ["Mythe et histoire","2017"],
+      ["La préhistoire","2023"],
+      ["Histoire et géographie","2025×2"],
+      ["Nature et histoire","2024"],
+      ["Commémorer","2025"],
+      ["Le devoir de mémoire","2024"],
+      ["Y a-t-il un tribunal de l'histoire ?","2021"],
+    ]
+  },
+  {
+    id:"anthropo_culture",
+    label:"Anthropologie, culture et altérité",
+    color:"c-coral",
+    sujets:[
+      ["Anthropologie et politique","2025"],
+      ["Peut-on faire l'ethnologie de sa propre culture ?","2025"],
+      ["Puis-je juger une culture à laquelle je n'appartiens pas ?","2025"],
+      ["L'ethnocentrisme","2024"],
+      ["Ethnologie et ethnocentrisme","2021"],
+      ["Comparer les cultures","2024"],
+      ["La diversité des cultures","2024×2"],
+      ["Une science de la culture est-elle possible ?","2025"],
+      ["Peut-on sortir de sa culture ?","2024"],
+      ["La culture est-elle une seconde nature ?","2019"],
+      ["L'homme est-il un animal ?","2025"],
+      ["L'homme est-il un animal comme les autres ?","2022×2"],
+      ["Qu'est-ce qu'être humain ?","2025"],
+      ["La condition humaine","2025"],
+      ["L'espèce humaine","2022"],
+      ["La nature humaine","2021×2"],
+      ["Existe-t-il une nature humaine ?","2022"],
+      ["Le primitif","2022×2"],
+      ["Le sauvage","2022×3"],
+      ["L'état de nature","2025"],
+    ]
+  },
+  {
+    id:"langage_pensee",
+    label:"Langage et pensée",
+    color:"c-amber",
+    sujets:[
+      ["Langage et réalité","2025"],
+      ["Le mot et la chose","2025×2"],
+      ["Les mots disent-ils les choses ?","2024"],
+      ["Penser et parler","2022"],
+      ["La grammaire contraint-elle notre pensée ?","2024"],
+      ["Peut-on penser sans signes ?","2024"],
+      ["Peut-on penser sans langage ?","2025"],
+      ["Langage naturel et langage symbolique","2025"],
+      ["Y a-t-il un au-delà du langage ?","2019"],
+      ["Le langage est-il un instrument ?","2019×2"],
+      ["Les mots peuvent-ils nous manquer ?","2024"],
+      ["Le pouvoir des mots","2025"],
+      ["Avoir peur des mots","2021"],
+      ["L'imperfection du langage","2025"],
+      ["Que perdrait la pensée en perdant l'écriture ?","2019"],
+      ["Parler pour ne rien dire","2025×2"],
+      ["Dire et faire","2025"],
+      ["Signe et symbole","2025"],
+    ]
+  },
+  {
+    id:"langue_diversite",
+    label:"Langues, diversité linguistique et traduction",
+    color:"c-blue",
+    sujets:[
+      ["La diversité des langues","2022×3"],
+      ["Les langues meurent-elles ?","2025"],
+      ["La langue universelle","2025"],
+      ["Y a-t-il un langage universel ?","2021"],
+      ["Un langage universel est-il concevable ?","2017"],
+      ["L'origine des langues","2019"],
+      ["Traduire, est-ce trahir ?","2023"],
+      ["Traduire","2025×2"],
+      ["Que nous apporte la traduction ?","2021"],
+      ["La pluralité des langues","2021×3"],
+      ["Y a-t-il un langage animal ?","2022×2"],
+      ["La musique est-elle un langage ?","2024×2"],
+      ["Y a-t-il une langue de la philosophie ?","2018"],
+      ["Les limites du langage","2025"],
+      ["Bien parler, est-ce bien penser ?","2024"],
+      ["Que signifie signifier ?","2022"],
+    ]
+  },
+  {
+    id:"parole_communication",
+    label:"Parole, communication et actes de langage",
+    color:"c-green",
+    sujets:[
+      ["Parler, est-ce agir ?","2022×2"],
+      ["Communiquer","2021"],
+      ["Comment sait-on qu'on se comprend ?","2025"],
+      ["L'implicite dans la communication","2025"],
+      ["Qu'est-ce que parler veut dire ?","2023"],
+      ["N'exprime-t-on que ce dont on a conscience ?","2024"],
+      ["Peut-on tout exprimer ?","2018×2"],
+      ["Peut-on tout dire ?","2019×3"],
+      ["Y a-t-il des limites à l'exprimable ?","2019"],
+      ["La voix","2023"],
+      ["Le silence","2025×2"],
+      ["Parler tout seul","2024"],
+      ["Le bavardage","2021×2"],
+      ["L'écriture","2024"],
+      ["L'écriture est-elle une technique parmi d'autres ?","2023"],
+      ["Que nous apporte l'écriture ?","2024"],
+      ["Pourquoi écrire ?","2024×2"],
+      ["Interprétation et langage","2025"],
+    ]
+  },
+  {
+    id:"interpretation_sens",
+    label:"Interprétation, sens et herméneutique",
+    color:"c-pink",
+    sujets:[
+      ["Interpréter, est-ce un art ?","2025"],
+      ["L'interprétation est-elle un art ?","2024"],
+      ["Toutes les interprétations se valent-elles ?","2017"],
+      ["Qu'est-ce qu'interpréter ?","2019×2"],
+      ["Les choses ont-elles un sens ?","2023"],
+      ["Qu'est-ce qui a un sens ?","2024"],
+      ["La métaphore","2024"],
+      ["Signe et symbole","2025"],
+      ["Concept et image","2023"],
+      ["Les images empêchent-elles de penser ?","2023"],
+      ["La haine des images","2025×2"],
+      ["L'image","2023"],
+      ["Qu'est-ce qu'une image ?","2021×2"],
+      ["Représenter","2023"],
+      ["Qu'est-ce qu'une représentation ?","2023×2"],
+      ["La représentation du monde","2024"],
+      ["Le regard","2025"],
+      ["Apprendre à voir","2025"],
+    ]
+  },
+  {
+    id:"psycho_inconscient",
+    label:"Psychologie, inconscient et sciences de l'esprit",
+    color:"c-red",
+    sujets:[
+      ["L'inconscient est-il un destin ?","2021"],
+      ["De quoi peut-on être inconscient ?","2022"],
+      ["Comment expliquer les phénomènes mentaux ?","2021"],
+      ["La réalité mentale","2025"],
+      ["Suis-je mon cerveau ?","2023"],
+      ["L'esprit et le cerveau","2022"],
+      ["Qu'est-ce qu'être psychologue ?","2021"],
+      ["Conscience de soi et connaissance de soi","2021"],
+      ["La connaissance de soi","2025"],
+      ["La connaissance du singulier","2021"],
+      ["Y a-t-il une pensée animale ?","2022"],
+      ["Les animaux pensent-ils ?","2018"],
+      ["L'intelligence des bêtes","2019"],
+      ["Une machine peut-elle penser ?","2019"],
+      ["Les machines pensent-elles ?","2017"],
+      ["Qu'est-ce qu'être normal ?","2023×2"],
+      ["Perdre la raison","2024×2"],
+      ["La folie","2025"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('pg-' + i);
+  const btn = document.getElementById('tbtn-' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+render();
+</script>
