@@ -1,0 +1,162 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 20px; }
+  .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .controls button {
+    font-size: 12px; padding: 4px 12px; border-radius: 99px;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-secondary);
+    color: var(--color-text-secondary); cursor: pointer;
+  }
+  .controls button.active {
+    background: var(--color-text-primary); color: var(--color-background-primary);
+    border-color: var(--color-text-primary);
+  }
+  .row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .row:last-child { border-bottom: none; }
+  .rank { font-size: 12px; color: var(--color-text-tertiary); width: 26px; text-align: right; flex-shrink: 0; }
+  .medal { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+  .name { font-size: 14px; font-weight: 500; width: 180px; flex-shrink: 0; }
+  .bar-wrap { flex: 1; background: var(--color-background-tertiary); border-radius: 2px; height: 8px; overflow: hidden; }
+  .bar { height: 100%; border-radius: 2px; transition: width 0.4s; }
+  .count { font-size: 13px; color: var(--color-text-secondary); width: 36px; text-align: right; flex-shrink: 0; }
+  .era { font-size: 11px; padding: 2px 6px; border-radius: 99px; flex-shrink: 0; }
+</style>
+
+<div class="wrap">
+  <p class="subtitle">Classement des auteurs — oral de français ENS Ulm · 2010–2025 · ~1 200 billets dépouillés</p>
+  <div class="controls" id="filters">
+    <button class="active" onclick="filter('all', this)">Tous</button>
+    <button onclick="filter('xvi', this)">XVIe</button>
+    <button onclick="filter('xvii', this)">XVIIe</button>
+    <button onclick="filter('xviii', this)">XVIIIe</button>
+    <button onclick="filter('xix', this)">XIXe</button>
+    <button onclick="filter('xx', this)">XXe–XXIe</button>
+  </div>
+  <div id="list"></div>
+</div>
+
+<script>
+const data = [
+  {name:"Molière",       count:72, era:"xvii",  color:"#534AB7"},
+  {name:"Voltaire",      count:62, era:"xviii", color:"#0F6E56"},
+  {name:"Rousseau",      count:60, era:"xviii", color:"#0F6E56"},
+  {name:"Baudelaire",    count:55, era:"xix",   color:"#993C1D"},
+  {name:"Corneille",     count:49, era:"xvii",  color:"#534AB7"},
+  {name:"La Fontaine",   count:48, era:"xvii",  color:"#534AB7"},
+  {name:"Proust",        count:45, era:"xx",    color:"#185FA5"},
+  {name:"Diderot",       count:44, era:"xviii", color:"#0F6E56"},
+  {name:"Racine",        count:41, era:"xvii",  color:"#534AB7"},
+  {name:"La Bruyère",    count:36, era:"xvii",  color:"#534AB7"},
+  {name:"Flaubert",      count:36, era:"xix",   color:"#993C1D"},
+  {name:"Stendhal",      count:35, era:"xix",   color:"#993C1D"},
+  {name:"Bossuet",       count:31, era:"xvii",  color:"#534AB7"},
+  {name:"Marivaux",      count:31, era:"xviii", color:"#0F6E56"},
+  {name:"Ronsard",       count:26, era:"xvi",   color:"#3B6D11"},
+  {name:"Laclos",        count:24, era:"xviii", color:"#0F6E56"},
+  {name:"Musset",        count:24, era:"xix",   color:"#993C1D"},
+  {name:"Apollinaire",   count:23, era:"xx",    color:"#185FA5"},
+  {name:"Chateaubriand", count:23, era:"xix",   color:"#993C1D"},
+  {name:"Perrault",      count:21, era:"xvii",  color:"#534AB7"},
+  {name:"Rimbaud",       count:21, era:"xix",   color:"#993C1D"},
+  {name:"Beaumarchais",  count:20, era:"xviii", color:"#0F6E56"},
+  {name:"D'Aubigné",     count:20, era:"xvi",   color:"#3B6D11"},
+  {name:"Montaigne",     count:19, era:"xvi",   color:"#3B6D11"},
+  {name:"Du Bellay",     count:19, era:"xvi",   color:"#3B6D11"},
+  {name:"Céline",        count:19, era:"xx",    color:"#185FA5"},
+  {name:"Verlaine",      count:19, era:"xix",   color:"#993C1D"},
+  {name:"Mallarmé",      count:18, era:"xix",   color:"#993C1D"},
+  {name:"Saint-Simon",   count:18, era:"xvii",  color:"#534AB7"},
+  {name:"Claudel",       count:18, era:"xx",    color:"#185FA5"},
+  {name:"Ionesco",       count:18, era:"xx",    color:"#185FA5"},
+  {name:"Labé",          count:18, era:"xvi",   color:"#3B6D11"},
+  {name:"La Rochefoucauld",count:17,era:"xvii", color:"#534AB7"},
+  {name:"Perec",         count:16, era:"xx",    color:"#185FA5"},
+  {name:"Beckett",       count:16, era:"xx",    color:"#185FA5"},
+  {name:"Desbordes-Valmore",count:15,era:"xix", color:"#993C1D"},
+  {name:"Sartre",        count:15, era:"xx",    color:"#185FA5"},
+  {name:"Giraudoux",     count:14, era:"xx",    color:"#185FA5"},
+  {name:"Vigny",         count:14, era:"xix",   color:"#993C1D"},
+  {name:"Chénier",       count:13, era:"xviii", color:"#0F6E56"},
+  {name:"Viau",          count:13, era:"xvii",  color:"#534AB7"},
+  {name:"Ponge",         count:13, era:"xx",    color:"#185FA5"},
+  {name:"Malherbe",      count:13, era:"xvii",  color:"#534AB7"},
+  {name:"Marguerite de Navarre",count:13,era:"xvi",color:"#3B6D11"},
+  {name:"Koltès",        count:13, era:"xx",    color:"#185FA5"},
+  {name:"Guilleragues",  count:13, era:"xvii",  color:"#534AB7"},
+  {name:"Crébillon",     count:12, era:"xviii", color:"#0F6E56"},
+  {name:"Fénelon",       count:12, era:"xvii",  color:"#534AB7"},
+  {name:"Camus",         count:12, era:"xx",    color:"#185FA5"},
+  {name:"Corbière",      count:12, era:"xix",   color:"#993C1D"},
+  {name:"Sévigné",       count:12, era:"xvii",  color:"#534AB7"},
+  {name:"La Fayette",    count:11, era:"xvii",  color:"#534AB7"},
+  {name:"Pascal",        count:11, era:"xvii",  color:"#534AB7"},
+  {name:"Fontenelle",    count:11, era:"xvii",  color:"#534AB7"},
+  {name:"Hugo",          count:11, era:"xix",   color:"#993C1D"},
+  {name:"Zola",          count:11, era:"xix",   color:"#993C1D"},
+  {name:"Balzac",        count:11, era:"xix",   color:"#993C1D"},
+  {name:"Bertrand",      count:10, era:"xix",   color:"#993C1D"},
+  {name:"Laforgue",      count:10, era:"xix",   color:"#993C1D"},
+  {name:"Colette",       count:10, era:"xx",    color:"#185FA5"},
+  {name:"Jaccottet",     count:10, era:"xx",    color:"#185FA5"},
+  {name:"Prévost",       count:10, era:"xviii", color:"#0F6E56"},
+  {name:"Boileau",       count:9,  era:"xvii",  color:"#534AB7"},
+  {name:"Gide",          count:9,  era:"xx",    color:"#185FA5"},
+  {name:"Saint-Amant",   count:9,  era:"xvii",  color:"#534AB7"},
+  {name:"Saint-John Perse",count:9,era:"xx",    color:"#185FA5"},
+  {name:"Breton",        count:9,  era:"xx",    color:"#185FA5"},
+  {name:"Scève",         count:9,  era:"xvi",   color:"#3B6D11"},
+  {name:"Rostand",       count:8,  era:"xix",   color:"#993C1D"},
+  {name:"Marot",         count:8,  era:"xvi",   color:"#3B6D11"},
+  {name:"Valéry",        count:8,  era:"xx",    color:"#185FA5"},
+  {name:"Huysmans",      count:7,  era:"xix",   color:"#993C1D"},
+  {name:"Lamartine",     count:7,  era:"xix",   color:"#993C1D"},
+  {name:"Retz",          count:7,  era:"xvii",  color:"#534AB7"},
+  {name:"Barbey d'Aurevilly",count:7,era:"xix", color:"#993C1D"},
+  {name:"Michaux",       count:7,  era:"xx",    color:"#185FA5"},
+  {name:"Aragon",        count:7,  era:"xx",    color:"#185FA5"},
+  {name:"Bernardin de Saint-Pierre",count:6,era:"xviii",color:"#0F6E56"},
+  {name:"Maupassant",    count:6,  era:"xix",   color:"#993C1D"},
+  {name:"Genet",         count:6,  era:"xx",    color:"#185FA5"},
+  {name:"Yourcenar",     count:6,  era:"xx",    color:"#185FA5"},
+  {name:"Nerval",        count:6,  era:"xix",   color:"#993C1D"},
+  {name:"Ernaux",        count:5,  era:"xx",    color:"#185FA5"},
+  {name:"Bernanos",      count:5,  era:"xx",    color:"#185FA5"},
+  {name:"Senghor",       count:5,  era:"xx",    color:"#185FA5"},
+  {name:"Michon",        count:5,  era:"xx",    color:"#185FA5"},
+];
+
+const eraLabels = {xvi:"XVIe",xvii:"XVIIe",xviii:"XVIIIe",xix:"XIXe",xx:"XXe–XXIe"};
+const medals = {1:"🥇",2:"🥈",3:"🥉"};
+let current = 'all';
+
+function filter(era, btn) {
+  current = era;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  const filtered = current === 'all' ? data : data.filter(d => d.era === current);
+  const max = filtered[0]?.count || 1;
+  const list = document.getElementById('list');
+  list.innerHTML = filtered.map((d, i) => {
+    const pct = Math.round(d.count / max * 100);
+    return `<div class="row">
+      <span class="rank">${i+1}</span>
+      <span class="medal">${medals[i+1] || ''}</span>
+      <span class="name">${d.name}</span>
+      <div class="bar-wrap"><div class="bar" style="width:${pct}%;background:${d.color}"></div></div>
+      <span class="count">${d.count}</span>
+      <span class="era" style="background:${d.color}22;color:${d.color}">${eraLabels[d.era]}</span>
+    </div>`;
+  }).join('');
+}
+
+render();
+</script>
