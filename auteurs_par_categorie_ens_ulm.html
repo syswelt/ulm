@@ -1,0 +1,270 @@
+
+<style>
+.cat-block { margin-bottom: 1.5rem; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.cat-header { padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+.cat-header:hover { background: var(--color-background-secondary); }
+.cat-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.cat-meta { font-size: 12px; color: var(--color-text-secondary); }
+.cat-body { padding: 12px 16px 14px; border-top: 0.5px solid var(--color-border-tertiary); }
+.author-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+.author-name { font-size: 13px; color: var(--color-text-primary); min-width: 200px; }
+.bar-wrap { flex: 1; height: 10px; background: var(--color-background-secondary); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 5px; transition: width 0.3s; }
+.count { font-size: 12px; color: var(--color-text-secondary); min-width: 28px; text-align: right; }
+.badge { font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 10px; }
+.chevron { font-size: 11px; color: var(--color-text-tertiary); transition: transform 0.2s; }
+.open .chevron { transform: rotate(180deg); }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+.filter-btn { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); cursor: pointer; }
+.filter-btn.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; }
+.legend { display: flex; gap: 14px; font-size: 11px; color: var(--color-text-secondary); margin-bottom: 1rem; flex-wrap: wrap; }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+</style>
+
+<div style="padding: 1rem 0;">
+<h2 class="sr-only">Auteurs de l'oral d'anglais ENS Ulm classés par catégorie de billet</h2>
+
+<div class="legend">
+  <span><span class="leg-dot" style="background:#534AB7"></span>Théâtre</span>
+  <span><span class="leg-dot" style="background:#0F6E56"></span>Poésie</span>
+  <span><span class="leg-dot" style="background:#185FA5"></span>Roman / Nouvelle</span>
+</div>
+
+<div class="filter-bar" id="filters">
+  <button class="filter-btn active" data-filter="all">Tout</button>
+  <button class="filter-btn" data-filter="theatre">Théâtre</button>
+  <button class="filter-btn" data-filter="poesie">Poésie</button>
+  <button class="filter-btn" data-filter="fiction">Roman / Nouvelle</button>
+  <button class="filter-btn" data-filter="uk">UK / Ireland</button>
+  <button class="filter-btn" data-filter="us">US</button>
+  <button class="filter-btn" data-filter="commonwealth">Commonwealth</button>
+</div>
+
+<div id="cats"></div>
+</div>
+
+<script>
+const data = [
+  {
+    id: "theatre-16-uk", group: "theatre", region: "uk",
+    title: "Théâtre · 16e–17e · UK",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["William Shakespeare", 19], ["Christopher Marlowe", 11], ["Aphra Behn", 7],
+      ["Ben Jonson", 6], ["John Webster", 5]
+    ]
+  },
+  {
+    id: "theatre-18-uk", group: "theatre", region: "uk",
+    title: "Théâtre · 18e · UK/Ireland",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["R. B. Sheridan", 8]
+    ]
+  },
+  {
+    id: "theatre-19-uk", group: "theatre", region: "uk",
+    title: "Théâtre · 19e–20e · UK/Ireland",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["Samuel Beckett", 13], ["Harold Pinter", 12], ["Tom Stoppard", 10],
+      ["Oscar Wilde", 17], ["G. B. Shaw", 8], ["J. M. Synge", 5], ["Brian Friel", 2]
+    ]
+  },
+  {
+    id: "theatre-20-us", group: "theatre", region: "us",
+    title: "Théâtre · 20e · US",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["Tennessee Williams", 14], ["Arthur Miller", 10], ["Eugene O'Neill", 8]
+    ]
+  },
+  {
+    id: "poesie-16-uk", group: "poesie", region: "uk",
+    title: "Poésie · 16e–17e · UK (métaphysique)",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["John Donne", 13], ["Andrew Marvell", 12], ["George Herbert", 8],
+      ["John Milton", 6], ["Edmund Spenser", 4], ["Robert Herrick", 4],
+      ["Sir Philip Sidney", 4], ["Richard Crashaw", 1]
+    ]
+  },
+  {
+    id: "poesie-18-uk", group: "poesie", region: "uk",
+    title: "Poésie · 18e–19e · UK (romantique)",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["William Blake", 12], ["William Wordsworth", 13], ["John Keats", 12],
+      ["S. T. Coleridge", 8], ["Thomas Hardy", 14], ["P. B. Shelley", 7],
+      ["Lord Byron", 5], ["Alfred Tennyson", 5], ["Robert Browning", 4],
+      ["G. M. Hopkins", 4], ["Christina Rossetti", 4]
+    ]
+  },
+  {
+    id: "poesie-20-uk", group: "poesie", region: "uk",
+    title: "Poésie · 20e · UK/Ireland",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["W. B. Yeats", 14], ["W. H. Auden", 11], ["T. S. Eliot", 11],
+      ["Seamus Heaney", 9], ["Ted Hughes", 8], ["Dylan Thomas", 8],
+      ["Louis MacNeice", 8], ["Philip Larkin", 7], ["Wilfred Owen", 7],
+      ["Siegfried Sassoon", 3]
+    ]
+  },
+  {
+    id: "poesie-19-us", group: "poesie", region: "us",
+    title: "Poésie · 19e · US",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["Walt Whitman", 16], ["Emily Dickinson", 16], ["Edgar Allan Poe", 15],
+      ["H. W. Longfellow", 5]
+    ]
+  },
+  {
+    id: "poesie-20-us", group: "poesie", region: "us",
+    title: "Poésie · 20e · US",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["Sylvia Plath", 13], ["Allen Ginsberg", 9], ["Robert Frost", 8],
+      ["Langston Hughes", 8], ["Elizabeth Bishop", 7], ["W. C. Williams", 7],
+      ["Adrienne Rich", 5], ["E. E. Cummings", 5], ["Carl Sandburg", 5],
+      ["Wallace Stevens", 4], ["H. D.", 4], ["Denise Levertov", 3]
+    ]
+  },
+  {
+    id: "roman-18-uk", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 18e · UK",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Jonathan Swift", 12], ["Daniel Defoe", 9], ["Henry Fielding", 9],
+      ["Laurence Sterne", 9], ["Samuel Richardson", 5], ["Tobias Smollett", 5]
+    ]
+  },
+  {
+    id: "roman-19-uk", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 19e · UK",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Charles Dickens", 18], ["Jane Austen", 15], ["Charlotte Brontë", 13],
+      ["Lewis Carroll", 12], ["George Eliot", 11], ["Thomas Hardy", 14],
+      ["Emily Brontë", 8], ["R. L. Stevenson", 7], ["Elizabeth Gaskell", 6],
+      ["William Thackeray", 6], ["Wilkie Collins", 5]
+    ]
+  },
+  {
+    id: "roman-ireland", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 19e–20e · Ireland",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["James Joyce", 13], ["Bram Stoker", 5]
+    ]
+  },
+  {
+    id: "roman-20-uk", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 20e · UK",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Virginia Woolf", 17], ["Joseph Conrad", 11], ["D. H. Lawrence", 11],
+      ["E. M. Forster", 6], ["Zadie Smith", 6], ["Ian McEwan", 5],
+      ["Kazuo Ishiguro", 5], ["Angela Carter", 4], ["Aldous Huxley", 3],
+      ["Evelyn Waugh", 1], ["Alan Hollinghurst", 2], ["Graham Swift", 3]
+    ]
+  },
+  {
+    id: "roman-19-us", group: "fiction", region: "us",
+    title: "Roman/Nouvelle · 19e · US",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Henry James", 17], ["Nathaniel Hawthorne", 15], ["Herman Melville", 14],
+      ["Washington Irving", 13], ["Mark Twain", 11], ["Edith Wharton", 11],
+      ["Kate Chopin", 9], ["Willa Cather", 8], ["Charlotte P. Gilman", 7],
+      ["H. D. Thoreau", 8], ["Stephen Crane", 5], ["Harriet Beecher Stowe", 4],
+      ["Theodore Dreiser", 4], ["Frederick Douglass", 3]
+    ]
+  },
+  {
+    id: "roman-20-us", group: "fiction", region: "us",
+    title: "Roman/Nouvelle · 20e · US",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["William Faulkner", 9], ["F. S. Fitzgerald", 9], ["Vladimir Nabokov", 9],
+      ["Sherwood Anderson", 9], ["Flannery O'Connor", 8], ["Toni Morrison", 8],
+      ["Cormac McCarthy", 8], ["John Steinbeck", 7], ["Carson McCullers", 7],
+      ["Salman Rushdie", 7], ["Philip Roth", 6], ["Ralph Ellison", 4],
+      ["John Updike", 4], ["Colson Whitehead", 5]
+    ]
+  },
+  {
+    id: "roman-commonwealth", group: "fiction", region: "commonwealth",
+    title: "Roman/Nouvelle · 20e · Commonwealth / Postcolonial",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Katherine Mansfield", 10], ["Alice Munro", 8], ["Derek Walcott", 8],
+      ["Margaret Atwood", 7], ["Chinua Achebe", 7], ["J. M. Coetzee", 7],
+      ["Salman Rushdie", 7], ["V. S. Naipaul", 5], ["Jean Rhys", 5],
+      ["Nadine Gordimer", 4], ["Doris Lessing", 2]
+    ]
+  }
+];
+
+const maxCount = 19;
+
+function buildBar(count, color) {
+  const pct = Math.round((count / maxCount) * 100);
+  return `<div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${color}22;border:1px solid ${color}55;box-sizing:border-box;"></div></div>`;
+}
+
+function render(filter) {
+  const container = document.getElementById('cats');
+  container.innerHTML = '';
+  data.forEach(cat => {
+    const show = filter === 'all'
+      || (filter === 'theatre' && cat.group === 'theatre')
+      || (filter === 'poesie' && cat.group === 'poesie')
+      || (filter === 'fiction' && cat.group === 'fiction')
+      || (filter === 'uk' && cat.region === 'uk')
+      || (filter === 'us' && cat.region === 'us')
+      || (filter === 'commonwealth' && cat.region === 'commonwealth');
+    if (!show) return;
+
+    const div = document.createElement('div');
+    div.className = 'cat-block';
+    const top3 = cat.authors.slice(0, 3).map(a => a[0]).join(', ');
+    const rows = cat.authors.slice(0, 10).map(([name, count]) =>
+      `<div class="author-row">
+        <span class="author-name">${name}</span>
+        ${buildBar(count, cat.color)}
+        <span class="count">${count}×</span>
+      </div>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="toggle(this)">
+        <span>
+          <span class="cat-title">${cat.title}</span>
+          <span class="cat-meta" style="margin-left:10px;display:inline-block;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${top3}…</span>
+        </span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="cat-body" style="display:none">${rows}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const block = header.parentElement;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  block.classList.toggle('open', !open);
+}
+
+document.getElementById('filters').addEventListener('click', e => {
+  if (!e.target.dataset.filter) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  render(e.target.dataset.filter);
+});
+
+render('all');
+</script>
