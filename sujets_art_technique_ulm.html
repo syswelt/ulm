@@ -1,0 +1,256 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  h2.main-title { font-size: 18px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 24px; }
+  .cat { margin-bottom: 28px; }
+  .cat-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+  .cat-title { font-size: 15px; font-weight: 500; }
+  .cat-count { font-size: 12px; color: var(--color-text-secondary); }
+  .toggle-btn { font-size: 12px; color: var(--color-text-tertiary); margin-left: auto; }
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 99px;
+    border: 1px solid var(--color-border-secondary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+    transition: background .15s;
+  }
+  .pill:hover { background: var(--color-background-tertiary); }
+  .pill.year { font-size: 10px; color: var(--color-text-tertiary); padding: 2px 6px; border-color: var(--color-border-tertiary); }
+
+  .c-purple .pill  { background:#EEEDFE; color:#3C3489; border-color:#AFA9EC; }
+  .c-teal   .pill  { background:#E1F5EE; color:#0F6E56; border-color:#5DCAA5; }
+  .c-coral  .pill  { background:#FAECE7; color:#993C1D; border-color:#F0997B; }
+  .c-amber  .pill  { background:#FAEEDA; color:#854F0B; border-color:#EF9F27; }
+  .c-blue   .pill  { background:#E6F1FB; color:#185FA5; border-color:#85B7EB; }
+  .c-green  .pill  { background:#EAF3DE; color:#3B6D11; border-color:#97C459; }
+  .c-pink   .pill  { background:#FBEAF0; color:#993556; border-color:#ED93B1; }
+
+  @media (prefers-color-scheme: dark) {
+    .c-purple .pill { background:#26215C; color:#CECBF6; border-color:#534AB7; }
+    .c-teal   .pill { background:#04342C; color:#9FE1CB; border-color:#0F6E56; }
+    .c-coral  .pill { background:#4A1B0C; color:#F5C4B3; border-color:#993C1D; }
+    .c-amber  .pill { background:#412402; color:#FAC775; border-color:#854F0B; }
+    .c-blue   .pill { background:#042C53; color:#B5D4F4; border-color:#185FA5; }
+    .c-green  .pill { background:#173404; color:#C0DD97; border-color:#3B6D11; }
+    .c-pink   .pill { background:#4B1528; color:#F4C0D1; border-color:#993356; }
+  }
+
+  .divider { height: 1px; background: var(--color-border-tertiary); margin: 4px 0 20px; }
+</style>
+
+<div class="wrap">
+  <h2 class="main-title">Sujets d'oral ENS Ulm — Philosophie</h2>
+  <p class="subtitle">Thème « L'art / la technique » · Compilation 2000–2025 · Classement par grandes catégories</p>
+
+<div id="cats"></div>
+</div>
+
+<script>
+const data = [
+  {
+    id:"essence",
+    label:"Essence de l'art et de l'œuvre",
+    color:"c-purple",
+    sujets:[
+      ["Qu'est-ce qu'une œuvre d'art réussie ?","2025"],
+      ["Une œuvre d'art est-elle toujours de son temps ?","2025×2"],
+      ["Qu'est-ce qui fait la valeur d'une œuvre ?","2021"],
+      ["Les œuvres d'art sont-elles des choses ?","2024"],
+      ["Une œuvre d'art produit-elle du beau ?","2024"],
+      ["L'achèvement de l'œuvre","2023×2"],
+      ["La genèse de l'œuvre","2021"],
+      ["Art et illusion","2023×2"],
+      ["Que nous montre l'œuvre d'art ?","2021"],
+      ["En quoi l'œuvre d'art donne-t-elle à penser ?","2021"],
+      ["Les arts ont-ils besoin de théorie ?","2021"],
+      ["La pluralité des arts","2021"],
+      ["La temporalité de l'œuvre d'art","2023"],
+      ["L'art peut-il sauver le monde ?","2021"],
+      ["À quoi reconnaît-on une œuvre d'art ?","2018"],
+      ["L'acte et l'œuvre","2018"],
+      ["La mort de l'art","2016"],
+      ["La classification des arts","2021"],
+    ]
+  },
+  {
+    id:"creation",
+    label:"Création, génie, inspiration",
+    color:"c-teal",
+    sujets:[
+      ["L'artiste est-il un créateur ?","2025×2"],
+      ["Artiste et artisan","2025×2"],
+      ["Créer, est-ce imiter ?","2025"],
+      ["Qu'est-ce que créer ?","2017"],
+      ["L'originalité","2025"],
+      ["Le génie","2016"],
+      ["Qu'est-ce qu'un génie ?","2019"],
+      ["L'inspiration","2021"],
+      ["La nature est-elle un modèle ?","2024"],
+      ["Sommes-nous tous artistes ?","2025"],
+      ["Faire de sa vie une œuvre d'art","2021"],
+      ["Apprend-on à être artiste ?","2018"],
+      ["Que recherche l'artiste ?","2018"],
+      ["L'enfance de l'art","2021"],
+      ["Peut-on parler d'un savoir-faire ?","2023"],
+    ]
+  },
+  {
+    id:"beaute",
+    label:"Beauté, goût et jugement esthétique",
+    color:"c-coral",
+    sujets:[
+      ["Sans l'art, parlerait-on de beauté ?","2025×2"],
+      ["Y a-t-il un progrès en art ?","2025×2"],
+      ["La beauté du geste","2025"],
+      ["Beauté naturelle et beauté artistique","2023×2"],
+      ["La beauté a-t-elle une histoire ?","2024"],
+      ["Peut-on éduquer le goût ?","2019"],
+      ["Avoir du goût","2024"],
+      ["\"Des goûts et des couleurs, on ne dispute pas\"","2023"],
+      ["Le jugement de goût est-il désintéressé ?","2017"],
+      ["Y a-t-il une universalité du beau ?","2017"],
+      ["Le beau est-il universel ?","2019"],
+      ["Y a-t-il des critères du goût ?","2019"],
+      ["L'expérience esthétique","2021"],
+      ["Le goût de la beauté","2023"],
+      ["L'art et le goût","2021"],
+      ["De mauvais goût","2025"],
+    ]
+  },
+  {
+    id:"connaissance",
+    label:"Art comme mode de connaissance et de vérité",
+    color:"c-amber",
+    sujets:[
+      ["L'art est-il un mode de connaissance ?","2019"],
+      ["L'art est-il une connaissance ?","2024"],
+      ["Art et vérité","2021"],
+      ["La vérité en art","2018"],
+      ["Que nous apprennent les œuvres d'art ?","2019"],
+      ["Que nous apporte l'art ?","2025"],
+      ["Que nous apprend le cinéma ?","2024"],
+      ["Peinture et réalité","2025"],
+      ["La nature morte","2024"],
+      ["L'œil du photographe","2024"],
+      ["Poésie et philosophie","2024"],
+      ["La poésie pense-t-elle ?","2024"],
+      ["La musique est-elle un langage ?","2024×2"],
+      ["De quoi la musique est-elle l'art ?","2023"],
+      ["Peut-on parler d'un savoir poétique ?","2023"],
+      ["Littérature et philosophie","2023"],
+    ]
+  },
+  {
+    id:"technique",
+    label:"Essence et portée de la technique",
+    color:"c-blue",
+    sujets:[
+      ["La technique est-elle libératrice ?","2025×2"],
+      ["Raison et technique","2025"],
+      ["Science et technique","2023"],
+      ["La technique fait-elle violence à la nature ?","2023"],
+      ["La technique n'est-elle qu'une application de la science ?","2024"],
+      ["L'écriture est-elle une technique parmi d'autres ?","2023"],
+      ["À quoi sert la technique ?","2023"],
+      ["Peut-on parler d'un règne de la technique ?","2019"],
+      ["Peut-on maîtriser la technique ?","2017"],
+      ["La technologie modifie-t-elle les rapports sociaux ?","2025"],
+      ["La technologie","2025"],
+      ["La technique est-elle dangereuse ?","2016"],
+      ["\"Les miracles de la technique\"","2023"],
+      ["Raison et technique","2021"],
+      ["L'objet technique","2024"],
+      ["Un objet technique peut-il être beau ?","2023×2"],
+      ["L'intelligence artificielle","2025×2"],
+      ["Machine et organisme","2025"],
+    ]
+  },
+  {
+    id:"machine",
+    label:"Machines, outils, savoir-faire",
+    color:"c-green",
+    sujets:[
+      ["Les machines","2025×2"],
+      ["Qu'est-ce qu'une machine ?","2021×2"],
+      ["L'outil","2018"],
+      ["L'homme et la machine","2022"],
+      ["Le vivant et la technique","2017"],
+      ["Une machine peut-elle penser ?","2019"],
+      ["Les machines pensent-elles ?","2017"],
+      ["L'homme-machine","2017"],
+      ["Faut-il avoir peur des machines ?","2021"],
+      ["Le vivant est-il assimilable à une machine ?","2022"],
+      ["Qu'est-ce qu'un savoir-faire ?","2025×2"],
+      ["L'ouvrier et l'ingénieur","2023"],
+      ["Interpréter, est-ce un art ?","2025"],
+      ["La logique est-elle un art de raisonner ?","2024"],
+      ["La médecine est-elle un art ou une science ?","2025"],
+      ["Y a-t-il des techniques pour être heureux ?","2024"],
+    ]
+  },
+  {
+    id:"art_societe",
+    label:"Art, société, institution et politique",
+    color:"c-pink",
+    sujets:[
+      ["L'art est-il un luxe ?","2025×2"],
+      ["L'art est-il inutile ?","2024"],
+      ["Pourquoi des musées ?","2025×2"],
+      ["Le musée","2024×2"],
+      ["L'histoire de l'art","2023"],
+      ["L'art a-t-il une histoire ?","2017"],
+      ["Les industries culturelles","2025"],
+      ["L'œuvre d'art est-elle une marchandise ?","2025"],
+      ["Enseigner l'art","2024"],
+      ["L'art et la vie","2023"],
+      ["L'avant-garde","2025×2"],
+      ["Art populaire et art savant","2023"],
+      ["Qu'est-ce qu'un art populaire ?","2024"],
+      ["Les arts appliqués","2024"],
+      ["Arts du temps et arts de l'espace","2025"],
+      ["Peut-on séparer l'homme et l'œuvre ?","2018"],
+      ["L'art et la morale","2016"],
+      ["La critique fait-elle partie de l'art ?","2024"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    let pillsHtml = cat.sujets.map(([s, y]) =>
+      `<span class="pill" title="${y}">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('pg-' + i);
+  const btn = document.getElementById('tbtn-' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+render();
+</script>
