@@ -1,0 +1,292 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  h2.main-title { font-size: 18px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 24px; }
+  .cat { margin-bottom: 28px; }
+  .cat-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+  .cat-title { font-size: 15px; font-weight: 500; }
+  .cat-count { font-size: 12px; color: var(--color-text-secondary); }
+  .toggle-btn { font-size: 12px; color: var(--color-text-tertiary); margin-left: auto; }
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 99px;
+    border: 1px solid var(--color-border-secondary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+    transition: background .15s;
+    cursor: default;
+  }
+  .pill:hover { background: var(--color-background-tertiary); }
+  .divider { height: 1px; background: var(--color-border-tertiary); margin: 4px 0 22px; }
+
+  .c-purple .pill  { background:#EEEDFE; color:#3C3489; border-color:#AFA9EC; }
+  .c-teal   .pill  { background:#E1F5EE; color:#0F6E56; border-color:#5DCAA5; }
+  .c-coral  .pill  { background:#FAECE7; color:#993C1D; border-color:#F0997B; }
+  .c-amber  .pill  { background:#FAEEDA; color:#854F0B; border-color:#EF9F27; }
+  .c-blue   .pill  { background:#E6F1FB; color:#185FA5; border-color:#85B7EB; }
+  .c-green  .pill  { background:#EAF3DE; color:#3B6D11; border-color:#97C459; }
+  .c-pink   .pill  { background:#FBEAF0; color:#993556; border-color:#ED93B1; }
+  .c-red    .pill  { background:#FCEBEB; color:#A32D2D; border-color:#F09595; }
+
+  @media (prefers-color-scheme: dark) {
+    .c-purple .pill { background:#26215C; color:#CECBF6; border-color:#534AB7; }
+    .c-teal   .pill { background:#04342C; color:#9FE1CB; border-color:#0F6E56; }
+    .c-coral  .pill { background:#4A1B0C; color:#F5C4B3; border-color:#993C1D; }
+    .c-amber  .pill { background:#412402; color:#FAC775; border-color:#854F0B; }
+    .c-blue   .pill { background:#042C53; color:#B5D4F4; border-color:#185FA5; }
+    .c-green  .pill { background:#173404; color:#C0DD97; border-color:#3B6D11; }
+    .c-pink   .pill { background:#4B1528; color:#F4C0D1; border-color:#993356; }
+    .c-red    .pill { background:#501313; color:#F7C1C1; border-color:#A32D2D; }
+  }
+</style>
+
+<div class="wrap">
+  <h2 class="main-title">Sujets d'oral ENS Ulm — Philosophie</h2>
+  <p class="subtitle">Thème « La morale » · Compilation 2000–2025 · Classement par grandes catégories</p>
+  <div id="cats"></div>
+</div>
+
+<script>
+const data = [
+  {
+    id:"fondements",
+    label:"Fondements et statut de la morale",
+    color:"c-purple",
+    sujets:[
+      ["La morale est-elle un art de vivre ?","2022×2"],
+      ["Faire la morale","2022"],
+      ["Y a-t-il des sentiments moraux ?","2022×2"],
+      ["Y a-t-il un sens moral ?","2022"],
+      ["La bonne conscience","2024"],
+      ["La mauvaise conscience","2021"],
+      ["Est-ce seulement l'intention qui compte ?","2022×2"],
+      ["Peut-on argumenter en morale ?","2017"],
+      ["Les exceptions ont-elles une place en morale ?","2024"],
+      ["En morale, est-ce seulement l'intention qui compte ?","2021"],
+      ["La morale est-elle une science ?","2023"],
+      ["La raison peut-elle servir le mal ?","2023"],
+      ["Mœurs et moralité","2021"],
+      ["Les mœurs et les lois","2025"],
+      ["Peut-on se passer de principes ?","2023"],
+      ["Avoir des principes","2021"],
+      ["Faut-il avoir des principes ?","2023×2"],
+      ["Si Dieu n'existe pas, tout est-il permis ?","2022×2"],
+      ["Le sens moral est-il naturel ?","2015"],
+    ]
+  },
+  {
+    id:"bien_mal",
+    label:"Le bien, le mal et le vice",
+    color:"c-red",
+    sujets:[
+      ["Peut-on vouloir le mal ?","2022×3"],
+      ["Le mal est-il une objection à l'existence de Dieu ?","2023"],
+      ["D'où vient le mal ?","2023"],
+      ["Le bien commun","2025"],
+      ["Le beau et le bien","2021×2"],
+      ["L'utile et le bien","2022"],
+      ["Le juste et le bien","2022"],
+      ["La bonne conscience","2024"],
+      ["Ce qui est subjectif est-il arbitraire ?","2023"],
+      ["Le mal est-il une erreur ?","2021"],
+      ["Le bonheur des méchants","2019"],
+      ["Voir le meilleur et faire le pire","2023"],
+      ["La méchanceté","2017"],
+      ["Le vice","2019"],
+      ["La corruption des mœurs","2024"],
+      ["Bêtise et méchanceté","2023"],
+      ["L'inhumain","2022×2"],
+      ["La barbarie","2024"],
+    ]
+  },
+  {
+    id:"liberte_responsabilite",
+    label:"Liberté, responsabilité et faute",
+    color:"c-teal",
+    sujets:[
+      ["La responsabilité","2024"],
+      ["Sommes-nous responsables de nos passions ?","2019×2"],
+      ["Sommes-nous responsables de nos erreurs ?","2019"],
+      ["Est-on responsable de ce qu'on n'a pas voulu ?","2022"],
+      ["La faiblesse de la volonté","2021×2"],
+      ["La faute et l'erreur","2023×2"],
+      ["La culpabilité","2023"],
+      ["Le remords","2023×2"],
+      ["Comprendre, est-ce excuser ?","2024"],
+      ["Expliquer, est-ce excuser ?","2023"],
+      ["\"C'est plus fort que moi\"","2024×2"],
+      ["Que vaut l'excuse : \"C'est plus fort que moi\" ?","2019"],
+      ["La liberté se prouve-t-elle ou s'éprouve-t-elle ?","2024"],
+      ["Se sentir libre","2024"],
+      ["Peut-on renoncer à sa liberté ?","2021×2"],
+      ["Sommes-nous condamnés à être libres ?","2021"],
+      ["Sommes-nous libres ?","2021"],
+      ["La liberté est-elle une illusion ?","2022"],
+      ["Une cause peut-elle être libre ?","2022"],
+    ]
+  },
+  {
+    id:"devoir_obligation",
+    label:"Devoir, obligation et vertu",
+    color:"c-amber",
+    sujets:[
+      ["Y a-t-il des devoirs envers soi-même ?","2019×2"],
+      ["Droits et devoirs","2023"],
+      ["Peut-on avoir des droits sans avoir des devoirs ?","2022"],
+      ["Obéir","2024"],
+      ["Le devoir de mémoire","2024"],
+      ["Que peut-on faire par devoir ?","2021"],
+      ["La vertu peut-elle s'enseigner ?","2021"],
+      ["Les vertus ne sont-elles que des vices déguisés ?","2016"],
+      ["La tempérance","2025"],
+      ["La générosité","2023"],
+      ["La prudence","2019×2"],
+      ["Le courage","2021×2"],
+      ["La sincérité","2015"],
+      ["La franchise est-elle une vertu ?","2015"],
+      ["La patience","2024"],
+      ["L'humilité","2024×2"],
+      ["La fidélité","2024×2"],
+      ["Être fidèle à soi-même","2025"],
+      ["La naïveté est-elle une vertu ?","2016"],
+    ]
+  },
+  {
+    id:"autrui_relation",
+    label:"Autrui, altérité et relations morales",
+    color:"c-blue",
+    sujets:[
+      ["Peut-on aimer son prochain comme soi-même ?","2024×2"],
+      ["Faut-il aimer son prochain comme soi-même ?","2023"],
+      ["Autrui est-il un autre moi ?","2019×2"],
+      ["Autrui est-il mon semblable ?","2019"],
+      ["La pitié","2023×2"],
+      ["La sympathie","2017×2"],
+      ["L'empathie","2025"],
+      ["La générosité","2023"],
+      ["L'alter ego","2024"],
+      ["Peut-on se mettre à la place des autres ?","2021"],
+      ["Peut-on connaître autrui ?","2024×2"],
+      ["Le corps de l'autre","2024"],
+      ["Sommes-nous responsables d'autrui ?","2021"],
+      ["L'amour peut-il être un devoir ?","2017×2"],
+      ["Peut-on faire le bien de quelqu'un malgré lui ?","2021"],
+      ["\"Aimez vos ennemis\"","2024"],
+      ["Le respect","2019×2"],
+      ["Aimer et être aimé","2024"],
+    ]
+  },
+  {
+    id:"verite_mensonge",
+    label:"Vérité, mensonge et sincérité morale",
+    color:"c-coral",
+    sujets:[
+      ["A-t-on le droit de mentir ?","2022"],
+      ["Est-il parfois bon de mentir ?","2023"],
+      ["Toute vérité est-elle bonne à dire ?","2022"],
+      ["Mentir","2021"],
+      ["Peut-on se mentir à soi-même ?","2023×2"],
+      ["La bonne conscience","2024"],
+      ["Peut-on être en conflit avec soi-même ?","2022×2"],
+      ["L'exigence de vérité a-t-elle un sens moral ?","2021"],
+      ["La mauvaise foi","2019"],
+      ["Tromper","2024"],
+      ["L'hypocrisie","2025"],
+      ["La dissimulation","2025"],
+      ["Peut-on tout dire ?","2019×3"],
+      ["Le mensonge","2017×2"],
+      ["La franchise est-elle une vertu ?","2015"],
+      ["La sincérité","2015"],
+    ]
+  },
+  {
+    id:"bonheur_vie",
+    label:"Bonheur, vie bonne et sagesse pratique",
+    color:"c-green",
+    sujets:[
+      ["Vivre et bien vivre","2023"],
+      ["Y a-t-il un art d'être heureux ?","2023"],
+      ["Peut-on apprendre à vivre ?","2024"],
+      ["La morale est-elle un art de vivre ?","2022×2"],
+      ["Faire de sa vie une œuvre d'art","2021"],
+      ["Réussir sa vie","2022×2"],
+      ["Le bonheur est-il affaire de volonté ?","2019"],
+      ["Peut-on être heureux tout seul ?","2024"],
+      ["Vivre selon la nature","2022"],
+      ["Faut-il changer ses désirs plutôt que l'ordre du monde ?","2022"],
+      ["Y a-t-il un art de vivre ?","2019"],
+      ["Qu'est-ce que le bonheur ?","2017"],
+      ["Avons-nous le devoir de vivre ?","2021"],
+      ["La valeur de la vie","2021"],
+      ["La vie est-elle une valeur ?","2023"],
+      ["Y a-t-il des techniques pour être heureux ?","2024"],
+      ["Pourquoi désirer la sagesse ?","2019"],
+      ["La sagesse","2025"],
+    ]
+  },
+  {
+    id:"normes_transgression",
+    label:"Normes, transgression et limites morales",
+    color:"c-pink",
+    sujets:[
+      ["Le scandale","2019"],
+      ["L'indécence","2015"],
+      ["La honte","2019×2"],
+      ["La pudeur","2021×2"],
+      ["Le tabou","2025"],
+      ["La transgression","2025"],
+      ["L'interdit","2025"],
+      ["La prohibition de l'inceste","2025"],
+      ["Les bonnes mœurs","2025"],
+      ["Faut-il respecter la nature ?","2022"],
+      ["Que faire de la violence ?","2023"],
+      ["La violence peut-elle être légitime ?","2022"],
+      ["Y a-t-il des violences légitimes ?","2019"],
+      ["Ne pas tuer","2021"],
+      ["La peine de mort","2025"],
+      ["La cruauté","2025"],
+      ["De quoi faut-il avoir honte ?","2022"],
+      ["Être vulgaire","2024"],
+      ["Le mauvais goût","2023"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('pg-' + i);
+  const btn = document.getElementById('tbtn-' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+render();
+</script>
