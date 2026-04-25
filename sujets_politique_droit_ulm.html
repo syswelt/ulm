@@ -1,0 +1,298 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  h2.main-title { font-size: 18px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 24px; }
+  .cat { margin-bottom: 28px; }
+  .cat-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+  .cat-title { font-size: 15px; font-weight: 500; }
+  .cat-count { font-size: 12px; color: var(--color-text-secondary); }
+  .toggle-btn { font-size: 12px; color: var(--color-text-tertiary); margin-left: auto; }
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-size: 12px; padding: 3px 9px; border-radius: 99px;
+    border: 1px solid var(--color-border-secondary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+    transition: background .15s; cursor: default;
+  }
+  .pill:hover { background: var(--color-background-tertiary); }
+  .divider { height: 1px; background: var(--color-border-tertiary); margin: 4px 0 22px; }
+
+  .c-purple .pill { background:#EEEDFE; color:#3C3489; border-color:#AFA9EC; }
+  .c-teal   .pill { background:#E1F5EE; color:#0F6E56; border-color:#5DCAA5; }
+  .c-coral  .pill { background:#FAECE7; color:#993C1D; border-color:#F0997B; }
+  .c-amber  .pill { background:#FAEEDA; color:#854F0B; border-color:#EF9F27; }
+  .c-blue   .pill { background:#E6F1FB; color:#185FA5; border-color:#85B7EB; }
+  .c-green  .pill { background:#EAF3DE; color:#3B6D11; border-color:#97C459; }
+  .c-pink   .pill { background:#FBEAF0; color:#993556; border-color:#ED93B1; }
+  .c-red    .pill { background:#FCEBEB; color:#A32D2D; border-color:#F09595; }
+
+  @media (prefers-color-scheme: dark) {
+    .c-purple .pill { background:#26215C; color:#CECBF6; border-color:#534AB7; }
+    .c-teal   .pill { background:#04342C; color:#9FE1CB; border-color:#0F6E56; }
+    .c-coral  .pill { background:#4A1B0C; color:#F5C4B3; border-color:#993C1D; }
+    .c-amber  .pill { background:#412402; color:#FAC775; border-color:#854F0B; }
+    .c-blue   .pill { background:#042C53; color:#B5D4F4; border-color:#185FA5; }
+    .c-green  .pill { background:#173404; color:#C0DD97; border-color:#3B6D11; }
+    .c-pink   .pill { background:#4B1528; color:#F4C0D1; border-color:#993356; }
+    .c-red    .pill { background:#501313; color:#F7C1C1; border-color:#A32D2D; }
+  }
+</style>
+
+<div class="wrap">
+  <h2 class="main-title">Sujets d'oral ENS Ulm — Philosophie</h2>
+  <p class="subtitle">Thème « La politique, le droit » · Compilation 2000–2025 · Classement par grandes catégories</p>
+  <div id="cats"></div>
+</div>
+
+<script>
+const data = [
+  {
+    id:"etat_souverainete",
+    label:"État, souveraineté et pouvoir politique",
+    color:"c-purple",
+    sujets:[
+      ["Pourquoi l'État ?","2025×2"],
+      ["L'État peut-il être fondé sur un contrat ?","2025"],
+      ["Y a-t-il un sens à opposer la société et l'État ?","2025"],
+      ["La souveraineté","2019×2"],
+      ["La souveraineté peut-elle se partager ?","2018×2"],
+      ["La souveraineté peut-elle être limitée ?","2022"],
+      ["La volonté peut-elle être déléguée ?","2022"],
+      ["Qui est souverain ?","2022"],
+      ["Le gouvernement de l'imagination","2025"],
+      ["Gouverner","2023×2"],
+      ["Ceux qui savent doivent-ils gouverner ?","2023×2"],
+      ["Le philosophe roi","2025"],
+      ["Y a-t-il un art de gouverner ?","2019"],
+      ["Qu'est-ce qu'être efficace en politique ?","2018"],
+      ["La raison d'État","2019×2"],
+      ["Y a-t-il une raison d'État ?","2025"],
+      ["La science politique est-elle une science ?","2025"],
+      ["La politique est-elle une science ?","2017"],
+      ["Qu'est-ce qu'un corps politique ?","2025"],
+    ]
+  },
+  {
+    id:"democratie_regimes",
+    label:"Démocratie, régimes politiques et participation",
+    color:"c-blue",
+    sujets:[
+      ["La démocratie","2022×2"],
+      ["La démocratie a-t-elle des limites ?","2019"],
+      ["N'y a-t-il de démocratie que représentative ?","2019"],
+      ["République et démocratie","2025"],
+      ["Qu'est-ce qu'un régime politique ?","2019×2"],
+      ["Le peuple peut-il se tromper ?","2025"],
+      ["Un peuple peut-il être souverain ?","2023"],
+      ["Quand y a-t-il peuple ?","2024"],
+      ["Qu'est-ce qu'un peuple ?","2019×3"],
+      ["Qu'est-ce qui fait un peuple ?","2019×2"],
+      ["La volonté du peuple","2024"],
+      ["Le suffrage universel","2025"],
+      ["Élire","2024"],
+      ["Tout est-il politique ?","2022×3"],
+      ["Qu'est-ce qui n'est pas politique ?","2023"],
+      ["La politique est-elle l'affaire de tous ?","2019"],
+      ["Politique et participation","2025"],
+      ["Peut-on être apolitique ?","2025"],
+      ["Être un bon citoyen","2025"],
+      ["Qu'est-ce qu'un citoyen ?","2019"],
+    ]
+  },
+  {
+    id:"justice_droit",
+    label:"Justice, droit et égalité",
+    color:"c-teal",
+    sujets:[
+      ["La justice est-elle de ce monde ?","2025"],
+      ["La justice sociale","2019×2"],
+      ["Toute inégalité est-elle injuste ?","2022"],
+      ["L'égalité des chances","2024×2"],
+      ["Égalité et équité","2025"],
+      ["L'équité","2019"],
+      ["Le droit du plus fort","2025"],
+      ["Force et droit","2023×2"],
+      ["Justice et force","2019×2"],
+      ["Le droit ne fait-il que traduire les rapports de force ?","2022"],
+      ["Droit et moralité","2023"],
+      ["La force du droit","2025"],
+      ["Qu'est-ce qui fait la force des lois ?","2025"],
+      ["Qu'est-ce qui fait la force de la loi ?","2019"],
+      ["Le sentiment d'injustice","2023"],
+      ["L'injustice","2022"],
+      ["\"Pas de liberté pour les ennemis de la liberté\"","2024"],
+      ["Quel est le fondement de la propriété ?","2024"],
+      ["La propriété est-elle un droit ?","2025"],
+      ["Tout est-il appropriable ?","2025"],
+    ]
+  },
+  {
+    id:"loi_obligation",
+    label:"Loi, obligation et désobéissance",
+    color:"c-amber",
+    sujets:[
+      ["\"C'est la loi\"","2025"],
+      ["Lois et coutumes","2023"],
+      ["La loi et les mœurs","2015"],
+      ["La loi et l'ordre","2015"],
+      ["Les lois logiques peuvent-elles changer ?","2025"],
+      ["Appartient-il aux lois d'éduquer les hommes ?","2024"],
+      ["Peut-on désobéir à la loi ?","2022"],
+      ["La désobéissance civile","2018×2"],
+      ["Le droit de résistance","2022"],
+      ["La désobéissance peut-elle être légitime ?","2024"],
+      ["L'insurrection est-elle un droit ?","2018"],
+      ["La révolte","2022×2"],
+      ["La résistance","2024"],
+      ["Obéir","2024"],
+      ["A qui devons-nous obéir ?","2018"],
+      ["\"Vivre libre ou mourir\"","2024"],
+      ["Le service public","2025"],
+      ["Les limites du pouvoir","2025"],
+      ["L'état de droit","2018"],
+    ]
+  },
+  {
+    id:"violence_guerre",
+    label:"Violence, guerre et paix",
+    color:"c-red",
+    sujets:[
+      ["Guerre et paix","2023"],
+      ["Y a-t-il des guerres justes ?","2022×3"],
+      ["Faire la paix","2019×3"],
+      ["La guerre civile","2024"],
+      ["La paix met-elle fin à l'histoire ?","2025"],
+      ["La violence","2017×2"],
+      ["La violence peut-elle être légitime ?","2022"],
+      ["Y a-t-il des violences légitimes ?","2019"],
+      ["Que faire de la violence ?","2023"],
+      ["La guerre juste","2024"],
+      ["Faut-il être pacifiste ?","2025"],
+      ["La terreur","2022"],
+      ["Terroriser","2024"],
+      ["Qu'est-ce qu'un terroriste ?","2024"],
+      ["Ami et ennemi","2024"],
+      ["L'ennemi","2022×2"],
+      ["Peut-il y avoir un droit de la guerre ?","2018"],
+      ["Pourquoi la guerre ?","2019"],
+      ["Le droit et la violence","2024"],
+    ]
+  },
+  {
+    id:"liberte_politique",
+    label:"Liberté politique, droits et citoyenneté",
+    color:"c-coral",
+    sujets:[
+      ["Liberté et égalité","2025×2"],
+      ["La liberté d'expression","2024"],
+      ["\"Les hommes naissent et demeurent libres et égaux en droits\"","2022"],
+      ["Peut-on forcer quelqu'un à être libre ?","2022×2"],
+      ["L'égalité est-elle une condition de la liberté ?","2018"],
+      ["Droits et devoirs","2023"],
+      ["Qui a des droits ?","2025"],
+      ["Le vivant a-t-il des droits ?","2025"],
+      ["Les droits de l'enfant","2023"],
+      ["N'y a-t-il des droits que de l'homme ?","2023×2"],
+      ["L'homme est-il le seul sujet de droit ?","2024"],
+      ["La nature a-t-elle des droits ?","2024×2"],
+      ["\"J'ai le droit\"","2024"],
+      ["Le droit à la différence","2023"],
+      ["Être citoyen du monde","2024"],
+      ["Y a-t-il un sens à se dire citoyen du monde ?","2024"],
+      ["Le cosmopolitisme","2024×2"],
+      ["Peut-on être citoyen du monde ?","2018×2"],
+      ["État et liberté","2025"],
+      ["État et nation","2025"],
+    ]
+  },
+  {
+    id:"punition_crime",
+    label:"Punition, crime et justice pénale",
+    color:"c-green",
+    sujets:[
+      ["Pourquoi punir ?","2019×4"],
+      ["Le droit de punir","2023"],
+      ["Crime et châtiment","2023"],
+      ["La peine de mort","2025"],
+      ["Peut-on rire de tout ?","2022×2"],
+      ["Comprendre, est-ce excuser ?","2024"],
+      ["Peut-on tout pardonner ?","2023"],
+      ["Le pardon","2025"],
+      ["La clémence","2025"],
+      ["Le tribunal","2025"],
+      ["\"L'histoire jugera\"","2025×3"],
+      ["Le tribunal de l'histoire","2021"],
+      ["La responsabilité","2024"],
+      ["La corruption","2025"],
+      ["L'abus de pouvoir","2019"],
+      ["La vengeance","2017"],
+      ["\"Œil pour œil, dent pour dent\"","2022"],
+      ["\"Pas de liberté pour les ennemis de la liberté\"","2024"],
+    ]
+  },
+  {
+    id:"societe_lien",
+    label:"Société, lien social et contrat",
+    color:"c-pink",
+    sujets:[
+      ["Le lien social","2025×2"],
+      ["La société existe-t-elle ?","2024"],
+      ["Une société est-elle une somme d'individus ?","2025"],
+      ["N'existe-t-il que des individus ?","2022×2"],
+      ["Les rapports sociaux sont-ils des rapports entre individus ?","2025"],
+      ["Y a-t-il des pathologies sociales ?","2025"],
+      ["La division du travail","2025×2"],
+      ["Le contrat social","2025"],
+      ["L'idée d'état de nature","2025"],
+      ["Territoire et peuplement","2025"],
+      ["Murs et frontières","2025"],
+      ["La frontière","2024×2"],
+      ["Qu'est-ce qu'une nation ?","2023"],
+      ["Le nationalisme","2025"],
+      ["Le cosmopolitisme","2024×2"],
+      ["L'intérêt peut-il être général ?","2024"],
+      ["Le bien commun","2025"],
+      ["Le service public","2025"],
+      ["La bureaucratie","2024"],
+      ["Les inégalités","2025"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('pg-' + i);
+  const btn = document.getElementById('tbtn-' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+render();
+</script>
