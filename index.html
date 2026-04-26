@@ -206,17 +206,57 @@ footer { padding: 28px 0 0; border-top: 1px solid var(--border); font-size: 12px
 .wrap h2.main-title, .wrap .subtitle, h2.sr-only, .wrap h2.sr-only { display: none; }
 .wrap { background: transparent; padding-top: 0; }
 .meta { display: none !important; }
+
+/* ── Module philosophie refait ── */
+.phi-search-wrap{position:relative;margin-bottom:14px}
+.phi-search-wrap input{
+  width:100%;padding:8px 12px 8px 34px;
+  background:#202020;border:1px solid rgba(255,255,255,0.14);
+  border-radius:5px;color:#ddd9d3;font-size:13px;outline:none;
+  transition:border-color .15s;
+}
+.phi-search-wrap input:focus{border-color:#888}
+.phi-search-wrap input::placeholder{color:#4a4a4a}
+.phi-si{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;color:#4a4a4a;pointer-events:none}
+.phi-tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.phi-tab{font-size:11px;padding:3px 10px;border-radius:99px;border:.5px solid;cursor:pointer;transition:opacity .15s;white-space:nowrap}
+.phi-tab.off{opacity:.3}
+.phi-stats{font-size:11px;color:#4a4a4a;margin-bottom:14px;min-height:14px}
+.phi-theme{margin-bottom:20px}
+.phi-th{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:7px;border-bottom:.5px solid rgba(255,255,255,0.09)}
+.phi-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.phi-tn{font-size:14px;font-weight:600}
+.phi-tc{font-size:11px;color:#4a4a4a;margin-left:auto}
+.phi-axe{margin-bottom:8px;border:.5px solid rgba(255,255,255,0.09);border-radius:5px;overflow:hidden}
+.phi-axe-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:7px 11px;cursor:pointer;user-select:none;
+  background:#1c1c1c;transition:background .1s;
+}
+.phi-axe-hdr:hover{background:#222}
+.phi-axe-name{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:#888}
+.phi-axe-meta{display:flex;align-items:center;gap:8px}
+.phi-axe-n{font-size:11px;color:#4a4a4a}
+.phi-chevron{font-size:10px;color:#4a4a4a;transition:transform .2s}
+.phi-axe.open .phi-chevron{transform:rotate(180deg)}
+.phi-pills{display:flex;flex-wrap:wrap;gap:5px;padding:9px 11px;display:none}
+.phi-axe.open .phi-pills{display:flex}
+.phi-pill{font-size:12px;padding:3px 9px;border-radius:99px;border:.5px solid;cursor:default;transition:filter .1s}
+.phi-pill:hover{filter:brightness(1.2)}
+.phi-empty{font-size:13px;color:#4a4a4a;padding:20px 0;text-align:center}
+mark.phi-hl{background:#8a5c1a;color:#fff;border-radius:2px;padding:0 2px}
+
 </style>
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#philo">Philosophie</a>
-    <a href="#s-art">Art & tech.</a>
-    <a href="#s-mor">Morale</a>
-    <a href="#s-pol">Politique</a>
-    <a href="#s-shs">SHS & lang.</a>
-    <a href="#s-meta">Metaphysique</a>
+    <a href="#s-philo">Philosophie</a>
+    
+    
+    
+    
+    
     <a href="#langues">Litterature</a>
     <a href="#s-fr">Francais</a>
     <a href="#s-es">Espagnol</a>
@@ -230,58 +270,18 @@ footer { padding: 28px 0 0; border-top: 1px solid var(--border); font-size: 12px
   <p>Sujets de philosophie 2000-2025 - Auteurs de francais 2010-2025 - Espagnol, allemand et anglais<br>
   Donnees extraites des PDFs officiels et rapports de jury - Usage pedagogique non officiel</p>
 </header>
-<p class="group-label" id="philo">Philosophie - sujets par theme</p>
-<section class="section" id="s-art">
-<h2 class="sec-title">Art & technique</h2>
-<p class="sec-meta">Essence de l'oeuvre - Creation - Beaute - Art comme connaissance - Technique - Machines - Art & societe</p>
-<div class="wrap">
-  
-  
-
-<div id="art_cats"></div>
-</div>
+<p class="group-label" id="philo">Philosophie — sujets par thème</p>
+<section class="section" id="s-philo">
+  <h2 class="sec-title">Sujets d'oral de philosophie</h2>
+  <p class="sec-meta">902 sujets · Sessions 2021–2025 · Classés en 9 thèmes et axes problématiques</p>
+  <div class="phi-search-wrap">
+    <span class="phi-si">🔍</span>
+    <input type="text" id="phi-search" placeholder="Rechercher un sujet, un mot-clé…" autocomplete="off">
+  </div>
+  <div class="phi-tabs" id="phi-tabs"></div>
+  <p class="phi-stats" id="phi-stats"></p>
+  <div id="phi-content"></div>
 </section>
-
-<section class="section" id="s-mor">
-<h2 class="sec-title">La morale</h2>
-<p class="sec-meta">Fondements - Bien & mal - Liberte & responsabilite - Devoir & vertu - Autrui - Verite & mensonge - Bonheur - Normes</p>
-<div class="wrap">
-  
-  
-  <div id="mor_cats"></div>
-</div>
-</section>
-
-<section class="section" id="s-pol">
-<h2 class="sec-title">Politique & droit</h2>
-<p class="sec-meta">Etat & souverainete - Democratie - Justice - Loi & desobeissance - Violence & guerre - Liberte politique - Punition - Lien social</p>
-<div class="wrap">
-  
-  
-  <div id="pol_cats"></div>
-</div>
-</section>
-
-<section class="section" id="s-shs">
-<h2 class="sec-title">SHS & langage</h2>
-<p class="sec-meta">Epistemologie - Histoire & memoire - Anthropologie - Langage & pensee - Diversite linguistique - Communication - Hermeneutique - Psychologie</p>
-<div class="wrap">
-  
-  
-  <div id="shs_cats"></div>
-</div>
-</section>
-
-<section class="section" id="s-meta">
-<h2 class="sec-title">Metaphysique</h2>
-<p class="sec-meta">Statut de la metaphysique - Etre & existence - Dieu & religion - Temps & espace - Identite & sujet - Causalite - Mort & finitude - L'absolu</p>
-<div class="wrap">
-  
-  
-  <div id="meta_cats"></div>
-</div>
-</section>
-
 <p class="group-label" id="langues">Litterature - auteurs par frequence</p>
 <section class="section" id="s-fr">
 <h2 class="sec-title">Oral de francais</h2>
@@ -377,1195 +377,114 @@ footer { padding: 28px 0 0; border-top: 1px solid var(--border); font-size: 12px
 </div>
 <script>
 (function(){
+const PHI_DATA = [{"theme": "Art & esthétique", "axes": [{"axe": "Essence de l'art et de l'œuvre", "sujets": ["Art et illusion", "Artiste et artisan", "Arts du temps et arts de l'espace", "Faut-il condamner les fictions ?", "L'achèvement de l'œuvre", "L'art a-t-il une histoire ?", "L'art est-il inutile ?", "L'art est-il un luxe ?", "L'art est-il une connaissance ?", "L'artiste est-il un créateur ?", "L'histoire de l'art", "L'intérêt de l'art", "L'œuvre d'art est-elle une marchandise ?", "La critique fait-elle partie de l'art ?", "Lequel, de l'art ou du réel, est-il une imitation de l'autre ?", "Les arts et les sciences", "Les œuvres d'art sont-elles des choses ?", "Qu'est-ce qu'une œuvre d'art réussie ?", "Que nous apporte l'art ?", "Sommes-nous tous artistes ?", "Une œuvre d'art est-elle toujours de son temps ?", "Une œuvre d'art produit-elle du beau ?"]}, {"axe": "Création, génie, inspiration", "sujets": ["Copier", "Créer", "Créer, est-ce imiter ?", "Imitation et identification", "Imiter", "L'académisme", "L'avant-garde", "L'imagination est-elle créatrice ?", "L'imagination peut-elle être créatrice ?", "L'originalité", "La nécessité de l'art", "La perfection", "Les règles de l'art", "Qu'est-ce qu'un génie ?", "Qu'est-ce qui est génial ?", "Reproduire"]}, {"axe": "Beauté, goût et jugement esthétique", "sujets": ["Apprendre à voir", "Avoir du goût", "Beauté naturelle et beauté artistique", "L'expérience esthétique", "La beauté a-t-elle une histoire ?", "La beauté de la nature", "La beauté du geste", "La beauté du monde", "La laideur", "Qu'est-ce que le mauvais goût ?", "Qu'est-ce qui est sublime ?", "Sans l'art, parlerait-on de beauté ?", "Voir", "Y a-t-il un progrès en art ?", "« Chacun ses goûts »", "Être de mauvais goût"]}, {"axe": "Arts particuliers", "sujets": ["Art populaire et art savant", "Chanter", "Danser", "De quoi la musique est-elle l'art ?", "Enseigner l'art", "Interpréter, est-ce un art ?", "L'architecture est-elle un art ?", "L'objet de la musique", "L'œil du photographe", "La caricature", "La musique a-t-elle un sens ?", "La musique est-elle un langage ?", "La nature morte", "La poésie pense-t-elle ?", "Le dessin et la couleur", "Les arts appliqués", "Peinture et réalité", "Poésie et philosophie", "Qu'est-ce qu'un art populaire ?", "Que nous apprend le cinéma ?", "Regarder un tableau"]}, {"axe": "Rapport à l'image et à la représentation", "sujets": ["Concept et image", "Image et concept", "L'imaginaire", "L'imaginaire et le réel", "La haine des images", "La perspective", "La représentation", "Les images empêchent-elles de penser ?", "Peut-on penser sans image ?", "Peut-on représenter l'invisible ?", "Qu'est-ce qu'une image ?", "Que voit-on dans un miroir ?", "Sauver les apparences", "Voir et toucher"]}, {"axe": "Art, société et institutions", "sujets": ["Collectionner", "L'œuvre d'art est-elle une marchandise ?", "La bibliothèque", "La publicité", "Le musée", "Les industries culturelles", "Qu'est-ce qu'un classique ?"]}, {"axe": "Fiction, littérature et philosophie", "sujets": ["Faire comme si", "Faut-il condamner les fictions ?", "Histoire et fiction", "La fiction", "Le fictif et le réel", "Le style", "Littérature et philosophie", "Qu'est-ce qu'un chef d'œuvre ?", "Qu'est-ce qu'une fiction ?", "« Il était une fois »"]}], "total": 106}, {"theme": "Technique", "axes": [{"axe": "Essence et définition de la technique", "sujets": ["L'objet technique", "La science peut-elle se passer de métaphysique ?", "La technique est-elle libératrice ?", "La technique fait-elle violence à la nature ?", "La technique n'est-elle qu'une application de la science ?", "La technologie", "La technologie modifie-t-elle les rapports sociaux ?", "La théorie nous éloigne-t-elle de la réalité ?", "Qu'est-ce qu'un savoir-faire ?", "Raison et technique", "Science et technique", "« C'est en forgeant que l'on devient forgeron »", "« Les miracles de la technique »", "À quoi sert la technique ?"]}, {"axe": "Machines, outils et intelligence artificielle", "sujets": ["L'intelligence artificielle", "L'ouvrier et l'ingénieur", "Le mouvement perpétuel", "Le mécanisme", "Les machines", "Machine et organisme", "Penser requiert-il un corps ?", "« Machinalement »"]}, {"axe": "Technique et nature", "sujets": ["La nature est-elle un modèle ?", "La nature obéit-elle à des fins ?", "La technique fait-elle violence à la nature ?", "Laisser faire la nature", "Machine et organisme", "Raison et technique", "Travailler la terre"]}, {"axe": "Technique, travail et économie", "sujets": ["Doit-on travailler ?", "Gagner sa vie", "L'argent", "La division du travail", "La propriété est-elle un droit ?", "La sécurité", "Le bien commun", "Le service public", "Qu'est-ce qu'une propriété ?", "Quel est le fondement de la propriété ?", "Tout est-il appropriable ?", "Travailler", "Échange et don"]}, {"axe": "Médecine et santé", "sujets": ["La connaissance du vivant", "La médecine est-elle un art ou une science ?", "La médecine est-elle une science ?", "La vieillesse", "Le handicap", "Les âges de la vie", "Qu'est-ce qu'un être vivant ?", "Santé et médecine", "Soigner", "« Avoir la santé »", "Écouter son corps"]}], "total": 53}, {"theme": "Science", "axes": [{"axe": "Statut épistémologique de la science", "sujets": ["Existe-t-il une vision scientifique du monde ?", "L'erreur scientifique", "L'unité des sciences", "La connaissance scientifique est-elle fondée sur l'expérience ?", "La science et le faux", "La science politique", "Les faits parlent-ils d'eux-mêmes ?", "Les sciences de la nature", "Les sciences décrivent-elles ou construisent-elles leurs objets ?", "N'y a-t-il de rationalité que scientifique ?", "Peut-on parler de « révolutions scientifiques » ?", "Peut-on tout expliquer ?", "Qu'est-ce qu'une contradiction ?", "Qu'est-ce qu'une explication scientifique ?", "Qu'est-ce qu'une révolution scientifique ?", "Qu'est-ce qu'une science exacte ?", "Qu'est-ce qui fait l'unité d'une science ?", "Toute connaissance scientifique est-elle théorique ?", "Un fait peut-il réfuter une théorie ?", "Y a-t-il une science du concret ?", "« Et pourtant elle tourne »", "À quelle condition une démarche est-elle scientifique ?"]}, {"axe": "Vérité, preuve et démonstration", "sujets": ["Axiomes et définitions", "La connaissance des faits", "La manifestation de la vérité", "La singularité", "Le formalisme", "Le singulier", "Le vrai a-t-il une histoire ?", "Le vrai et le bien", "Le vrai et le certain", "Montrer et démontrer", "N'y a-t-il de vérité que scientifique ?", "Nier l'évidence", "Peut-on connaître le singulier ?", "Peut-on nier l'évidence ?", "Peut-on tout expliquer ?", "Pourquoi démontrer ?", "Prendre connaissance", "Qu'est-ce qu'un faux ?", "Qu'est-ce qu'une connaissance a priori ?", "Qu'est-ce qu'une démonstration ?", "Qu'est-ce que prouver ?", "Se trompe-t-on ?", "Tout est-il démontrable ?", "Toute vérité est-elle contextuelle ?", "Toute vérité est-elle définitive ?", "Toute vérité est-elle vérifiable ?", "Vérifier", "Vérité et certitude", "Vérité et contradiction", "Vérité et subjectivité", "Y a-t-il une histoire de la vérité ?", "À quoi reconnaît-on la vérité ?"]}, {"axe": "Raison, logique et méthode", "sujets": ["Analyse et synthèse", "Bon sens et sens commun", "Classer", "Comparer", "De quoi la logique est-elle la science ?", "L'imagination dans les sciences", "La clarté", "La comparaison", "La logique est-elle un art de penser ?", "La logique est-elle un art de raisonner ?", "La réflexion", "La répétition", "La spontanéité", "La table rase", "Le bon sens", "Le particulier et l'universel", "Le rôle des exemples", "Le sens commun", "Le simple", "Le système", "Le tout et la partie", "Les lois logiques peuvent-elles changer ?", "Logique et psychologie", "Penser en système", "Pensée et calcul", "Pourquoi raisonner ?", "Qu'est-ce qu'un problème ?", "Qu'est-ce qu'une crise ?", "Qu'est-ce qu'une structure ?", "Qu'est-ce qu'une théorie ?", "Raisonner et calculer", "Tout savoir doit-il être systématique ?", "Y a-t-il un savoir du contingent ?", "À quoi sert la logique ?"]}, {"axe": "Mathématiques", "sujets": ["1, 2, 3", "2 + 2 = 4", "Additionner et soustraire", "Axiomes et définitions", "Compter", "De quoi les mathématiques sont-elles les sciences ?", "La probabilité", "Les mathématiques sont-elles une découverte ou une invention ?", "Mesurer", "Qu'est-ce qu'un nombre ?", "Qu'est-ce qu'un point ?"]}, {"axe": "Expérience et observation", "sujets": ["A-t-on besoin de spécialistes ?", "Comprendre", "Connaître et reconnaître", "Faire des hypothèses", "L'expérience instruit-elle ?", "L'observation participante", "La curiosité", "Le travail sur le terrain", "Le témoignage des sens", "Montrer l'exemple", "Qu'est-ce qu'un expert ?", "Qu'est-ce qu'un témoignage ?", "Une expérience se partage-t-elle ?"]}, {"axe": "Science, progrès et société", "sujets": ["Doit-on croire au progrès ?", "Idéal et utopie", "L'érudition", "La culture générale", "La vie de l'esprit", "Le savoir est-il une forme de pouvoir ?", "Peut-on en savoir trop ?", "Rêver à un autre monde", "Un autre monde est-il possible ?", "Y a-t-il des savoirs inutiles ?", "« Réduire les inégalités »"]}], "total": 123}, {"theme": "Métaphysique", "axes": [{"axe": "Être, existence et réalité", "sujets": ["Apparaître", "Apparence et réalité", "Avoir un corps", "Chose et objet", "Choses et personnes", "De quoi la forme est-elle la forme ?", "Essence et existence", "L'arbitraire", "L'existence des corps", "L'inconcevable et l'impossible", "L'indiscernable", "L'inerte", "L'intemporel", "L'invisible", "L'irréversible", "L'ombre", "L'ordre des choses", "L'origine", "L'un et le multiple", "La forme et le fond", "La matière", "La négation", "La réalité mentale", "La répétition", "La table rase", "Le commencement", "Le commencement du monde", "Le fictif et le réel", "Le gouvernement de l'imagination", "Le mystère", "Le possible", "Le virtuel", "Le virtuel existe-t-il ?", "Mutatis mutandis", "Possibilité et nécessité", "Privation et négation", "Prouver l'existence du monde extérieur", "Qu'est-ce qu'imaginer ?", "Qu'est-ce qu'une chose ?", "Qu'est-ce qui est essentiel ?", "Substance et sujet", "Y a-t-il un ordre des choses ?"]}, {"axe": "Dieu, religion et transcendance", "sujets": ["Avoir une âme", "Croire et savoir", "Croit-on ce que l'on veut ?", "Dieu est-il mort ?", "Dieu est-il une invention humaine ?", "Existe-t-il des démonstrations métaphysiques ?", "Faut-il voir pour croire ?", "L'au-delà", "L'existence de Dieu", "La religion est-elle une affaire privée ?", "La terreur", "La vie après la mort", "La volonté divine", "Le culte des morts", "Les preuves de l'existence de Dieu", "Mythe et vérité", "Pourquoi des religions ?", "Qu'est-ce que croire ?", "Qu'est-ce qui est magique ?", "Se convertir", "Une société sans religion est-elle possible ?", "« Il n'y a pas de miracle »", "À quoi servent les mythes ?"]}, {"axe": "Temps, espace et infini", "sujets": ["Continuité et discontinuité", "Exister hors du temps", "Faut-il avoir peur du désordre ?", "Ici et maintenant", "L'espace", "L'immortalité", "L'instant", "L'intemporel", "L'irréversible", "L'éternité", "La pesanteur", "La terre", "Le chaos", "Le continu et le discret", "Le désordre", "Le mouvement perpétuel", "Le passé est-il irrévocable ?", "Le temps et l'éternité", "Le vide", "Penser le mouvement", "Peut-on se baigner deux fois dans le même fleuve ?", "Que reste-t-il du passé ?", "Se mouvoir", "Seul le présent existe-t-il ?", "Suis-je mon passé ?", "Temps et négation", "Vivre au présent", "Vivre le moment présent", "« Après moi le déluge »", "« Ici et maintenant »", "« À l'avenir »", "Éternité et immortalité"]}, {"axe": "Identité, sujet et personne", "sujets": ["Changer, est-ce devenir un autre ?", "Corps et identité", "Devenir ce que l'on est", "Genre et espèce", "Hériter", "Identité et ressemblance", "L'anthropocentrisme", "L'enfance", "L'esprit", "L'espèce humaine", "L'identité", "L'identité des hommes", "L'individuation", "L'âge de raison", "La nostalgie", "La relation d'identité", "La socialisation", "La vieillesse", "Le nom propre", "Le père", "Les grands hommes", "Les âges de la vie", "Moi", "Qu'est-ce qu'un individu ?", "Qu'est-ce qu'un sujet ?", "Qu'est-ce qu'une personne ?", "Qu'est-ce qu'être fidèle à soi-même ?", "Qu'est-ce que le moi ?", "Qu'est-ce qui fait qu'un corps est humain ?", "Suis-je le même dans des temps différents ?", "« Qui suis-je ? »", "« Rester soi-même »", "Être adulte", "Être de son temps", "Être enraciné", "Être fidèle à soi-même", "Être seul avec soi-même", "Être soi-même", "Être à sa place"]}, {"axe": "Causalité, nécessité, hasard", "sujets": ["Cause et raison", "Corrélation et causalité", "L'attraction", "Le hasard", "Le mécanisme", "Le principe de causalité", "Le principe de réalité", "Peut-on abolir le hasard ?", "Possibilité et nécessité", "« Par hasard »"]}, {"axe": "Mort, finitude et condition humaine", "sujets": ["Durer", "Espérer", "Faut-il être naturel ?", "L'animal", "L'animal politique", "L'homme est-il un animal ?", "L'homme est-il un animal comme les autres ?", "L'idée de nature", "L'inespéré", "L'inné et l'acquis", "La condition humaine", "La fin du monde", "La naissance", "La nature est-elle un modèle ?", "La nature obéit-elle à des fins ?", "La vie après la mort", "La vie est-elle une valeur ?", "Le culte des morts", "Le renoncement", "Les vivants et les morts", "Naître", "Qu'est-ce qu'un organisme ?", "Qu'est-ce qui anime l'animal ?", "Que signifie la mort ?", "Survivre", "Vivre et bien vivre", "Vivre, est-ce résister à la mort ?", "Vouloir l'impossible", "« Après moi le déluge »"]}, {"axe": "Statut de la métaphysique", "sujets": ["Avons-nous besoin de métaphysique ?", "De quoi les métaphysiciens parlent-ils ?", "La métaphysique répond-elle à un besoin ?", "La philosophie a-t-elle une histoire ?", "La philosophie est-elle la servante de la théologie ?", "La science peut-elle se passer de métaphysique ?", "Pourquoi philosopher ?", "Qu'est-ce qu'un grand philosophe ?"]}], "total": 183}, {"theme": "Sciences humaines", "axes": [{"axe": "Statut épistémologique des SHS", "sujets": ["Comprendre et expliquer", "Comprendre, est-ce excuser ?", "Expliquer, est-ce excuser ?", "L'analyse du vécu", "L'homme est-il objet de science ?", "L'écologie est-elle une science naturelle ou une science sociale ?", "La théorie nous éloigne-t-elle de la réalité ?", "Les sciences humaines sont-elles des sciences ?", "Peut-il y avoir une science de l'éducation ?", "Prendre connaissance", "Quel est l'objet des sciences humaines ?", "Une science de la culture est-elle possible ?"]}, {"axe": "Histoire, mémoire et temps", "sujets": ["Commémorer", "Faudrait-il ne rien oublier ?", "Faut-il tirer des leçons de l'histoire ?", "Histoire et fiction", "Histoire et géographie", "Histoire et mémoire", "L'actualité", "L'histoire a-t-elle un sens ?", "L'histoire a-t-elle une fin ?", "L'histoire se répète-t-elle ?", "L'historien est-il un homme qui se souvient du passé ?", "L'oubli", "La mémoire", "Le contemporain", "Le devoir de mémoire", "Le passé est-il irrévocable ?", "Les leçons de l'histoire", "Nature et histoire", "Oublier", "Peut-on penser l'histoire comme progrès ?", "Qu'est-ce qu'un fait historique ?", "Qu'est-ce qu'un événement ?", "Qu'est-ce qui est mémorable ?", "Qu'est-ce qui fait date ?", "Qui fait l'histoire ?", "« L'histoire jugera »"]}, {"axe": "Anthropologie et culture", "sujets": ["Anthropologie et politique", "Avons-nous besoin des traditions ?", "Comparer les cultures", "Faut-il respecter la tradition ?", "L'ethnocentrisme", "L'exotisme", "L'étranger", "La barbarie", "La diversité des cultures", "La métamorphose", "La nouveauté", "La spontanéité", "Le conformisme", "Le primitif", "Le sauvage", "Nous et les autres", "Peut-on faire l'ethnologie de sa propre culture ?", "Peut-on sortir de sa culture ?", "Puis-je juger une culture à laquelle je n'appartiens pas ?", "Qu'est-ce qu'une civilisation ?", "Qu'est-ce qui est sauvage ?", "Qu'est-ce qui est étonnant ?", "Être de son temps"]}, {"axe": "Psychologie, inconscient et comportement", "sujets": ["Agir contre ses intérêts", "Conduite et comportement", "De quoi faut-il avoir peur ?", "Faut-il avoir peur des habitudes ?", "L'analyse du vécu", "L'attente et la surprise", "L'habitude est-elle une seconde nature ?", "L'impatience", "L'inconnu", "L'inquiétude", "L'intériorité", "La distraction", "La folie", "La peur", "La peur de l'inconnu", "La peur est-elle mauvaise conseillère ?", "La réalité mentale", "Le vertige", "Le vécu", "Logique et psychologie", "Perdre la raison", "Peut-on perdre la raison ?", "Peut-on savoir que l'on rêve ?", "Prendre ses désirs pour des réalités", "Qu'est-ce qu'on attend ?", "Qu'est-ce qu'un homme normal ?", "Qu'est-ce qu'un rêve ?", "Qu'est-ce qu'une anomalie ?", "Qu'est-ce qu'une hallucination ?", "Qu'est-ce qu'être hors de soi ?", "S'adapter", "Sait-on toujours ce que l'on veut ?", "Être attentif", "Être dans l'inquiétude", "Être hors de soi"]}, {"axe": "Société, institutions et lien social", "sujets": ["Coloniser", "Habiter le monde", "L'amour de la patrie", "L'institution", "La cité et la ville", "La colonisation", "La différence des sexes", "La famille", "La frontière", "La socialisation", "La société existe-t-elle ?", "La vie privée", "La ville", "Le citoyen", "Le conformisme", "Le désir de reconnaissance", "Le lien social", "Le public et le privé", "Le savoir-vivre", "Les bons comptes font-ils les bons amis ?", "Les rapports sociaux sont-ils des rapports entre les individus ?", "Montrer l'exemple", "Murs et frontières", "Qu'est-ce qu'habiter ?", "Qu'est-ce qu'un fait social ?", "Qu'est-ce qu'un lieu ?", "Qu'est-ce qu'un monument ?", "Qu'est-ce qu'un territoire ?", "Qu'est-ce qu'une institution ?", "Qu'est-ce qu'une nation ?", "Qu'est-ce qu'une norme ?", "Qu'est-ce qu'une relation ?", "Se distinguer", "Territoire et peuplement", "Une société est-elle une somme d'individus ?", "Y a-t-il des pathologies sociales ?", "Y a-t-il des sociétés sans histoire ?", "Échange et don", "État et nation", "Être bien élevé"]}, {"axe": "Économie et travail", "sujets": ["Consensus et conflit", "Doit-on travailler ?", "Gagner sa vie", "L'argent", "L'intérêt peut-il être général ?", "La division du travail", "La pauvreté", "La sécurité", "Le bien commun", "Le rapport de force", "Travailler", "« Réduire les inégalités »", "Échange et don"]}], "total": 149}, {"theme": "Langage", "axes": [{"axe": "Nature et origine du langage", "sujets": ["L'imperfection du langage", "L'origine du langage", "La diversité des langues", "La langue universelle", "La pluralité des langues", "Langage et réalité", "Langage naturel et langage symbolique", "Langue et langage", "Le mot et la chose", "Le poids des mots", "Le pouvoir des mots", "Les langues meurent-elles ?", "Les limites du langage", "Les mots disent-ils les choses ?", "Les mots et les choses", "Les mots peuvent-ils nous manquer ?", "Nommer", "Signe et symbole"]}, {"axe": "Parole, actes de langage et communication", "sujets": ["Bien parler, est-ce bien penser ?", "Chanter", "Comment sait-on qu'on se comprend ?", "Dire et faire", "Entendre", "L'implicite", "L'implicite dans la communication", "La justification", "Le silence", "N'exprime-t-on que ce dont on a conscience ?", "On dit", "Parler et agir", "Parler pour ne rien dire", "Parler tout seul", "Penser ce qu'on dit", "Promettre", "Qu'est-ce qu'un témoignage ?", "Que nous apprennent nos sens ?", "Tout peut-il être dit ?", "Vouloir dire", "« Qui ne dit mot consent »", "Écouter et entendre"]}, {"axe": "Pensée et langage", "sujets": ["Bon sens et sens commun", "Concept et image", "Image et concept", "L'abstraction", "La grammaire contraint-elle notre pensée ?", "La matière peut-elle penser ?", "La pensée a-t-elle des lois ?", "La vie de l'esprit", "Le bon sens", "Le mouvement de la pensée", "Penser requiert-il un corps ?", "Peut-on ne penser à rien ?", "Peut-on penser sans image ?", "Peut-on penser sans signes ?", "Qu'est-ce qu'un concept ?", "Qu'est-ce qui est abstrait ?", "Quel est le sujet de la pensée ?", "Qui pense ?"]}, {"axe": "Interprétation, sens et herméneutique", "sujets": ["Est-ce à la fin que le sens apparaît ?", "Interpréter, est-ce un art ?", "L'autorité des textes", "L'interprétation est-elle un art ?", "La métaphore", "La notion de point de vue", "Le regard", "Les choses ont-elles un sens ?", "Qu'est-ce qu'un lieu commun ?", "Qu'est-ce qu'un paradoxe ?", "Qu'est-ce qu'une représentation ?", "Qu'est-ce qu'une représentation du monde ?", "Qu'est-ce qui a un sens ?", "Voir et toucher"]}, {"axe": "Écriture et traduction", "sujets": ["L'autorité des textes", "L'esprit et la lettre", "L'écriture", "La lettre et l'esprit", "Pourquoi écrire ?", "Traduire"]}], "total": 78}, {"theme": "Politique et droit", "axes": [{"axe": "État, souveraineté et pouvoir", "sujets": ["Ceux qui savent doivent-ils gouverner ?", "Gouverner", "L'autorité", "L'idéologie", "L'État peut-il être fondé sur un contrat ?", "L'État-Providence", "La bureaucratie", "La fin de la politique", "La neutralité", "La terreur", "La volonté peut-elle être déléguée ?", "Le paternalisme", "Le philosophe roi", "Le rapport de force", "Les grands hommes", "Peut-on être apolitique ?", "Politique et participation", "Pourquoi l'État ?", "Qu'est-ce qu'un corps politique ?", "Qu'est-ce qu'un problème politique ?", "Qu'est-ce que l'autorité ?", "Tout est-il politique ?", "Y a-t-il un sens à opposer la société et l'État ?", "Y a-t-il une raison d'État ?", "« C'est pour ton bien »"]}, {"axe": "Démocratie et participation politique", "sujets": ["Anthropologie et politique", "Débattre", "L'abstention", "L'anarchie", "L'opinion publique", "La censure", "La volonté du peuple", "Le peuple peut-il se tromper ?", "Manifester", "Qu'est-ce qu'un peuple ?", "Qu'est-ce qu'une démocratie ?", "Quand y a-t-il peuple ?", "République et démocratie", "Y a-t-il un sens à se dire citoyen du monde ?", "« Ni Dieu ni maître »", "Élire", "Être citoyen du monde", "Être un bon citoyen"]}, {"axe": "Justice, droit et égalité", "sujets": ["Choses et personnes", "Droits et devoirs", "Justice et égalité", "L'animal a-t-il des droits ?", "L'homme est-il le seul sujet de droit ?", "L'égalité des chances", "La force du droit", "La force publique", "La justice est-elle de ce monde ?", "La liberté des uns s'arrête-t-elle où commence celle des autres ?", "La loi du plus fort", "La nature a-t-elle des droits ?", "La propriété est-elle un droit ?", "Le bien commun", "Le droit du plus fort", "Le droit ne fait-il que traduire les rapports de force ?", "Le fait et le droit", "Le vivant a-t-il des droits ?", "Les exceptions ont-elles une place en morale ?", "Liberté et égalité", "Qu'est-ce qu'une constitution ?", "Qu'est-ce qu'une propriété ?", "Quel est le fondement de la propriété ?", "Qui a des droits ?", "Tout est-il appropriable ?", "« Avoir le droit »", "« J'ai le droit »", "« Les hommes naissent et demeurent libres et égaux en droits »", "« Pas de liberté pour les ennemis de la liberté »", "Égalité et équité"]}, {"axe": "Loi, obéissance et désobéissance", "sujets": ["Agir contre ses intérêts", "Appartient-il aux lois d'éduquer les hommes ?", "Juger", "L'idée d'état de nature", "La désobéissance peut-elle être légitime ?", "La fin et les moyens", "La révolte", "La servitude volontaire", "Le tribunal", "Les lois de la nature", "Les « forces de l'ordre »", "Lois et coutumes", "Maître et serviteur", "Maîtres et esclaves", "Obéir", "Pourquoi suivre une règle ?", "Qu'est-ce qu'une pétition de principe ?", "Qu'est-ce qu'une règle ?", "Qu'est-ce qui fait la force des lois ?", "Résister", "« C'est la loi »", "« Vivre libre ou mourir »", "Être hors la loi"]}, {"axe": "Violence, guerre et paix", "sujets": ["Ami et ennemi", "Faire la paix", "Faut-il être pacifiste ?", "L'anarchie", "L'ennemi", "La catastrophe", "La fin de la guerre", "La guerre civile", "La guerre juste", "La paix met-elle fin à l'histoire ?", "La terreur", "La violence peut-elle être légitime ?", "Le droit et la violence", "Qu'est-ce qu'un terroriste ?", "Terroriser", "Y a-t-il des guerres justes ?", "« Changer le monde »", "« Faire la paix »"]}, {"axe": "Liberté politique et droits", "sujets": ["L'esclavage", "L'expérience de la liberté", "La liberté admet-elle des degrés ?", "La liberté d'expression", "La liberté s'apprend-elle ?", "La liberté se prouve-t-elle ou s'éprouve-t-elle ?", "La servitude volontaire", "Le droit à la différence", "Le sentiment de liberté", "Qu'est-ce qu'une minorité ?", "Se sentir libre", "« Vivre libre ou mourir »", "Être libre, est-ce pouvoir choisir ?"]}, {"axe": "Punition, crime et responsabilité collective", "sujets": ["Comprendre, est-ce excuser ?", "Expliquer, est-ce excuser ?", "Juger", "La responsabilité", "Le droit de punir", "Le tribunal", "Qu'est-ce qu'un terroriste ?", "Terroriser", "« Pas de liberté pour les ennemis de la liberté »"]}, {"axe": "Relations internationales et mondialisation", "sujets": ["Coloniser", "L'amour de la patrie", "L'environnement", "L'écologie", "La colonisation", "La frontière", "La terre", "Le cosmopolitisme", "Murs et frontières", "Territoire et peuplement", "Y a-t-il un sens à se dire citoyen du monde ?", "« Sauver la planète »", "État et nation", "Être citoyen du monde"]}], "total": 150}, {"theme": "Morale", "axes": [{"axe": "Fondements et statut de la morale", "sujets": ["Avoir de la volonté", "Est-ce seulement l'intention qui compte ?", "Faut-il avoir des principes ?", "L'arbitraire", "La corruption des mœurs", "La critique", "La faiblesse de volonté", "La morale est-elle un art de vivre ?", "La puissance humaine", "La règle", "Le mieux est-il l'ennemi du bien ?", "Le ressentiment", "Les bons sentiments", "Les exceptions ont-elles une place en morale ?", "Les mœurs et les lois", "Les valeurs", "Pourquoi suivre une règle ?", "Y a-t-il des sentiments moraux ?"]}, {"axe": "Bien, mal et vice", "sujets": ["Avoir de l'humour", "Bêtise et méchanceté", "L'inhumain", "L'innocence", "L'intellectuel", "La barbarie", "La bêtise", "La corruption des mœurs", "La raison peut-elle servir le mal ?", "Le mal est-il une objection à l'existence de Dieu ?", "Le populaire", "Le rire", "Le savoir-vivre", "Le sens de l'humour", "Qu'est-ce qui est prométhéen ?", "Qui est comédien ?", "Voir le meilleur et faire le pire", "« L'enfer est pavé de bonnes intentions »", "Être bien élevé", "Être vulgaire"]}, {"axe": "Liberté, responsabilité et faute", "sujets": ["Agir", "Avoir", "Comprendre, est-ce excuser ?", "Corriger ses erreurs", "Expliquer, est-ce excuser ?", "Hériter", "L'action", "La faute et l'erreur", "La liberté se prouve-t-elle ou s'éprouve-t-elle ?", "La responsabilité", "Le remords", "Passer à l'acte", "Peut-on agir sans raison ?", "Promettre", "Se distinguer", "Se sentir libre", "« C'est plus fort que moi »", "« Je m'en veux »"]}, {"axe": "Devoir, vertu et obligation", "sujets": ["Droits et devoirs", "L'amour de soi", "L'humilité", "La fidélité", "La générosité", "La patience", "Obéir", "« C'est pour ton bien »", "Être fidèle à soi-même"]}, {"axe": "Autrui, altérité et relations morales", "sujets": ["Aimer et être aimé", "Ami et ennemi", "Amour et amitié", "L'alter ego", "L'amour propre", "L'existence d'autrui", "L'exotisme", "La pitié", "La tolérance", "Le corps de l'autre", "Le paternalisme", "Montrer l'exemple", "Nous et les autres", "Partager", "Peut-on aimer son prochain comme soi-même ?", "Peut-on connaître autrui ?", "Peut-on faire le bonheur d'autrui ?", "Qu'est-ce qu'un maître ?", "Qu'est-ce qu'un monstre ?", "Tolérer", "Voyager", "« Aimez vos ennemis »"]}, {"axe": "Vérité, mensonge et sincérité", "sujets": ["A-t-on le droit de mentir ?", "Faut-il se rendre à l'évidence ?", "La bonne conscience", "La propagation des idées", "Peut-on se mentir à soi-même ?", "Pourquoi nous trompons-nous ?", "Tout peut-il être dit ?", "Tromper", "« Je ne crois que ce que je vois »", "« Sans l'ombre d'un doute »"]}, {"axe": "Bonheur, vie bonne et sagesse", "sujets": ["Avoir de l'humour", "De quoi avons-nous besoin ?", "Durer", "Espérer", "Faut-il renoncer à l'impossible ?", "Jouer", "L'athlète", "L'aventure", "L'emploi du temps", "L'échec", "La cuisine", "La douleur et le plaisir", "La fête", "La main", "La spontanéité", "Le repos", "Le rire", "Le risque", "Le toucher", "Peut-on apprendre à vivre ?", "Peut-on être heureux tout seul ?", "Qu'est-ce qu'un passe-temps ?", "Survivre", "Vivre au présent", "Vivre et bien vivre", "Vivre le moment présent", "Vouloir l'impossible", "Voyager", "Y a-t-il des plaisirs purs ?", "Y a-t-il des raisons de vivre ?", "Y a-t-il des techniques pour être heureux ?", "« Plus vite, plus haut, plus fort »", "À quoi bon ?", "Être seul avec soi-même", "Être à sa place"]}, {"axe": "Normes, transgression et limites morales", "sujets": ["Colère et indignation", "La colère", "La prohibition de l'inceste", "La pudeur", "La superstition", "Le fanatisme", "Qu'est-ce qu'un monstre ?", "Qu'est-ce qui est tragique ?", "Se contredire", "Voir le meilleur et faire le pire", "Y a-t-il des colères justes ?", "« Il n'y a que les imbéciles qui ne changent pas d'avis »", "« Être négatif »", "Être nihiliste"]}], "total": 146}, {"theme": "Connaissance", "axes": [{"axe": "Nature et limites de la connaissance", "sujets": ["Apparence et réalité", "Apprendre à voir", "Comprendre", "Connaître et reconnaître", "Douter", "Douter de tout", "Je sens donc je suis", "L'illusion", "L'objectivité", "La connaissance des faits", "La singularité", "Le détail", "Le regard", "Le sensible est-il irréductible à l'intelligible ?", "Le singulier", "Percevons-nous les choses telles qu'elles sont ?", "Peut-on douter de tout ?", "Peut-on rester sceptique ?", "Pouvons-nous être objectifs ?", "Prendre connaissance", "Qu'est-ce qu'une connaissance a priori ?", "Qu'est-ce qu'une hallucination ?", "Qu'est-ce qu'une illusion ?", "Qu'est-ce qui est singulier ?", "Que nous apprennent nos sens ?", "Sauver les apparences", "Se trompe-t-on ?", "Voir"]}, {"axe": "Conscience et connaissance de soi", "sujets": ["L'impatience", "L'intériorité", "La connaissance de soi", "La conscience peut-elle être collective ?", "La curiosité", "La réflexion", "Le principe de réalité", "Le savoir peut-il être absolu ?", "N'exprime-t-on que ce dont on a conscience ?", "Peut-on savoir ce que l'on fait ?", "Qu'est-ce qu'avoir conscience de soi", "Qu'est-ce qu'imaginer ?", "Quel est le sujet de la pensée ?", "Qui pense ?", "Sait-on toujours ce que l'on veut ?", "Toute conscience est-elle conscience de soi ?", "Être attentif"]}, {"axe": "Raison, entendement et intuition", "sujets": ["Bon sens et sens commun", "Comment peut-on être irrationnel ?", "Entendement et raison", "L'imagination dans les sciences", "L'irrationnel", "La table rase", "Le sens commun", "Nier l'évidence", "Peut-on avoir raison seul ?", "Peut-on nier l'évidence ?", "Qu'est-ce qu'être idéaliste ?", "Qu'est-ce qu'être réaliste ?", "Qu'est-ce qui est irrationnel ?", "Qu'est-ce qui est étonnant ?", "Une idée peut-elle être fausse ?", "« Et pourtant elle tourne »"]}, {"axe": "Mémoire, oubli et transmission", "sujets": ["Apprendre", "Apprendre des autres", "Enseigner", "Faire école", "Faudrait-il ne rien oublier ?", "L'expérience instruit-elle ?", "L'oubli", "L'éducation", "La mémoire", "La transmission", "Le nom propre", "Les âges de la vie", "Oublier", "Peut-il y avoir une science de l'éducation ?", "Qu'est-ce qu'un document ?", "Que reste-t-il du passé ?", "Suis-je mon passé ?"]}, {"axe": "Croyance, foi et opinion", "sujets": ["Croire et savoir", "Croit-on ce que l'on veut ?", "Faut-il voir pour croire ?", "L'opinion publique", "La superstition", "La volonté divine", "Le témoignage des sens", "Qu'est-ce qu'un témoignage ?", "Qu'est-ce qu'une croyance vraie ?", "Qu'est-ce que croire ?", "Qui croire ?", "« Dans le doute »", "« Je ne crois que ce que je vois »", "« Sans l'ombre d'un doute »", "À qui se fier ?"]}, {"axe": "Raison, logique et méthode", "sujets": ["La pertinence", "Le nombre", "Le plus et le moins", "Le pour et le contre", "Le rythme"]}], "total": 98}];
+const PHI_COLORS = {"Art & esthétique": {"bg": "#1e1b38", "text": "#c4bef5", "border": "#3d3580", "dot": "#7b72e0"}, "Technique": {"bg": "#0a1f30", "text": "#82c4f0", "border": "#1a4878", "dot": "#3b8fd4"}, "Science": {"bg": "#0c2a1e", "text": "#80d4a8", "border": "#1a5c40", "dot": "#32a870"}, "Métaphysique": {"bg": "#2a0808", "text": "#f0a0a0", "border": "#7a1a1a", "dot": "#d44444"}, "Sciences humaines": {"bg": "#1a1f08", "text": "#b8d478", "border": "#3a5014", "dot": "#78a828"}, "Langage": {"bg": "#2a0e1c", "text": "#f0b0d0", "border": "#7a2050", "dot": "#d44488"}, "Politique et droit": {"bg": "#0d2a22", "text": "#7ecfb5", "border": "#1a5c44", "dot": "#2ab090"}, "Morale": {"bg": "#2a1a02", "text": "#d8a858", "border": "#6b3e08", "dot": "#c08028"}, "Connaissance": {"bg": "#18100a", "text": "#d0a880", "border": "#5a3010", "dot": "#b07040"}};
 
-const data = [
-  {
-    id:"essence",
-    label:"Essence de l'art et de l'œuvre",
-    color:"c-purple",
-    sujets:[
-      ["Qu'est-ce qu'une œuvre d'art réussie ?","2025"],
-      ["Une œuvre d'art est-elle toujours de son temps ?","2025×2"],
-      ["Qu'est-ce qui fait la valeur d'une œuvre ?","2021"],
-      ["Les œuvres d'art sont-elles des choses ?","2024"],
-      ["Une œuvre d'art produit-elle du beau ?","2024"],
-      ["L'achèvement de l'œuvre","2023×2"],
-      ["La genèse de l'œuvre","2021"],
-      ["Art et illusion","2023×2"],
-      ["Que nous montre l'œuvre d'art ?","2021"],
-      ["En quoi l'œuvre d'art donne-t-elle à penser ?","2021"],
-      ["Les arts ont-ils besoin de théorie ?","2021"],
-      ["La pluralité des arts","2021"],
-      ["La temporalité de l'œuvre d'art","2023"],
-      ["L'art peut-il sauver le monde ?","2021"],
-      ["À quoi reconnaît-on une œuvre d'art ?","2018"],
-      ["L'acte et l'œuvre","2018"],
-      ["La mort de l'art","2016"],
-      ["La classification des arts","2021"],
-    ]
-  },
-  {
-    id:"creation",
-    label:"Création, génie, inspiration",
-    color:"c-teal",
-    sujets:[
-      ["L'artiste est-il un créateur ?","2025×2"],
-      ["Artiste et artisan","2025×2"],
-      ["Créer, est-ce imiter ?","2025"],
-      ["Qu'est-ce que créer ?","2017"],
-      ["L'originalité","2025"],
-      ["Le génie","2016"],
-      ["Qu'est-ce qu'un génie ?","2019"],
-      ["L'inspiration","2021"],
-      ["La nature est-elle un modèle ?","2024"],
-      ["Sommes-nous tous artistes ?","2025"],
-      ["Faire de sa vie une œuvre d'art","2021"],
-      ["Apprend-on à être artiste ?","2018"],
-      ["Que recherche l'artiste ?","2018"],
-      ["L'enfance de l'art","2021"],
-      ["Peut-on parler d'un savoir-faire ?","2023"],
-    ]
-  },
-  {
-    id:"beaute",
-    label:"Beauté, goût et jugement esthétique",
-    color:"c-coral",
-    sujets:[
-      ["Sans l'art, parlerait-on de beauté ?","2025×2"],
-      ["Y a-t-il un progrès en art ?","2025×2"],
-      ["La beauté du geste","2025"],
-      ["Beauté naturelle et beauté artistique","2023×2"],
-      ["La beauté a-t-elle une histoire ?","2024"],
-      ["Peut-on éduquer le goût ?","2019"],
-      ["Avoir du goût","2024"],
-      ["\"Des goûts et des couleurs, on ne dispute pas\"","2023"],
-      ["Le jugement de goût est-il désintéressé ?","2017"],
-      ["Y a-t-il une universalité du beau ?","2017"],
-      ["Le beau est-il universel ?","2019"],
-      ["Y a-t-il des critères du goût ?","2019"],
-      ["L'expérience esthétique","2021"],
-      ["Le goût de la beauté","2023"],
-      ["L'art et le goût","2021"],
-      ["De mauvais goût","2025"],
-    ]
-  },
-  {
-    id:"connaissance",
-    label:"Art comme mode de connaissance et de vérité",
-    color:"c-amber",
-    sujets:[
-      ["L'art est-il un mode de connaissance ?","2019"],
-      ["L'art est-il une connaissance ?","2024"],
-      ["Art et vérité","2021"],
-      ["La vérité en art","2018"],
-      ["Que nous apprennent les œuvres d'art ?","2019"],
-      ["Que nous apporte l'art ?","2025"],
-      ["Que nous apprend le cinéma ?","2024"],
-      ["Peinture et réalité","2025"],
-      ["La nature morte","2024"],
-      ["L'œil du photographe","2024"],
-      ["Poésie et philosophie","2024"],
-      ["La poésie pense-t-elle ?","2024"],
-      ["La musique est-elle un langage ?","2024×2"],
-      ["De quoi la musique est-elle l'art ?","2023"],
-      ["Peut-on parler d'un savoir poétique ?","2023"],
-      ["Littérature et philosophie","2023"],
-    ]
-  },
-  {
-    id:"technique",
-    label:"Essence et portée de la technique",
-    color:"c-blue",
-    sujets:[
-      ["La technique est-elle libératrice ?","2025×2"],
-      ["Raison et technique","2025"],
-      ["Science et technique","2023"],
-      ["La technique fait-elle violence à la nature ?","2023"],
-      ["La technique n'est-elle qu'une application de la science ?","2024"],
-      ["L'écriture est-elle une technique parmi d'autres ?","2023"],
-      ["À quoi sert la technique ?","2023"],
-      ["Peut-on parler d'un règne de la technique ?","2019"],
-      ["Peut-on maîtriser la technique ?","2017"],
-      ["La technologie modifie-t-elle les rapports sociaux ?","2025"],
-      ["La technologie","2025"],
-      ["La technique est-elle dangereuse ?","2016"],
-      ["\"Les miracles de la technique\"","2023"],
-      ["Raison et technique","2021"],
-      ["L'objet technique","2024"],
-      ["Un objet technique peut-il être beau ?","2023×2"],
-      ["L'intelligence artificielle","2025×2"],
-      ["Machine et organisme","2025"],
-    ]
-  },
-  {
-    id:"machine",
-    label:"Machines, outils, savoir-faire",
-    color:"c-green",
-    sujets:[
-      ["Les machines","2025×2"],
-      ["Qu'est-ce qu'une machine ?","2021×2"],
-      ["L'outil","2018"],
-      ["L'homme et la machine","2022"],
-      ["Le vivant et la technique","2017"],
-      ["Une machine peut-elle penser ?","2019"],
-      ["Les machines pensent-elles ?","2017"],
-      ["L'homme-machine","2017"],
-      ["Faut-il avoir peur des machines ?","2021"],
-      ["Le vivant est-il assimilable à une machine ?","2022"],
-      ["Qu'est-ce qu'un savoir-faire ?","2025×2"],
-      ["L'ouvrier et l'ingénieur","2023"],
-      ["Interpréter, est-ce un art ?","2025"],
-      ["La logique est-elle un art de raisonner ?","2024"],
-      ["La médecine est-elle un art ou une science ?","2025"],
-      ["Y a-t-il des techniques pour être heureux ?","2024"],
-    ]
-  },
-  {
-    id:"art_societe",
-    label:"Art, société, institution et politique",
-    color:"c-pink",
-    sujets:[
-      ["L'art est-il un luxe ?","2025×2"],
-      ["L'art est-il inutile ?","2024"],
-      ["Pourquoi des musées ?","2025×2"],
-      ["Le musée","2024×2"],
-      ["L'histoire de l'art","2023"],
-      ["L'art a-t-il une histoire ?","2017"],
-      ["Les industries culturelles","2025"],
-      ["L'œuvre d'art est-elle une marchandise ?","2025"],
-      ["Enseigner l'art","2024"],
-      ["L'art et la vie","2023"],
-      ["L'avant-garde","2025×2"],
-      ["Art populaire et art savant","2023"],
-      ["Qu'est-ce qu'un art populaire ?","2024"],
-      ["Les arts appliqués","2024"],
-      ["Arts du temps et arts de l'espace","2025"],
-      ["Peut-on séparer l'homme et l'œuvre ?","2018"],
-      ["L'art et la morale","2016"],
-      ["La critique fait-elle partie de l'art ?","2024"],
-    ]
-  },
-];
+let phiQ = "";
+let phiActive = new Set(PHI_DATA.map(t => t.theme));
+let phiOpen = new Set(); // axes ouverts (key = theme+"||"+axe)
 
-function render() {
-  const cont = document.getElementById('art_cats');
-  data.forEach((cat, i) => {
-    const div = document.createElement('div');
-    div.className = 'cat ' + cat.color;
-    let pillsHtml = cat.sujets.map(([s, y]) =>
-      `<span class="pill" title="${y}">${s}</span>`
-    ).join('');
-    div.innerHTML = `
-      <div class="cat-header" onclick="art_toggle(${i})">
-        <span class="cat-title">${cat.label}</span>
-        <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="art_tbtn${i}">▾</span>
-      </div>
-      <div class="pill-grid" id="art_pg${i}">${pillsHtml}</div>
-    `;
-    if (i < data.length - 1) {
-      const d = document.createElement('div');
-      d.className = 'divider';
-      div.appendChild(d);
-    }
-    cont.appendChild(div);
+function phiBuildTabs(){
+  const wrap = document.getElementById("phi-tabs");
+  if(!wrap) return;
+  PHI_DATA.forEach(t => {
+    const c = PHI_COLORS[t.theme] || {bg:"#222",text:"#aaa",border:"#555",dot:"#888"};
+    const btn = document.createElement("button");
+    btn.className = "phi-tab";
+    btn.dataset.theme = t.theme;
+    btn.textContent = t.theme;
+    btn.style.cssText = "background:"+c.bg+";color:"+c.text+";border-color:"+c.border;
+    btn.addEventListener("click", () => {
+      if(phiActive.has(t.theme)){
+        if(phiActive.size === 1) return;
+        phiActive.delete(t.theme);
+        btn.classList.add("off");
+      } else {
+        phiActive.add(t.theme);
+        btn.classList.remove("off");
+      }
+      phiRender();
+    });
+    wrap.appendChild(btn);
   });
 }
 
-function toggle(i) {
-  const pg = document.getElementById('art_pg' + i);
-  const btn = document.getElementById('art_tbtn' + i);
-  const hidden = pg.style.display === 'none';
-  pg.style.display = hidden ? 'flex' : 'none';
-  btn.textContent = hidden ? '▾' : '▸';
+function phiHL(text, q){
+  if(!q) return text;
+  const re = new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");
+  return text.replace(re,'<mark class="phi-hl">$1</mark>');
 }
 
-window["art_toggle"] = toggle;
-render();
-})();
+function phiRender(){
+  const q = phiQ.toLowerCase().trim();
+  const content = document.getElementById("phi-content");
+  if(!content) return;
+  let html = "";
+  let totalVisible = 0;
 
-(function(){
+  PHI_DATA.forEach(t => {
+    if(!phiActive.has(t.theme)) return;
+    const c = PHI_COLORS[t.theme] || {bg:"#222",text:"#aaa",border:"#555",dot:"#888"};
+    let axesHtml = "";
+    let themeCount = 0;
 
-const data = [
-  {
-    id:"fondements",
-    label:"Fondements et statut de la morale",
-    color:"c-purple",
-    sujets:[
-      ["La morale est-elle un art de vivre ?","2022×2"],
-      ["Faire la morale","2022"],
-      ["Y a-t-il des sentiments moraux ?","2022×2"],
-      ["Y a-t-il un sens moral ?","2022"],
-      ["La bonne conscience","2024"],
-      ["La mauvaise conscience","2021"],
-      ["Est-ce seulement l'intention qui compte ?","2022×2"],
-      ["Peut-on argumenter en morale ?","2017"],
-      ["Les exceptions ont-elles une place en morale ?","2024"],
-      ["En morale, est-ce seulement l'intention qui compte ?","2021"],
-      ["La morale est-elle une science ?","2023"],
-      ["La raison peut-elle servir le mal ?","2023"],
-      ["Mœurs et moralité","2021"],
-      ["Les mœurs et les lois","2025"],
-      ["Peut-on se passer de principes ?","2023"],
-      ["Avoir des principes","2021"],
-      ["Faut-il avoir des principes ?","2023×2"],
-      ["Si Dieu n'existe pas, tout est-il permis ?","2022×2"],
-      ["Le sens moral est-il naturel ?","2015"],
-    ]
-  },
-  {
-    id:"bien_mal",
-    label:"Le bien, le mal et le vice",
-    color:"c-red",
-    sujets:[
-      ["Peut-on vouloir le mal ?","2022×3"],
-      ["Le mal est-il une objection à l'existence de Dieu ?","2023"],
-      ["D'où vient le mal ?","2023"],
-      ["Le bien commun","2025"],
-      ["Le beau et le bien","2021×2"],
-      ["L'utile et le bien","2022"],
-      ["Le juste et le bien","2022"],
-      ["La bonne conscience","2024"],
-      ["Ce qui est subjectif est-il arbitraire ?","2023"],
-      ["Le mal est-il une erreur ?","2021"],
-      ["Le bonheur des méchants","2019"],
-      ["Voir le meilleur et faire le pire","2023"],
-      ["La méchanceté","2017"],
-      ["Le vice","2019"],
-      ["La corruption des mœurs","2024"],
-      ["Bêtise et méchanceté","2023"],
-      ["L'inhumain","2022×2"],
-      ["La barbarie","2024"],
-    ]
-  },
-  {
-    id:"liberte_responsabilite",
-    label:"Liberté, responsabilité et faute",
-    color:"c-teal",
-    sujets:[
-      ["La responsabilité","2024"],
-      ["Sommes-nous responsables de nos passions ?","2019×2"],
-      ["Sommes-nous responsables de nos erreurs ?","2019"],
-      ["Est-on responsable de ce qu'on n'a pas voulu ?","2022"],
-      ["La faiblesse de la volonté","2021×2"],
-      ["La faute et l'erreur","2023×2"],
-      ["La culpabilité","2023"],
-      ["Le remords","2023×2"],
-      ["Comprendre, est-ce excuser ?","2024"],
-      ["Expliquer, est-ce excuser ?","2023"],
-      ["\"C'est plus fort que moi\"","2024×2"],
-      ["Que vaut l'excuse : \"C'est plus fort que moi\" ?","2019"],
-      ["La liberté se prouve-t-elle ou s'éprouve-t-elle ?","2024"],
-      ["Se sentir libre","2024"],
-      ["Peut-on renoncer à sa liberté ?","2021×2"],
-      ["Sommes-nous condamnés à être libres ?","2021"],
-      ["Sommes-nous libres ?","2021"],
-      ["La liberté est-elle une illusion ?","2022"],
-      ["Une cause peut-elle être libre ?","2022"],
-    ]
-  },
-  {
-    id:"devoir_obligation",
-    label:"Devoir, obligation et vertu",
-    color:"c-amber",
-    sujets:[
-      ["Y a-t-il des devoirs envers soi-même ?","2019×2"],
-      ["Droits et devoirs","2023"],
-      ["Peut-on avoir des droits sans avoir des devoirs ?","2022"],
-      ["Obéir","2024"],
-      ["Le devoir de mémoire","2024"],
-      ["Que peut-on faire par devoir ?","2021"],
-      ["La vertu peut-elle s'enseigner ?","2021"],
-      ["Les vertus ne sont-elles que des vices déguisés ?","2016"],
-      ["La tempérance","2025"],
-      ["La générosité","2023"],
-      ["La prudence","2019×2"],
-      ["Le courage","2021×2"],
-      ["La sincérité","2015"],
-      ["La franchise est-elle une vertu ?","2015"],
-      ["La patience","2024"],
-      ["L'humilité","2024×2"],
-      ["La fidélité","2024×2"],
-      ["Être fidèle à soi-même","2025"],
-      ["La naïveté est-elle une vertu ?","2016"],
-    ]
-  },
-  {
-    id:"autrui_relation",
-    label:"Autrui, altérité et relations morales",
-    color:"c-blue",
-    sujets:[
-      ["Peut-on aimer son prochain comme soi-même ?","2024×2"],
-      ["Faut-il aimer son prochain comme soi-même ?","2023"],
-      ["Autrui est-il un autre moi ?","2019×2"],
-      ["Autrui est-il mon semblable ?","2019"],
-      ["La pitié","2023×2"],
-      ["La sympathie","2017×2"],
-      ["L'empathie","2025"],
-      ["La générosité","2023"],
-      ["L'alter ego","2024"],
-      ["Peut-on se mettre à la place des autres ?","2021"],
-      ["Peut-on connaître autrui ?","2024×2"],
-      ["Le corps de l'autre","2024"],
-      ["Sommes-nous responsables d'autrui ?","2021"],
-      ["L'amour peut-il être un devoir ?","2017×2"],
-      ["Peut-on faire le bien de quelqu'un malgré lui ?","2021"],
-      ["\"Aimez vos ennemis\"","2024"],
-      ["Le respect","2019×2"],
-      ["Aimer et être aimé","2024"],
-    ]
-  },
-  {
-    id:"verite_mensonge",
-    label:"Vérité, mensonge et sincérité morale",
-    color:"c-coral",
-    sujets:[
-      ["A-t-on le droit de mentir ?","2022"],
-      ["Est-il parfois bon de mentir ?","2023"],
-      ["Toute vérité est-elle bonne à dire ?","2022"],
-      ["Mentir","2021"],
-      ["Peut-on se mentir à soi-même ?","2023×2"],
-      ["La bonne conscience","2024"],
-      ["Peut-on être en conflit avec soi-même ?","2022×2"],
-      ["L'exigence de vérité a-t-elle un sens moral ?","2021"],
-      ["La mauvaise foi","2019"],
-      ["Tromper","2024"],
-      ["L'hypocrisie","2025"],
-      ["La dissimulation","2025"],
-      ["Peut-on tout dire ?","2019×3"],
-      ["Le mensonge","2017×2"],
-      ["La franchise est-elle une vertu ?","2015"],
-      ["La sincérité","2015"],
-    ]
-  },
-  {
-    id:"bonheur_vie",
-    label:"Bonheur, vie bonne et sagesse pratique",
-    color:"c-green",
-    sujets:[
-      ["Vivre et bien vivre","2023"],
-      ["Y a-t-il un art d'être heureux ?","2023"],
-      ["Peut-on apprendre à vivre ?","2024"],
-      ["La morale est-elle un art de vivre ?","2022×2"],
-      ["Faire de sa vie une œuvre d'art","2021"],
-      ["Réussir sa vie","2022×2"],
-      ["Le bonheur est-il affaire de volonté ?","2019"],
-      ["Peut-on être heureux tout seul ?","2024"],
-      ["Vivre selon la nature","2022"],
-      ["Faut-il changer ses désirs plutôt que l'ordre du monde ?","2022"],
-      ["Y a-t-il un art de vivre ?","2019"],
-      ["Qu'est-ce que le bonheur ?","2017"],
-      ["Avons-nous le devoir de vivre ?","2021"],
-      ["La valeur de la vie","2021"],
-      ["La vie est-elle une valeur ?","2023"],
-      ["Y a-t-il des techniques pour être heureux ?","2024"],
-      ["Pourquoi désirer la sagesse ?","2019"],
-      ["La sagesse","2025"],
-    ]
-  },
-  {
-    id:"normes_transgression",
-    label:"Normes, transgression et limites morales",
-    color:"c-pink",
-    sujets:[
-      ["Le scandale","2019"],
-      ["L'indécence","2015"],
-      ["La honte","2019×2"],
-      ["La pudeur","2021×2"],
-      ["Le tabou","2025"],
-      ["La transgression","2025"],
-      ["L'interdit","2025"],
-      ["La prohibition de l'inceste","2025"],
-      ["Les bonnes mœurs","2025"],
-      ["Faut-il respecter la nature ?","2022"],
-      ["Que faire de la violence ?","2023"],
-      ["La violence peut-elle être légitime ?","2022"],
-      ["Y a-t-il des violences légitimes ?","2019"],
-      ["Ne pas tuer","2021"],
-      ["La peine de mort","2025"],
-      ["La cruauté","2025"],
-      ["De quoi faut-il avoir honte ?","2022"],
-      ["Être vulgaire","2024"],
-      ["Le mauvais goût","2023"],
-    ]
-  },
-];
+    t.axes.forEach(a => {
+      const key = t.theme+"||"+a.axe;
+      const matching = a.sujets.filter(s => !q || s.toLowerCase().includes(q));
+      if(!matching.length) return;
+      themeCount += matching.length;
+      const isOpen = phiOpen.has(key) || q;
+      const pillsHtml = matching.map(s =>
+        '<span class="phi-pill" style="background:'+c.bg+';color:'+c.text+';border-color:'+c.border+'">'+phiHL(s,q)+'</span>'
+      ).join("");
+      axesHtml +=
+        '<div class="phi-axe'+(isOpen?' open':'')+'" data-key="'+key.replace(/"/g,'&quot;')+'">'+
+          '<div class="phi-axe-hdr" onclick="phiToggleAxe(this)">'+
+            '<span class="phi-axe-name">'+a.axe+'</span>'+
+            '<span class="phi-axe-meta">'+
+              '<span class="phi-axe-n">'+matching.length+' sujet'+(matching.length>1?'s':'')+'</span>'+
+              '<span class="phi-chevron">▼</span>'+
+            '</span>'+
+          '</div>'+
+          '<div class="phi-pills">'+pillsHtml+'</div>'+
+        '</div>';
+    });
 
-function render() {
-  const cont = document.getElementById('mor_cats');
-  data.forEach((cat, i) => {
-    const div = document.createElement('div');
-    div.className = 'cat ' + cat.color;
-    const pillsHtml = cat.sujets.map(([s]) =>
-      `<span class="pill">${s}</span>`
-    ).join('');
-    div.innerHTML = `
-      <div class="cat-header" onclick="mor_toggle(${i})">
-        <span class="cat-title">${cat.label}</span>
-        <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="mor_tbtn${i}">▾</span>
-      </div>
-      <div class="pill-grid" id="mor_pg${i}">${pillsHtml}</div>
-    `;
-    if (i < data.length - 1) {
-      const d = document.createElement('div');
-      d.className = 'divider';
-      div.appendChild(d);
-    }
-    cont.appendChild(div);
+    if(!axesHtml) return;
+    totalVisible += themeCount;
+    html +=
+      '<div class="phi-theme">'+
+        '<div class="phi-th">'+
+          '<span class="phi-dot" style="background:'+c.dot+'"></span>'+
+          '<span class="phi-tn">'+t.theme+'</span>'+
+          '<span class="phi-tc">'+themeCount+' sujet'+(themeCount>1?'s':'')+'</span>'+
+        '</div>'+
+        axesHtml+
+      '</div>';
   });
+
+  if(!html) html = '<p class="phi-empty">Aucun résultat pour « '+phiQ+' »</p>';
+  content.innerHTML = html;
+
+  const stats = document.getElementById("phi-stats");
+  if(stats) stats.textContent =
+    totalVisible + " sujet"+(totalVisible>1?"s":"") +
+    (q ? " pour « "+phiQ+" »" : "") +
+    " — " + phiActive.size + "/" + PHI_DATA.length + " thème"+(phiActive.size>1?"s":"");
 }
 
-function toggle(i) {
-  const pg = document.getElementById('mor_pg' + i);
-  const btn = document.getElementById('mor_tbtn' + i);
-  const hidden = pg.style.display === 'none';
-  pg.style.display = hidden ? 'flex' : 'none';
-  btn.textContent = hidden ? '▾' : '▸';
-}
+window.phiToggleAxe = function(hdr){
+  const axe = hdr.parentElement;
+  const key = axe.dataset.key;
+  if(phiOpen.has(key)){ phiOpen.delete(key); axe.classList.remove("open"); }
+  else { phiOpen.add(key); axe.classList.add("open"); }
+};
 
-window["mor_toggle"] = toggle;
-render();
-})();
+const phiInput = document.getElementById("phi-search");
+if(phiInput) phiInput.addEventListener("input", e => { phiQ = e.target.value; phiRender(); });
 
-(function(){
-
-const data = [
-  {
-    id:"etat_souverainete",
-    label:"État, souveraineté et pouvoir politique",
-    color:"c-purple",
-    sujets:[
-      ["Pourquoi l'État ?","2025×2"],
-      ["L'État peut-il être fondé sur un contrat ?","2025"],
-      ["Y a-t-il un sens à opposer la société et l'État ?","2025"],
-      ["La souveraineté","2019×2"],
-      ["La souveraineté peut-elle se partager ?","2018×2"],
-      ["La souveraineté peut-elle être limitée ?","2022"],
-      ["La volonté peut-elle être déléguée ?","2022"],
-      ["Qui est souverain ?","2022"],
-      ["Le gouvernement de l'imagination","2025"],
-      ["Gouverner","2023×2"],
-      ["Ceux qui savent doivent-ils gouverner ?","2023×2"],
-      ["Le philosophe roi","2025"],
-      ["Y a-t-il un art de gouverner ?","2019"],
-      ["Qu'est-ce qu'être efficace en politique ?","2018"],
-      ["La raison d'État","2019×2"],
-      ["Y a-t-il une raison d'État ?","2025"],
-      ["La science politique est-elle une science ?","2025"],
-      ["La politique est-elle une science ?","2017"],
-      ["Qu'est-ce qu'un corps politique ?","2025"],
-    ]
-  },
-  {
-    id:"democratie_regimes",
-    label:"Démocratie, régimes politiques et participation",
-    color:"c-blue",
-    sujets:[
-      ["La démocratie","2022×2"],
-      ["La démocratie a-t-elle des limites ?","2019"],
-      ["N'y a-t-il de démocratie que représentative ?","2019"],
-      ["République et démocratie","2025"],
-      ["Qu'est-ce qu'un régime politique ?","2019×2"],
-      ["Le peuple peut-il se tromper ?","2025"],
-      ["Un peuple peut-il être souverain ?","2023"],
-      ["Quand y a-t-il peuple ?","2024"],
-      ["Qu'est-ce qu'un peuple ?","2019×3"],
-      ["Qu'est-ce qui fait un peuple ?","2019×2"],
-      ["La volonté du peuple","2024"],
-      ["Le suffrage universel","2025"],
-      ["Élire","2024"],
-      ["Tout est-il politique ?","2022×3"],
-      ["Qu'est-ce qui n'est pas politique ?","2023"],
-      ["La politique est-elle l'affaire de tous ?","2019"],
-      ["Politique et participation","2025"],
-      ["Peut-on être apolitique ?","2025"],
-      ["Être un bon citoyen","2025"],
-      ["Qu'est-ce qu'un citoyen ?","2019"],
-    ]
-  },
-  {
-    id:"justice_droit",
-    label:"Justice, droit et égalité",
-    color:"c-teal",
-    sujets:[
-      ["La justice est-elle de ce monde ?","2025"],
-      ["La justice sociale","2019×2"],
-      ["Toute inégalité est-elle injuste ?","2022"],
-      ["L'égalité des chances","2024×2"],
-      ["Égalité et équité","2025"],
-      ["L'équité","2019"],
-      ["Le droit du plus fort","2025"],
-      ["Force et droit","2023×2"],
-      ["Justice et force","2019×2"],
-      ["Le droit ne fait-il que traduire les rapports de force ?","2022"],
-      ["Droit et moralité","2023"],
-      ["La force du droit","2025"],
-      ["Qu'est-ce qui fait la force des lois ?","2025"],
-      ["Qu'est-ce qui fait la force de la loi ?","2019"],
-      ["Le sentiment d'injustice","2023"],
-      ["L'injustice","2022"],
-      ["\"Pas de liberté pour les ennemis de la liberté\"","2024"],
-      ["Quel est le fondement de la propriété ?","2024"],
-      ["La propriété est-elle un droit ?","2025"],
-      ["Tout est-il appropriable ?","2025"],
-    ]
-  },
-  {
-    id:"loi_obligation",
-    label:"Loi, obligation et désobéissance",
-    color:"c-amber",
-    sujets:[
-      ["\"C'est la loi\"","2025"],
-      ["Lois et coutumes","2023"],
-      ["La loi et les mœurs","2015"],
-      ["La loi et l'ordre","2015"],
-      ["Les lois logiques peuvent-elles changer ?","2025"],
-      ["Appartient-il aux lois d'éduquer les hommes ?","2024"],
-      ["Peut-on désobéir à la loi ?","2022"],
-      ["La désobéissance civile","2018×2"],
-      ["Le droit de résistance","2022"],
-      ["La désobéissance peut-elle être légitime ?","2024"],
-      ["L'insurrection est-elle un droit ?","2018"],
-      ["La révolte","2022×2"],
-      ["La résistance","2024"],
-      ["Obéir","2024"],
-      ["A qui devons-nous obéir ?","2018"],
-      ["\"Vivre libre ou mourir\"","2024"],
-      ["Le service public","2025"],
-      ["Les limites du pouvoir","2025"],
-      ["L'état de droit","2018"],
-    ]
-  },
-  {
-    id:"violence_guerre",
-    label:"Violence, guerre et paix",
-    color:"c-red",
-    sujets:[
-      ["Guerre et paix","2023"],
-      ["Y a-t-il des guerres justes ?","2022×3"],
-      ["Faire la paix","2019×3"],
-      ["La guerre civile","2024"],
-      ["La paix met-elle fin à l'histoire ?","2025"],
-      ["La violence","2017×2"],
-      ["La violence peut-elle être légitime ?","2022"],
-      ["Y a-t-il des violences légitimes ?","2019"],
-      ["Que faire de la violence ?","2023"],
-      ["La guerre juste","2024"],
-      ["Faut-il être pacifiste ?","2025"],
-      ["La terreur","2022"],
-      ["Terroriser","2024"],
-      ["Qu'est-ce qu'un terroriste ?","2024"],
-      ["Ami et ennemi","2024"],
-      ["L'ennemi","2022×2"],
-      ["Peut-il y avoir un droit de la guerre ?","2018"],
-      ["Pourquoi la guerre ?","2019"],
-      ["Le droit et la violence","2024"],
-    ]
-  },
-  {
-    id:"liberte_politique",
-    label:"Liberté politique, droits et citoyenneté",
-    color:"c-coral",
-    sujets:[
-      ["Liberté et égalité","2025×2"],
-      ["La liberté d'expression","2024"],
-      ["\"Les hommes naissent et demeurent libres et égaux en droits\"","2022"],
-      ["Peut-on forcer quelqu'un à être libre ?","2022×2"],
-      ["L'égalité est-elle une condition de la liberté ?","2018"],
-      ["Droits et devoirs","2023"],
-      ["Qui a des droits ?","2025"],
-      ["Le vivant a-t-il des droits ?","2025"],
-      ["Les droits de l'enfant","2023"],
-      ["N'y a-t-il des droits que de l'homme ?","2023×2"],
-      ["L'homme est-il le seul sujet de droit ?","2024"],
-      ["La nature a-t-elle des droits ?","2024×2"],
-      ["\"J'ai le droit\"","2024"],
-      ["Le droit à la différence","2023"],
-      ["Être citoyen du monde","2024"],
-      ["Y a-t-il un sens à se dire citoyen du monde ?","2024"],
-      ["Le cosmopolitisme","2024×2"],
-      ["Peut-on être citoyen du monde ?","2018×2"],
-      ["État et liberté","2025"],
-      ["État et nation","2025"],
-    ]
-  },
-  {
-    id:"punition_crime",
-    label:"Punition, crime et justice pénale",
-    color:"c-green",
-    sujets:[
-      ["Pourquoi punir ?","2019×4"],
-      ["Le droit de punir","2023"],
-      ["Crime et châtiment","2023"],
-      ["La peine de mort","2025"],
-      ["Peut-on rire de tout ?","2022×2"],
-      ["Comprendre, est-ce excuser ?","2024"],
-      ["Peut-on tout pardonner ?","2023"],
-      ["Le pardon","2025"],
-      ["La clémence","2025"],
-      ["Le tribunal","2025"],
-      ["\"L'histoire jugera\"","2025×3"],
-      ["Le tribunal de l'histoire","2021"],
-      ["La responsabilité","2024"],
-      ["La corruption","2025"],
-      ["L'abus de pouvoir","2019"],
-      ["La vengeance","2017"],
-      ["\"Œil pour œil, dent pour dent\"","2022"],
-      ["\"Pas de liberté pour les ennemis de la liberté\"","2024"],
-    ]
-  },
-  {
-    id:"societe_lien",
-    label:"Société, lien social et contrat",
-    color:"c-pink",
-    sujets:[
-      ["Le lien social","2025×2"],
-      ["La société existe-t-elle ?","2024"],
-      ["Une société est-elle une somme d'individus ?","2025"],
-      ["N'existe-t-il que des individus ?","2022×2"],
-      ["Les rapports sociaux sont-ils des rapports entre individus ?","2025"],
-      ["Y a-t-il des pathologies sociales ?","2025"],
-      ["La division du travail","2025×2"],
-      ["Le contrat social","2025"],
-      ["L'idée d'état de nature","2025"],
-      ["Territoire et peuplement","2025"],
-      ["Murs et frontières","2025"],
-      ["La frontière","2024×2"],
-      ["Qu'est-ce qu'une nation ?","2023"],
-      ["Le nationalisme","2025"],
-      ["Le cosmopolitisme","2024×2"],
-      ["L'intérêt peut-il être général ?","2024"],
-      ["Le bien commun","2025"],
-      ["Le service public","2025"],
-      ["La bureaucratie","2024"],
-      ["Les inégalités","2025"],
-    ]
-  },
-];
-
-function render() {
-  const cont = document.getElementById('pol_cats');
-  data.forEach((cat, i) => {
-    const div = document.createElement('div');
-    div.className = 'cat ' + cat.color;
-    const pillsHtml = cat.sujets.map(([s]) =>
-      `<span class="pill">${s}</span>`
-    ).join('');
-    div.innerHTML = `
-      <div class="cat-header" onclick="pol_toggle(${i})">
-        <span class="cat-title">${cat.label}</span>
-        <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="pol_tbtn${i}">▾</span>
-      </div>
-      <div class="pill-grid" id="pol_pg${i}">${pillsHtml}</div>
-    `;
-    if (i < data.length - 1) {
-      const d = document.createElement('div');
-      d.className = 'divider';
-      div.appendChild(d);
-    }
-    cont.appendChild(div);
-  });
-}
-
-function toggle(i) {
-  const pg = document.getElementById('pol_pg' + i);
-  const btn = document.getElementById('pol_tbtn' + i);
-  const hidden = pg.style.display === 'none';
-  pg.style.display = hidden ? 'flex' : 'none';
-  btn.textContent = hidden ? '▾' : '▸';
-}
-
-window["pol_toggle"] = toggle;
-render();
-})();
-
-(function(){
-
-const data = [
-  {
-    id:"statut_shs",
-    label:"Statut épistémologique des sciences humaines",
-    color:"c-purple",
-    sujets:[
-      ["Les sciences humaines sont-elles des sciences ?","2022"],
-      ["Y a-t-il une spécificité des sciences humaines ?","2022×2"],
-      ["Une science de l'homme est-elle possible ?","2021"],
-      ["Une science de la culture est-elle possible ?","2025"],
-      ["Peut-il y avoir une science de l'éducation ?","2025"],
-      ["Quel est l'objet des sciences humaines ?","2025"],
-      ["La science politique est-elle une science ?","2025"],
-      ["L'écologie est-elle une science naturelle ou une science sociale ?","2025"],
-      ["Comprendre et expliquer","2019×2"],
-      ["Expliquer et comprendre","2019"],
-      ["Faut-il considérer les faits sociaux comme des choses ?","2021"],
-      ["Qu'est-ce qu'un fait social ?","2025"],
-      ["Les rapports sociaux sont-ils des rapports entre individus ?","2025"],
-      ["L'observation participante","2025"],
-      ["Le travail sur le terrain","2025"],
-      ["A-t-on besoin de spécialistes ?","2025"],
-      ["Sociologie et anthropologie","2021"],
-      ["Suffit-il d'être informé pour comprendre ?","2022"],
-    ]
-  },
-  {
-    id:"histoire_sciences",
-    label:"Histoire, mémoire et sciences historiques",
-    color:"c-teal",
-    sujets:[
-      ["L'historien est-il un homme qui se souvient du passé ?","2025"],
-      ["Qu'est-ce qu'un fait historique ?","2025"],
-      ["L'histoire a-t-elle un sens ?","2024×2"],
-      ["L'histoire a-t-elle une fin ?","2024"],
-      ["L'histoire se répète-t-elle ?","2025"],
-      ["Peut-on penser l'histoire comme progrès ?","2024"],
-      ["Y a-t-il des sociétés sans histoire ?","2025"],
-      ["En histoire, tout est-il affaire d'interprétation ?","2021"],
-      ["Y a-t-il une vérité en histoire ?","2021"],
-      ["Faut-il tirer des leçons de l'histoire ?","2025"],
-      ["La réalité du passé","2022"],
-      ["Qui fait l'histoire ?","2019×2"],
-      ["L'histoire est-elle rationnelle ?","2019"],
-      ["Mythe et histoire","2017"],
-      ["La préhistoire","2023"],
-      ["Histoire et géographie","2025×2"],
-      ["Nature et histoire","2024"],
-      ["Commémorer","2025"],
-      ["Le devoir de mémoire","2024"],
-      ["Y a-t-il un tribunal de l'histoire ?","2021"],
-    ]
-  },
-  {
-    id:"anthropo_culture",
-    label:"Anthropologie, culture et altérité",
-    color:"c-coral",
-    sujets:[
-      ["Anthropologie et politique","2025"],
-      ["Peut-on faire l'ethnologie de sa propre culture ?","2025"],
-      ["Puis-je juger une culture à laquelle je n'appartiens pas ?","2025"],
-      ["L'ethnocentrisme","2024"],
-      ["Ethnologie et ethnocentrisme","2021"],
-      ["Comparer les cultures","2024"],
-      ["La diversité des cultures","2024×2"],
-      ["Une science de la culture est-elle possible ?","2025"],
-      ["Peut-on sortir de sa culture ?","2024"],
-      ["La culture est-elle une seconde nature ?","2019"],
-      ["L'homme est-il un animal ?","2025"],
-      ["L'homme est-il un animal comme les autres ?","2022×2"],
-      ["Qu'est-ce qu'être humain ?","2025"],
-      ["La condition humaine","2025"],
-      ["L'espèce humaine","2022"],
-      ["La nature humaine","2021×2"],
-      ["Existe-t-il une nature humaine ?","2022"],
-      ["Le primitif","2022×2"],
-      ["Le sauvage","2022×3"],
-      ["L'état de nature","2025"],
-    ]
-  },
-  {
-    id:"langage_pensee",
-    label:"Langage et pensée",
-    color:"c-amber",
-    sujets:[
-      ["Langage et réalité","2025"],
-      ["Le mot et la chose","2025×2"],
-      ["Les mots disent-ils les choses ?","2024"],
-      ["Penser et parler","2022"],
-      ["La grammaire contraint-elle notre pensée ?","2024"],
-      ["Peut-on penser sans signes ?","2024"],
-      ["Peut-on penser sans langage ?","2025"],
-      ["Langage naturel et langage symbolique","2025"],
-      ["Y a-t-il un au-delà du langage ?","2019"],
-      ["Le langage est-il un instrument ?","2019×2"],
-      ["Les mots peuvent-ils nous manquer ?","2024"],
-      ["Le pouvoir des mots","2025"],
-      ["Avoir peur des mots","2021"],
-      ["L'imperfection du langage","2025"],
-      ["Que perdrait la pensée en perdant l'écriture ?","2019"],
-      ["Parler pour ne rien dire","2025×2"],
-      ["Dire et faire","2025"],
-      ["Signe et symbole","2025"],
-    ]
-  },
-  {
-    id:"langue_diversite",
-    label:"Langues, diversité linguistique et traduction",
-    color:"c-blue",
-    sujets:[
-      ["La diversité des langues","2022×3"],
-      ["Les langues meurent-elles ?","2025"],
-      ["La langue universelle","2025"],
-      ["Y a-t-il un langage universel ?","2021"],
-      ["Un langage universel est-il concevable ?","2017"],
-      ["L'origine des langues","2019"],
-      ["Traduire, est-ce trahir ?","2023"],
-      ["Traduire","2025×2"],
-      ["Que nous apporte la traduction ?","2021"],
-      ["La pluralité des langues","2021×3"],
-      ["Y a-t-il un langage animal ?","2022×2"],
-      ["La musique est-elle un langage ?","2024×2"],
-      ["Y a-t-il une langue de la philosophie ?","2018"],
-      ["Les limites du langage","2025"],
-      ["Bien parler, est-ce bien penser ?","2024"],
-      ["Que signifie signifier ?","2022"],
-    ]
-  },
-  {
-    id:"parole_communication",
-    label:"Parole, communication et actes de langage",
-    color:"c-green",
-    sujets:[
-      ["Parler, est-ce agir ?","2022×2"],
-      ["Communiquer","2021"],
-      ["Comment sait-on qu'on se comprend ?","2025"],
-      ["L'implicite dans la communication","2025"],
-      ["Qu'est-ce que parler veut dire ?","2023"],
-      ["N'exprime-t-on que ce dont on a conscience ?","2024"],
-      ["Peut-on tout exprimer ?","2018×2"],
-      ["Peut-on tout dire ?","2019×3"],
-      ["Y a-t-il des limites à l'exprimable ?","2019"],
-      ["La voix","2023"],
-      ["Le silence","2025×2"],
-      ["Parler tout seul","2024"],
-      ["Le bavardage","2021×2"],
-      ["L'écriture","2024"],
-      ["L'écriture est-elle une technique parmi d'autres ?","2023"],
-      ["Que nous apporte l'écriture ?","2024"],
-      ["Pourquoi écrire ?","2024×2"],
-      ["Interprétation et langage","2025"],
-    ]
-  },
-  {
-    id:"interpretation_sens",
-    label:"Interprétation, sens et herméneutique",
-    color:"c-pink",
-    sujets:[
-      ["Interpréter, est-ce un art ?","2025"],
-      ["L'interprétation est-elle un art ?","2024"],
-      ["Toutes les interprétations se valent-elles ?","2017"],
-      ["Qu'est-ce qu'interpréter ?","2019×2"],
-      ["Les choses ont-elles un sens ?","2023"],
-      ["Qu'est-ce qui a un sens ?","2024"],
-      ["La métaphore","2024"],
-      ["Signe et symbole","2025"],
-      ["Concept et image","2023"],
-      ["Les images empêchent-elles de penser ?","2023"],
-      ["La haine des images","2025×2"],
-      ["L'image","2023"],
-      ["Qu'est-ce qu'une image ?","2021×2"],
-      ["Représenter","2023"],
-      ["Qu'est-ce qu'une représentation ?","2023×2"],
-      ["La représentation du monde","2024"],
-      ["Le regard","2025"],
-      ["Apprendre à voir","2025"],
-    ]
-  },
-  {
-    id:"psycho_inconscient",
-    label:"Psychologie, inconscient et sciences de l'esprit",
-    color:"c-red",
-    sujets:[
-      ["L'inconscient est-il un destin ?","2021"],
-      ["De quoi peut-on être inconscient ?","2022"],
-      ["Comment expliquer les phénomènes mentaux ?","2021"],
-      ["La réalité mentale","2025"],
-      ["Suis-je mon cerveau ?","2023"],
-      ["L'esprit et le cerveau","2022"],
-      ["Qu'est-ce qu'être psychologue ?","2021"],
-      ["Conscience de soi et connaissance de soi","2021"],
-      ["La connaissance de soi","2025"],
-      ["La connaissance du singulier","2021"],
-      ["Y a-t-il une pensée animale ?","2022"],
-      ["Les animaux pensent-ils ?","2018"],
-      ["L'intelligence des bêtes","2019"],
-      ["Une machine peut-elle penser ?","2019"],
-      ["Les machines pensent-elles ?","2017"],
-      ["Qu'est-ce qu'être normal ?","2023×2"],
-      ["Perdre la raison","2024×2"],
-      ["La folie","2025"],
-    ]
-  },
-];
-
-function render() {
-  const cont = document.getElementById('shs_cats');
-  data.forEach((cat, i) => {
-    const div = document.createElement('div');
-    div.className = 'cat ' + cat.color;
-    const pillsHtml = cat.sujets.map(([s]) =>
-      `<span class="pill">${s}</span>`
-    ).join('');
-    div.innerHTML = `
-      <div class="cat-header" onclick="shs_toggle(${i})">
-        <span class="cat-title">${cat.label}</span>
-        <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="shs_tbtn${i}">▾</span>
-      </div>
-      <div class="pill-grid" id="shs_pg${i}">${pillsHtml}</div>
-    `;
-    if (i < data.length - 1) {
-      const d = document.createElement('div');
-      d.className = 'divider';
-      div.appendChild(d);
-    }
-    cont.appendChild(div);
-  });
-}
-
-function toggle(i) {
-  const pg = document.getElementById('shs_pg' + i);
-  const btn = document.getElementById('shs_tbtn' + i);
-  const hidden = pg.style.display === 'none';
-  pg.style.display = hidden ? 'flex' : 'none';
-  btn.textContent = hidden ? '▾' : '▸';
-}
-
-window["shs_toggle"] = toggle;
-render();
-})();
-
-(function(){
-
-const data = [
-  {
-    id:"statut",
-    label:"Statut et légitimité de la métaphysique",
-    color:"c-purple",
-    sujets:[
-      ["La métaphysique est-elle une science ?","2018"],
-      ["Avons-nous besoin de métaphysique ?","2025"],
-      ["En quoi la métaphysique est-elle une science ?","2021"],
-      ["La métaphysique répond-elle à un besoin ?","2023"],
-      ["La philosophie peut-elle se passer de métaphysique ?","2025"],
-      ["La science peut-elle se passer de métaphysique ?","2025"],
-      ["Science et métaphysique","2021"],
-      ["La logique est-elle utile à la métaphysique ?","2017"],
-      ["Existe-t-il des démonstrations métaphysiques ?","2023"],
-      ["Y a-t-il des expériences métaphysiques ?","2018"],
-      ["De quoi les métaphysiciens parlent-ils ?","2023"],
-      ["Qu'est-ce qu'une expérience de pensée ?","2022"],
-      ["Pourquoi y a-t-il plusieurs philosophies ?","2023×2"],
-      ["La philosophie a-t-elle une histoire ?","2025"],
-      ["Qu'est-ce qu'une vérité philosophique ?","2021"],
-      ["Y a-t-il des vérités philosophiques ?","2021"],
-    ]
-  },
-  {
-    id:"etre_existence",
-    label:"L'être, l'existence et l'ontologie",
-    color:"c-blue",
-    sujets:[
-      ["Pourquoi y a-t-il quelque chose plutôt que rien ?","2022×2"],
-      ["Qu'est-ce qu'être ?","2018"],
-      ["Qu'est-ce qui est réel ?","2022×2"],
-      ["La réalité","2022"],
-      ["Chose et objet","2025×2"],
-      ["Substance et sujet","2023"],
-      ["L'existence a-t-elle un sens ?","2021"],
-      ["Essence et existence","2022"],
-      ["Le monde est-il ma représentation ?","2022"],
-      ["Prouver l'existence du monde extérieur","2023"],
-      ["L'existence d'autrui","2021×2"],
-      ["L'existence des corps","2025"],
-      ["Qu'est-ce qui n'existe pas ?","2022"],
-      ["Le virtuel existe-t-il ?","2025"],
-      ["Les mondes possibles","2022×2"],
-      ["Possibilité et nécessité","2025"],
-      ["L'intemporel","2025"],
-      ["Y a-t-il un ordre des choses ?","2025"],
-    ]
-  },
-  {
-    id:"dieu_religion",
-    label:"Dieu, religion et théologie rationnelle",
-    color:"c-amber",
-    sujets:[
-      ["L'existence de Dieu","2025"],
-      ["Les preuves de l'existence de Dieu","2025"],
-      ["Que prouvent les preuves de l'existence de Dieu ?","2019×2"],
-      ["Dieu est-il mort ?","2021×2"],
-      ["Dieu est-il une invention humaine ?","2022×2"],
-      ["Si Dieu n'existe pas, tout est-il permis ?","2022×2"],
-      ["La mort de Dieu","2018"],
-      ["Croire en Dieu","2022"],
-      ["L'idée de Dieu","2023"],
-      ["Peut-on croire aux miracles ?","2022"],
-      ["\"Il n'y a pas de miracle\"","2025"],
-      ["La vie après la mort","2023"],
-      ["Éternité et immortalité","2023"],
-      ["L'immortalité","2022×2"],
-      ["Vivre en immortel","2021"],
-      ["L'au-delà","2025"],
-      ["La vérité de la religion","2021"],
-      ["Foi et savoir","2021×2"],
-    ]
-  },
-  {
-    id:"temps_espace",
-    label:"Temps, espace et infini",
-    color:"c-teal",
-    sujets:[
-      ["Le temps existe-t-il ?","2018"],
-      ["Le temps passe-t-il ?","2022"],
-      ["L'instant","2025×2"],
-      ["Vivre le moment présent","2023"],
-      ["Vivre au présent","2025"],
-      ["Ici et maintenant","2025×2"],
-      ["Exister hors du temps","2023"],
-      ["Peut-on se baigner deux fois dans le même fleuve ?","2025"],
-      ["Le continu et le discret","2025"],
-      ["L'éternité","2025×3"],
-      ["Le vide","2025×3"],
-      ["L'infini","2022×2"],
-      ["Le fini et l'infini","2022"],
-      ["L'espace","2023"],
-      ["Espace mathématique et espace physique","2021"],
-      ["Le mouvement perpétuel","2025"],
-      ["Peut-on échapper au temps ?","2018"],
-      ["Suis-je mon passé ?","2025"],
-      ["Le passé est-il irrévocable ?","2025"],
-    ]
-  },
-  {
-    id:"identite_sujet",
-    label:"Identité, sujet et personne",
-    color:"c-coral",
-    sujets:[
-      ["Qu'est-ce qu'une personne ?","2019×2"],
-      ["Personne et individu","2021"],
-      ["Qui suis-je ?","2021×2"],
-      ["Moi","2025"],
-      ["Le moi","2017×2"],
-      ["Je","2022"],
-      ["Suis-je le même dans des temps différents ?","2022"],
-      ["L'identité personnelle","2022×2"],
-      ["L'individuation","2024"],
-      ["La relation d'identité","2025"],
-      ["Avons-nous une identité ?","2021"],
-      ["Devenir ce que l'on est","2024"],
-      ["Être soi-même","2023×2"],
-      ["Rester soi-même","2023"],
-      ["Peut-on ne pas être soi-même ?","2018"],
-      ["L'authenticité","2022×2"],
-      ["Corps et identité","2024"],
-      ["Suis-je mon corps ?","2022"],
-      ["Avons-nous un corps ?","2019"],
-    ]
-  },
-  {
-    id:"cause_necessite",
-    label:"Causalité, nécessité et déterminisme",
-    color:"c-green",
-    sujets:[
-      ["Le principe de causalité","2025"],
-      ["Cause et raison","2025"],
-      ["Corrélation et causalité","2025"],
-      ["La nécessité de l'art","2025"],
-      ["Nécessité et contrainte","2022"],
-      ["Le mécanisme","2023"],
-      ["Les causes finales","2022×2"],
-      ["Y a-t-il des fins dans la nature ?","2022"],
-      ["La nature obéit-elle à des fins ?","2023"],
-      ["Le déterminisme","2025"],
-      ["Peut-on abolir le hasard ?","2025"],
-      ["Le hasard","2024×2"],
-      ["\"Par hasard\"","2024×2"],
-      ["Le futur est-il contingent ?","2021"],
-      ["La contingence","2025"],
-      ["Le destin","2019×2"],
-      ["Le fatalisme","2016"],
-      ["Le libre arbitre","2021×2"],
-      ["Une cause peut-elle être libre ?","2022"],
-    ]
-  },
-  {
-    id:"mort_finitude",
-    label:"Mort, finitude et condition humaine",
-    color:"c-red",
-    sujets:[
-      ["Qu'est-ce que mourir ?","2022×2"],
-      ["La mort a-t-elle un sens ?","2022"],
-      ["Faut-il craindre la mort ?","2021"],
-      ["Ne pas tuer","2021"],
-      ["Vivre, est-ce résister à la mort ?","2025"],
-      ["Naître","2025×2"],
-      ["La naissance","2022×2"],
-      ["La finitude","2017×2"],
-      ["Avons-nous le devoir de vivre ?","2021"],
-      ["La valeur de la vie","2021"],
-      ["La vie est-elle une valeur ?","2023"],
-      ["Vouloir être immortel","2019"],
-      ["La condition humaine","2025"],
-      ["L'anthropocentrisme","2025"],
-      ["Vivre en immortel","2021"],
-      ["Peut-on fuir hors du monde ?","2021×2"],
-      ["L'inhumain","2022×2"],
-      ["Le suicide","2022"],
-    ]
-  },
-  {
-    id:"absolu_infini",
-    label:"L'absolu, le transcendant et les limites de la raison",
-    color:"c-pink",
-    sujets:[
-      ["L'absolu","2017"],
-      ["L'absolu et le relatif","2023"],
-      ["Le savoir peut-il être absolu ?","2025"],
-      ["Le savoir absolu","2021×2"],
-      ["L'intemporel","2025"],
-      ["L'indicible","2021"],
-      ["Y a-t-il de l'indicible ?","2021×2"],
-      ["Y a-t-il de l'impensable ?","2018"],
-      ["Y a-t-il des limites à la pensée ?","2021"],
-      ["Les limites de la raison","2023×2"],
-      ["La haine de la raison","2018"],
-      ["Le monde intelligible","2021"],
-      ["Les choses en soi","2021"],
-      ["L'a priori","2021×2"],
-      ["Qu'est-ce qu'une connaissance a priori ?","2025"],
-      ["L'inné et l'acquis","2024×2"],
-      ["Le sublime","2017×2"],
-      ["Qu'est-ce qui est sublime ?","2025"],
-    ]
-  },
-];
-
-function render() {
-  const cont = document.getElementById('meta_cats');
-  data.forEach((cat, i) => {
-    const div = document.createElement('div');
-    div.className = 'cat ' + cat.color;
-    const pillsHtml = cat.sujets.map(([s]) =>
-      `<span class="pill">${s}</span>`
-    ).join('');
-    div.innerHTML = `
-      <div class="cat-header" onclick="meta_toggle(${i})">
-        <span class="cat-title">${cat.label}</span>
-        <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="meta_tbtn${i}">▾</span>
-      </div>
-      <div class="pill-grid" id="meta_pg${i}">${pillsHtml}</div>
-    `;
-    if (i < data.length - 1) {
-      const d = document.createElement('div');
-      d.className = 'divider';
-      div.appendChild(d);
-    }
-    cont.appendChild(div);
-  });
-}
-
-function toggle(i) {
-  const pg = document.getElementById('meta_pg' + i);
-  const btn = document.getElementById('meta_tbtn' + i);
-  const hidden = pg.style.display === 'none';
-  pg.style.display = hidden ? 'flex' : 'none';
-  btn.textContent = hidden ? '▾' : '▸';
-}
-
-window["meta_toggle"] = toggle;
-render();
+phiBuildTabs();
+phiRender();
 })();
 
 (function(){
