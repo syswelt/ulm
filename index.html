@@ -559,9 +559,9 @@ function render() {
       <div class="cat-header" onclick="art_toggle(${i})">
         <span class="cat-title">${cat.label}</span>
         <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+        <span class="toggle-btn" id="art_tbtn${i}">▾</span>
       </div>
-      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+      <div class="pill-grid" id="art_pg${i}">${pillsHtml}</div>
     `;
     if (i < data.length - 1) {
       const d = document.createElement('div');
@@ -803,9 +803,9 @@ function render() {
       <div class="cat-header" onclick="mor_toggle(${i})">
         <span class="cat-title">${cat.label}</span>
         <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+        <span class="toggle-btn" id="mor_tbtn${i}">▾</span>
       </div>
-      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+      <div class="pill-grid" id="mor_pg${i}">${pillsHtml}</div>
     `;
     if (i < data.length - 1) {
       const d = document.createElement('div');
@@ -1056,9 +1056,9 @@ function render() {
       <div class="cat-header" onclick="pol_toggle(${i})">
         <span class="cat-title">${cat.label}</span>
         <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+        <span class="toggle-btn" id="pol_tbtn${i}">▾</span>
       </div>
-      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+      <div class="pill-grid" id="pol_pg${i}">${pillsHtml}</div>
     `;
     if (i < data.length - 1) {
       const d = document.createElement('div');
@@ -1300,9 +1300,9 @@ function render() {
       <div class="cat-header" onclick="shs_toggle(${i})">
         <span class="cat-title">${cat.label}</span>
         <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+        <span class="toggle-btn" id="shs_tbtn${i}">▾</span>
       </div>
-      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+      <div class="pill-grid" id="shs_pg${i}">${pillsHtml}</div>
     `;
     if (i < data.length - 1) {
       const d = document.createElement('div');
@@ -1543,9 +1543,9 @@ function render() {
       <div class="cat-header" onclick="meta_toggle(${i})">
         <span class="cat-title">${cat.label}</span>
         <span class="cat-count">${cat.sujets.length} sujets</span>
-        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+        <span class="toggle-btn" id="meta_tbtn${i}">▾</span>
       </div>
-      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+      <div class="pill-grid" id="meta_pg${i}">${pillsHtml}</div>
     `;
     if (i < data.length - 1) {
       const d = document.createElement('div');
