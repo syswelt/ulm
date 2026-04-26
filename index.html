@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oraux ENS Ulm - Annales khagne A/L</title>
+<style>
+:root {
+  --bg:      #181818;
+  --bg2:     #222;
+  --bg3:     #1d1d1d;
+  --text:    #ddd9d3;
+  --text2:   #888;
+  --text3:   #4a4a4a;
+  --border:  rgba(255,255,255,0.09);
+  --color-text-primary:        #ddd9d3;
+  --color-text-secondary:      #888;
+  --color-text-tertiary:       #4a4a4a;
+  --color-background-primary:  #181818;
+  --color-background-secondary:#222;
+  --color-background-tertiary: #1d1d1d;
+  --color-border-primary:      rgba(255,255,255,0.16);
+  --color-border-secondary:    rgba(255,255,255,0.10);
+  --color-border-tertiary:     rgba(255,255,255,0.07);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --border-radius-md: 5px;
+  --border-radius-lg: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-sans); font-size: 15px;
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 820px; margin: 0 auto; padding: 0 24px 80px; }
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(24,24,24,0.96); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-inner {
+  display: flex; white-space: nowrap;
+  max-width: 820px; margin: 0 auto; padding: 0 24px;
+}
+.nav-inner a {
+  padding: 9px 13px; font-size: 12px; color: var(--text3);
+  text-decoration: none; border-right: 1px solid var(--border); transition: color .1s;
+}
+.nav-inner a:first-child { padding-left: 0; }
+.nav-inner a:last-child { border-right: none; }
+.nav-inner a:hover { color: var(--text); }
+.site-header { padding: 48px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+.site-header h1 { font-size: 20px; font-weight: 600; margin-bottom: 7px; }
+.site-header p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.group-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text3); padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  margin-bottom: 32px; margin-top: 16px; scroll-margin-top: 44px;
+}
+.section { scroll-margin-top: 42px; margin-bottom: 60px; }
+.sec-title { font-size: 17px; font-weight: 600; margin-bottom: 5px; }
+.sec-meta { font-size: 12px; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
+footer { padding: 28px 0 0; border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); line-height: 1.7; }
+
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  h2.main-title { font-size: 18px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 24px; }
+  .cat { margin-bottom: 28px; }
+  .cat-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+  .cat-title { font-size: 15px; font-weight: 500; }
+  .cat-count { font-size: 12px; color: var(--color-text-secondary); }
+  .toggle-btn { font-size: 12px; color: var(--color-text-tertiary); margin-left: auto; }
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 99px;
+    border: 1px solid var(--color-border-secondary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+    transition: background .15s;
+  }
+  .pill:hover { background: var(--color-background-tertiary); }
+  .pill.year { font-size: 10px; color: var(--color-text-tertiary); padding: 2px 6px; border-color: var(--color-border-tertiary); }
+
+  .c-purple .pill  { background:#EEEDFE; color:#3C3489; border-color:#AFA9EC; }
+  .c-teal   .pill  { background:#E1F5EE; color:#0F6E56; border-color:#5DCAA5; }
+  .c-coral  .pill  { background:#FAECE7; color:#993C1D; border-color:#F0997B; }
+  .c-amber  .pill  { background:#FAEEDA; color:#854F0B; border-color:#EF9F27; }
+  .c-blue   .pill  { background:#E6F1FB; color:#185FA5; border-color:#85B7EB; }
+  .c-green  .pill  { background:#EAF3DE; color:#3B6D11; border-color:#97C459; }
+  .c-pink   .pill  { background:#FBEAF0; color:#993556; border-color:#ED93B1; }
+
+  @media (prefers-color-scheme: dark) {
+    .c-purple .pill { background:#26215C; color:#CECBF6; border-color:#534AB7; }
+    .c-teal   .pill { background:#04342C; color:#9FE1CB; border-color:#0F6E56; }
+    .c-coral  .pill { background:#4A1B0C; color:#F5C4B3; border-color:#993C1D; }
+    .c-amber  .pill { background:#412402; color:#FAC775; border-color:#854F0B; }
+    .c-blue   .pill { background:#042C53; color:#B5D4F4; border-color:#185FA5; }
+    .c-green  .pill { background:#173404; color:#C0DD97; border-color:#3B6D11; }
+    .c-pink   .pill { background:#4B1528; color:#F4C0D1; border-color:#993356; }
+  }
+
+  .divider { height: 1px; background: var(--color-border-tertiary); margin: 4px 0 20px; }
+
+
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 20px; }
+  .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .controls button {
+    font-size: 12px; padding: 4px 12px; border-radius: 99px;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-secondary);
+    color: var(--color-text-secondary); cursor: pointer;
+  }
+  .controls button.active {
+    background: var(--color-text-primary); color: var(--color-background-primary);
+    border-color: var(--color-text-primary);
+  }
+  .row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .row:last-child { border-bottom: none; }
+  .rank { font-size: 12px; color: var(--color-text-tertiary); width: 26px; text-align: right; flex-shrink: 0; }
+  .medal { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+  .name { font-size: 14px; font-weight: 500; width: 180px; flex-shrink: 0; }
+  .bar-wrap { flex: 1; background: var(--color-background-tertiary); border-radius: 2px; height: 8px; overflow: hidden; }
+  .bar { height: 100%; border-radius: 2px; transition: width 0.4s; }
+  .count { font-size: 13px; color: var(--color-text-secondary); width: 36px; text-align: right; flex-shrink: 0; }
+  .era { font-size: 11px; padding: 2px 6px; border-radius: 99px; flex-shrink: 0; }
+
+
+.wrap{padding:1.5rem 0;font-family:var(--font-sans);color:var(--color-text-primary)}
+.meta{font-size:12px;color:var(--color-text-tertiary);margin-bottom:16px;padding:7px 11px;border-left:2px solid var(--color-border-secondary);background:var(--color-background-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0}
+.controls{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.btn{font-size:12px;padding:3px 11px;border-radius:99px;border:.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:pointer}
+.btn.on{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.sec{margin-bottom:22px}
+.sh{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:6px;border-bottom:.5px solid var(--color-border-tertiary)}
+.stag{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:6px}
+.card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 10px;border:.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px}
+.bc{flex:1;min-width:0}
+.an{font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.am{font-size:10px;color:var(--color-text-tertiary);margin-top:1px}
+.bw{height:3px;background:var(--color-border-tertiary);border-radius:2px;margin-top:5px}
+.bf{height:3px;border-radius:2px}
+.cnt{font-size:16px;font-weight:500;min-width:22px;text-align:right;flex-shrink:0}
+.div{height:.5px;background:var(--color-border-tertiary);margin:4px 0 18px}
+.empty{font-size:13px;color:var(--color-text-tertiary);padding:12px 0}
+
+
+.wrap{padding:1.5rem 0;font-family:var(--font-sans);color:var(--color-text-primary)}
+.meta{font-size:12px;color:var(--color-text-tertiary);margin-bottom:16px;padding:7px 11px;border-left:2px solid var(--color-border-secondary);background:var(--color-background-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0}
+.controls{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.btn{font-size:12px;padding:3px 11px;border-radius:99px;border:.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:pointer}
+.btn.on{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.controls2{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.sec{margin-bottom:22px}
+.sh{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:6px;border-bottom:.5px solid var(--color-border-tertiary)}
+.stag{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:6px}
+.card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 10px;border:.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px}
+.bc{flex:1;min-width:0}
+.an{font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.am{font-size:10px;color:var(--color-text-tertiary);margin-top:1px}
+.bw{height:3px;background:var(--color-border-tertiary);border-radius:2px;margin-top:5px}
+.bf{height:3px;border-radius:2px}
+.cnt{font-size:16px;font-weight:500;min-width:22px;text-align:right;flex-shrink:0}
+.div{height:.5px;background:var(--color-border-tertiary);margin:4px 0 18px}
+.empty{font-size:13px;color:var(--color-text-tertiary);padding:12px 0}
+
+
+.cat-block { margin-bottom: 1.5rem; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.cat-header { padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+.cat-header:hover { background: var(--color-background-secondary); }
+.cat-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.cat-meta { font-size: 12px; color: var(--color-text-secondary); }
+.cat-body { padding: 12px 16px 14px; border-top: 0.5px solid var(--color-border-tertiary); }
+.author-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+.author-name { font-size: 13px; color: var(--color-text-primary); min-width: 200px; }
+.bar-wrap { flex: 1; height: 10px; background: var(--color-background-secondary); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 5px; transition: width 0.3s; }
+.count { font-size: 12px; color: var(--color-text-secondary); min-width: 28px; text-align: right; }
+.badge { font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 10px; }
+.chevron { font-size: 11px; color: var(--color-text-tertiary); transition: transform 0.2s; }
+.open .chevron { transform: rotate(180deg); }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+.filter-btn { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); cursor: pointer; }
+.filter-btn.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; }
+.legend { display: flex; gap: 14px; font-size: 11px; color: var(--color-text-secondary); margin-bottom: 1rem; flex-wrap: wrap; }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+.c-purple .pill { background:#1e1b3a !important; color:#b8b2f0 !important; border-color:#3d3580 !important; }
+.c-teal   .pill { background:#0d2a22 !important; color:#7ecfb5 !important; border-color:#1a5c44 !important; }
+.c-coral  .pill { background:#2e1208 !important; color:#e8b09a !important; border-color:#7a2e14 !important; }
+.c-amber  .pill { background:#2a1a02 !important; color:#d4a050 !important; border-color:#6b3e08 !important; }
+.c-blue   .pill { background:#0a1e36 !important; color:#88bce8 !important; border-color:#1a4a7a !important; }
+.c-green  .pill { background:#0f2208 !important; color:#9fd475 !important; border-color:#2d5a14 !important; }
+.c-pink   .pill { background:#2a0e1c !important; color:#e8a0bf !important; border-color:#7a2050 !important; }
+.c-red    .pill { background:#2a0808 !important; color:#e89090 !important; border-color:#7a1a1a !important; }
+.wrap h2.main-title, .wrap .subtitle, h2.sr-only, .wrap h2.sr-only { display: none; }
+.wrap { background: transparent; padding-top: 0; }
+.meta { display: none !important; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#philo">Philosophie</a>
+    <a href="#s-art">Art & tech.</a>
+    <a href="#s-mor">Morale</a>
+    <a href="#s-pol">Politique</a>
+    <a href="#s-shs">SHS & lang.</a>
+    <a href="#s-meta">Metaphysique</a>
+    <a href="#langues">Litterature</a>
+    <a href="#s-fr">Francais</a>
+    <a href="#s-es">Espagnol</a>
+    <a href="#s-de">Allemand</a>
+    <a href="#s-en">Anglais</a>
+  </div>
+</nav>
+<div class="page">
+<header class="site-header">
+  <h1>Oraux ENS Ulm - Annales khagne A/L</h1>
+  <p>Sujets de philosophie 2000-2025 - Auteurs de francais 2010-2025 - Espagnol, allemand et anglais<br>
+  Donnees extraites des PDFs officiels et rapports de jury - Usage pedagogique non officiel</p>
+</header>
+<p class="group-label" id="philo">Philosophie - sujets par theme</p>
+<section class="section" id="s-art">
+<h2 class="sec-title">Art & technique</h2>
+<p class="sec-meta">Essence de l'oeuvre - Creation - Beaute - Art comme connaissance - Technique - Machines - Art & societe</p>
+<div class="wrap">
+  
+  
+
+<div id="art_cats"></div>
+</div>
+</section>
+
+<section class="section" id="s-mor">
+<h2 class="sec-title">La morale</h2>
+<p class="sec-meta">Fondements - Bien & mal - Liberte & responsabilite - Devoir & vertu - Autrui - Verite & mensonge - Bonheur - Normes</p>
+<div class="wrap">
+  
+  
+  <div id="mor_cats"></div>
+</div>
+</section>
+
+<section class="section" id="s-pol">
+<h2 class="sec-title">Politique & droit</h2>
+<p class="sec-meta">Etat & souverainete - Democratie - Justice - Loi & desobeissance - Violence & guerre - Liberte politique - Punition - Lien social</p>
+<div class="wrap">
+  
+  
+  <div id="pol_cats"></div>
+</div>
+</section>
+
+<section class="section" id="s-shs">
+<h2 class="sec-title">SHS & langage</h2>
+<p class="sec-meta">Epistemologie - Histoire & memoire - Anthropologie - Langage & pensee - Diversite linguistique - Communication - Hermeneutique - Psychologie</p>
+<div class="wrap">
+  
+  
+  <div id="shs_cats"></div>
+</div>
+</section>
+
+<section class="section" id="s-meta">
+<h2 class="sec-title">Metaphysique</h2>
+<p class="sec-meta">Statut de la metaphysique - Etre & existence - Dieu & religion - Temps & espace - Identite & sujet - Causalite - Mort & finitude - L'absolu</p>
+<div class="wrap">
+  
+  
+  <div id="meta_cats"></div>
+</div>
+</section>
+
+<p class="group-label" id="langues">Litterature - auteurs par frequence</p>
+<section class="section" id="s-fr">
+<h2 class="sec-title">Oral de francais</h2>
+<p class="sec-meta">~1200 billets - Sessions 2010-2025 - Classement par siecle</p>
+<div class="wrap">
+  
+  <div class="controls" id="fr_filters">
+    <button class="active" onclick="fr_filter('all', this)">Tous</button>
+    <button onclick="fr_filter('xvi', this)">XVIe</button>
+    <button onclick="fr_filter('xvii', this)">XVIIe</button>
+    <button onclick="fr_filter('xviii', this)">XVIIIe</button>
+    <button onclick="fr_filter('xix', this)">XIXe</button>
+    <button onclick="fr_filter('xx', this)">XXe–XXIe</button>
+  </div>
+  <div id="fr_list"></div>
+</div>
+</section>
+
+<section class="section" id="s-es">
+<h2 class="sec-title">Oral d'espagnol</h2>
+<p class="sec-meta">5 sessions - 2018-2024 - ~120 billets - Filtres par genre et aire geographique</p>
+<div class="wrap">
+<div class="meta">Sessions 2018, 2021, 2022, 2023 (billets PDF), 2024 · 5 sessions complètes · ~120 billets effectivement tirés · Scores = nombre de fois où l'auteur a été choisi par un candidat</div>
+<div class="controls" id="es_fb">
+  <button class="btn on" onclick="es_sf('all',this)">Tous les genres</button>
+  <button class="btn" onclick="es_sf('prose',this)">Prose</button>
+  <button class="btn" onclick="es_sf('poesie',this)">Poésie</button>
+  <button class="btn" onclick="es_sf('theatre',this)">Théâtre</button>
+</div>
+<div class="controls" id="es_ab">
+  <button class="btn on" onclick="es_sa('all',this)">Toutes les aires</button>
+  <button class="btn" onclick="es_sa('es',this)">Espagne 🇪🇸</button>
+  <button class="btn" onclick="es_sa('la',this)">Amérique latine 🌎</button>
+</div>
+<div id="es_content"></div>
+</div>
+</section>
+
+<section class="section" id="s-de">
+<h2 class="sec-title">Oral d'allemand</h2>
+<p class="sec-meta">3 sessions - 2018-2024 - ~78 billets</p>
+<div class="wrap">
+<div class="meta">Sessions 2018, 2022, 2024 · 3 sessions · ~78 billets tirés · Scores cumulés · Certains auteurs apparaissent dans plusieurs genres (ex. Goethe, Schiller)</div>
+<div class="controls" id="de_fb">
+  <button class="btn on" onclick="de_sf('all',this)">Tous les genres</button>
+  <button class="btn" onclick="de_sf('poesie',this)">Poésie</button>
+  <button class="btn" onclick="de_sf('prose',this)">Prose</button>
+  <button class="btn" onclick="de_sf('theatre',this)">Théâtre</button>
+</div>
+<div class="controls2" id="de_pb">
+  <button class="btn on" onclick="de_sp('all',this)">Toutes les périodes</button>
+  <button class="btn" onclick="de_sp('xvii',this)">XVIIe</button>
+  <button class="btn" onclick="de_sp('xviii',this)">XVIIIe</button>
+  <button class="btn" onclick="de_sp('xix',this)">XIXe</button>
+  <button class="btn" onclick="de_sp('xx',this)">XXe</button>
+  <button class="btn" onclick="de_sp('xxi',this)">XXIe</button>
+</div>
+<div id="de_content"></div>
+</div>
+</section>
+
+<section class="section" id="s-en">
+<h2 class="sec-title">Oral d'anglais</h2>
+<p class="sec-meta">Corpus complet - Auteurs classes par categorie de billet</p>
+<div style="padding: 1rem 0;">
+
+
+<div class="legend">
+  <span><span class="leg-dot" style="background:#534AB7"></span>Théâtre</span>
+  <span><span class="leg-dot" style="background:#0F6E56"></span>Poésie</span>
+  <span><span class="leg-dot" style="background:#185FA5"></span>Roman / Nouvelle</span>
+</div>
+
+<div class="filter-bar" id="en_filters">
+  <button class="filter-btn active" data-filter="all">Tout</button>
+  <button class="filter-btn" data-filter="theatre">Théâtre</button>
+  <button class="filter-btn" data-filter="poesie">Poésie</button>
+  <button class="filter-btn" data-filter="fiction">Roman / Nouvelle</button>
+  <button class="filter-btn" data-filter="uk">UK / Ireland</button>
+  <button class="filter-btn" data-filter="us">US</button>
+  <button class="filter-btn" data-filter="commonwealth">Commonwealth</button>
+</div>
+
+<div id="en_cats"></div>
+</div>
+</section>
+
+
+<footer>
+  Sources : ens.psl.eu - neoclassica.co - Rapports de jury officiels<br>
+  Non officiel - consulter les sources primaires pour toute information de concours
+</footer>
+</div>
+<script>
+(function(){
+
+const data = [
+  {
+    id:"essence",
+    label:"Essence de l'art et de l'œuvre",
+    color:"c-purple",
+    sujets:[
+      ["Qu'est-ce qu'une œuvre d'art réussie ?","2025"],
+      ["Une œuvre d'art est-elle toujours de son temps ?","2025×2"],
+      ["Qu'est-ce qui fait la valeur d'une œuvre ?","2021"],
+      ["Les œuvres d'art sont-elles des choses ?","2024"],
+      ["Une œuvre d'art produit-elle du beau ?","2024"],
+      ["L'achèvement de l'œuvre","2023×2"],
+      ["La genèse de l'œuvre","2021"],
+      ["Art et illusion","2023×2"],
+      ["Que nous montre l'œuvre d'art ?","2021"],
+      ["En quoi l'œuvre d'art donne-t-elle à penser ?","2021"],
+      ["Les arts ont-ils besoin de théorie ?","2021"],
+      ["La pluralité des arts","2021"],
+      ["La temporalité de l'œuvre d'art","2023"],
+      ["L'art peut-il sauver le monde ?","2021"],
+      ["À quoi reconnaît-on une œuvre d'art ?","2018"],
+      ["L'acte et l'œuvre","2018"],
+      ["La mort de l'art","2016"],
+      ["La classification des arts","2021"],
+    ]
+  },
+  {
+    id:"creation",
+    label:"Création, génie, inspiration",
+    color:"c-teal",
+    sujets:[
+      ["L'artiste est-il un créateur ?","2025×2"],
+      ["Artiste et artisan","2025×2"],
+      ["Créer, est-ce imiter ?","2025"],
+      ["Qu'est-ce que créer ?","2017"],
+      ["L'originalité","2025"],
+      ["Le génie","2016"],
+      ["Qu'est-ce qu'un génie ?","2019"],
+      ["L'inspiration","2021"],
+      ["La nature est-elle un modèle ?","2024"],
+      ["Sommes-nous tous artistes ?","2025"],
+      ["Faire de sa vie une œuvre d'art","2021"],
+      ["Apprend-on à être artiste ?","2018"],
+      ["Que recherche l'artiste ?","2018"],
+      ["L'enfance de l'art","2021"],
+      ["Peut-on parler d'un savoir-faire ?","2023"],
+    ]
+  },
+  {
+    id:"beaute",
+    label:"Beauté, goût et jugement esthétique",
+    color:"c-coral",
+    sujets:[
+      ["Sans l'art, parlerait-on de beauté ?","2025×2"],
+      ["Y a-t-il un progrès en art ?","2025×2"],
+      ["La beauté du geste","2025"],
+      ["Beauté naturelle et beauté artistique","2023×2"],
+      ["La beauté a-t-elle une histoire ?","2024"],
+      ["Peut-on éduquer le goût ?","2019"],
+      ["Avoir du goût","2024"],
+      ["\"Des goûts et des couleurs, on ne dispute pas\"","2023"],
+      ["Le jugement de goût est-il désintéressé ?","2017"],
+      ["Y a-t-il une universalité du beau ?","2017"],
+      ["Le beau est-il universel ?","2019"],
+      ["Y a-t-il des critères du goût ?","2019"],
+      ["L'expérience esthétique","2021"],
+      ["Le goût de la beauté","2023"],
+      ["L'art et le goût","2021"],
+      ["De mauvais goût","2025"],
+    ]
+  },
+  {
+    id:"connaissance",
+    label:"Art comme mode de connaissance et de vérité",
+    color:"c-amber",
+    sujets:[
+      ["L'art est-il un mode de connaissance ?","2019"],
+      ["L'art est-il une connaissance ?","2024"],
+      ["Art et vérité","2021"],
+      ["La vérité en art","2018"],
+      ["Que nous apprennent les œuvres d'art ?","2019"],
+      ["Que nous apporte l'art ?","2025"],
+      ["Que nous apprend le cinéma ?","2024"],
+      ["Peinture et réalité","2025"],
+      ["La nature morte","2024"],
+      ["L'œil du photographe","2024"],
+      ["Poésie et philosophie","2024"],
+      ["La poésie pense-t-elle ?","2024"],
+      ["La musique est-elle un langage ?","2024×2"],
+      ["De quoi la musique est-elle l'art ?","2023"],
+      ["Peut-on parler d'un savoir poétique ?","2023"],
+      ["Littérature et philosophie","2023"],
+    ]
+  },
+  {
+    id:"technique",
+    label:"Essence et portée de la technique",
+    color:"c-blue",
+    sujets:[
+      ["La technique est-elle libératrice ?","2025×2"],
+      ["Raison et technique","2025"],
+      ["Science et technique","2023"],
+      ["La technique fait-elle violence à la nature ?","2023"],
+      ["La technique n'est-elle qu'une application de la science ?","2024"],
+      ["L'écriture est-elle une technique parmi d'autres ?","2023"],
+      ["À quoi sert la technique ?","2023"],
+      ["Peut-on parler d'un règne de la technique ?","2019"],
+      ["Peut-on maîtriser la technique ?","2017"],
+      ["La technologie modifie-t-elle les rapports sociaux ?","2025"],
+      ["La technologie","2025"],
+      ["La technique est-elle dangereuse ?","2016"],
+      ["\"Les miracles de la technique\"","2023"],
+      ["Raison et technique","2021"],
+      ["L'objet technique","2024"],
+      ["Un objet technique peut-il être beau ?","2023×2"],
+      ["L'intelligence artificielle","2025×2"],
+      ["Machine et organisme","2025"],
+    ]
+  },
+  {
+    id:"machine",
+    label:"Machines, outils, savoir-faire",
+    color:"c-green",
+    sujets:[
+      ["Les machines","2025×2"],
+      ["Qu'est-ce qu'une machine ?","2021×2"],
+      ["L'outil","2018"],
+      ["L'homme et la machine","2022"],
+      ["Le vivant et la technique","2017"],
+      ["Une machine peut-elle penser ?","2019"],
+      ["Les machines pensent-elles ?","2017"],
+      ["L'homme-machine","2017"],
+      ["Faut-il avoir peur des machines ?","2021"],
+      ["Le vivant est-il assimilable à une machine ?","2022"],
+      ["Qu'est-ce qu'un savoir-faire ?","2025×2"],
+      ["L'ouvrier et l'ingénieur","2023"],
+      ["Interpréter, est-ce un art ?","2025"],
+      ["La logique est-elle un art de raisonner ?","2024"],
+      ["La médecine est-elle un art ou une science ?","2025"],
+      ["Y a-t-il des techniques pour être heureux ?","2024"],
+    ]
+  },
+  {
+    id:"art_societe",
+    label:"Art, société, institution et politique",
+    color:"c-pink",
+    sujets:[
+      ["L'art est-il un luxe ?","2025×2"],
+      ["L'art est-il inutile ?","2024"],
+      ["Pourquoi des musées ?","2025×2"],
+      ["Le musée","2024×2"],
+      ["L'histoire de l'art","2023"],
+      ["L'art a-t-il une histoire ?","2017"],
+      ["Les industries culturelles","2025"],
+      ["L'œuvre d'art est-elle une marchandise ?","2025"],
+      ["Enseigner l'art","2024"],
+      ["L'art et la vie","2023"],
+      ["L'avant-garde","2025×2"],
+      ["Art populaire et art savant","2023"],
+      ["Qu'est-ce qu'un art populaire ?","2024"],
+      ["Les arts appliqués","2024"],
+      ["Arts du temps et arts de l'espace","2025"],
+      ["Peut-on séparer l'homme et l'œuvre ?","2018"],
+      ["L'art et la morale","2016"],
+      ["La critique fait-elle partie de l'art ?","2024"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('art_cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    let pillsHtml = cat.sujets.map(([s, y]) =>
+      `<span class="pill" title="${y}">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="art_toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('art_pg' + i);
+  const btn = document.getElementById('art_tbtn' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+window["art_toggle"] = toggle;
+render();
+})();
+
+(function(){
+
+const data = [
+  {
+    id:"fondements",
+    label:"Fondements et statut de la morale",
+    color:"c-purple",
+    sujets:[
+      ["La morale est-elle un art de vivre ?","2022×2"],
+      ["Faire la morale","2022"],
+      ["Y a-t-il des sentiments moraux ?","2022×2"],
+      ["Y a-t-il un sens moral ?","2022"],
+      ["La bonne conscience","2024"],
+      ["La mauvaise conscience","2021"],
+      ["Est-ce seulement l'intention qui compte ?","2022×2"],
+      ["Peut-on argumenter en morale ?","2017"],
+      ["Les exceptions ont-elles une place en morale ?","2024"],
+      ["En morale, est-ce seulement l'intention qui compte ?","2021"],
+      ["La morale est-elle une science ?","2023"],
+      ["La raison peut-elle servir le mal ?","2023"],
+      ["Mœurs et moralité","2021"],
+      ["Les mœurs et les lois","2025"],
+      ["Peut-on se passer de principes ?","2023"],
+      ["Avoir des principes","2021"],
+      ["Faut-il avoir des principes ?","2023×2"],
+      ["Si Dieu n'existe pas, tout est-il permis ?","2022×2"],
+      ["Le sens moral est-il naturel ?","2015"],
+    ]
+  },
+  {
+    id:"bien_mal",
+    label:"Le bien, le mal et le vice",
+    color:"c-red",
+    sujets:[
+      ["Peut-on vouloir le mal ?","2022×3"],
+      ["Le mal est-il une objection à l'existence de Dieu ?","2023"],
+      ["D'où vient le mal ?","2023"],
+      ["Le bien commun","2025"],
+      ["Le beau et le bien","2021×2"],
+      ["L'utile et le bien","2022"],
+      ["Le juste et le bien","2022"],
+      ["La bonne conscience","2024"],
+      ["Ce qui est subjectif est-il arbitraire ?","2023"],
+      ["Le mal est-il une erreur ?","2021"],
+      ["Le bonheur des méchants","2019"],
+      ["Voir le meilleur et faire le pire","2023"],
+      ["La méchanceté","2017"],
+      ["Le vice","2019"],
+      ["La corruption des mœurs","2024"],
+      ["Bêtise et méchanceté","2023"],
+      ["L'inhumain","2022×2"],
+      ["La barbarie","2024"],
+    ]
+  },
+  {
+    id:"liberte_responsabilite",
+    label:"Liberté, responsabilité et faute",
+    color:"c-teal",
+    sujets:[
+      ["La responsabilité","2024"],
+      ["Sommes-nous responsables de nos passions ?","2019×2"],
+      ["Sommes-nous responsables de nos erreurs ?","2019"],
+      ["Est-on responsable de ce qu'on n'a pas voulu ?","2022"],
+      ["La faiblesse de la volonté","2021×2"],
+      ["La faute et l'erreur","2023×2"],
+      ["La culpabilité","2023"],
+      ["Le remords","2023×2"],
+      ["Comprendre, est-ce excuser ?","2024"],
+      ["Expliquer, est-ce excuser ?","2023"],
+      ["\"C'est plus fort que moi\"","2024×2"],
+      ["Que vaut l'excuse : \"C'est plus fort que moi\" ?","2019"],
+      ["La liberté se prouve-t-elle ou s'éprouve-t-elle ?","2024"],
+      ["Se sentir libre","2024"],
+      ["Peut-on renoncer à sa liberté ?","2021×2"],
+      ["Sommes-nous condamnés à être libres ?","2021"],
+      ["Sommes-nous libres ?","2021"],
+      ["La liberté est-elle une illusion ?","2022"],
+      ["Une cause peut-elle être libre ?","2022"],
+    ]
+  },
+  {
+    id:"devoir_obligation",
+    label:"Devoir, obligation et vertu",
+    color:"c-amber",
+    sujets:[
+      ["Y a-t-il des devoirs envers soi-même ?","2019×2"],
+      ["Droits et devoirs","2023"],
+      ["Peut-on avoir des droits sans avoir des devoirs ?","2022"],
+      ["Obéir","2024"],
+      ["Le devoir de mémoire","2024"],
+      ["Que peut-on faire par devoir ?","2021"],
+      ["La vertu peut-elle s'enseigner ?","2021"],
+      ["Les vertus ne sont-elles que des vices déguisés ?","2016"],
+      ["La tempérance","2025"],
+      ["La générosité","2023"],
+      ["La prudence","2019×2"],
+      ["Le courage","2021×2"],
+      ["La sincérité","2015"],
+      ["La franchise est-elle une vertu ?","2015"],
+      ["La patience","2024"],
+      ["L'humilité","2024×2"],
+      ["La fidélité","2024×2"],
+      ["Être fidèle à soi-même","2025"],
+      ["La naïveté est-elle une vertu ?","2016"],
+    ]
+  },
+  {
+    id:"autrui_relation",
+    label:"Autrui, altérité et relations morales",
+    color:"c-blue",
+    sujets:[
+      ["Peut-on aimer son prochain comme soi-même ?","2024×2"],
+      ["Faut-il aimer son prochain comme soi-même ?","2023"],
+      ["Autrui est-il un autre moi ?","2019×2"],
+      ["Autrui est-il mon semblable ?","2019"],
+      ["La pitié","2023×2"],
+      ["La sympathie","2017×2"],
+      ["L'empathie","2025"],
+      ["La générosité","2023"],
+      ["L'alter ego","2024"],
+      ["Peut-on se mettre à la place des autres ?","2021"],
+      ["Peut-on connaître autrui ?","2024×2"],
+      ["Le corps de l'autre","2024"],
+      ["Sommes-nous responsables d'autrui ?","2021"],
+      ["L'amour peut-il être un devoir ?","2017×2"],
+      ["Peut-on faire le bien de quelqu'un malgré lui ?","2021"],
+      ["\"Aimez vos ennemis\"","2024"],
+      ["Le respect","2019×2"],
+      ["Aimer et être aimé","2024"],
+    ]
+  },
+  {
+    id:"verite_mensonge",
+    label:"Vérité, mensonge et sincérité morale",
+    color:"c-coral",
+    sujets:[
+      ["A-t-on le droit de mentir ?","2022"],
+      ["Est-il parfois bon de mentir ?","2023"],
+      ["Toute vérité est-elle bonne à dire ?","2022"],
+      ["Mentir","2021"],
+      ["Peut-on se mentir à soi-même ?","2023×2"],
+      ["La bonne conscience","2024"],
+      ["Peut-on être en conflit avec soi-même ?","2022×2"],
+      ["L'exigence de vérité a-t-elle un sens moral ?","2021"],
+      ["La mauvaise foi","2019"],
+      ["Tromper","2024"],
+      ["L'hypocrisie","2025"],
+      ["La dissimulation","2025"],
+      ["Peut-on tout dire ?","2019×3"],
+      ["Le mensonge","2017×2"],
+      ["La franchise est-elle une vertu ?","2015"],
+      ["La sincérité","2015"],
+    ]
+  },
+  {
+    id:"bonheur_vie",
+    label:"Bonheur, vie bonne et sagesse pratique",
+    color:"c-green",
+    sujets:[
+      ["Vivre et bien vivre","2023"],
+      ["Y a-t-il un art d'être heureux ?","2023"],
+      ["Peut-on apprendre à vivre ?","2024"],
+      ["La morale est-elle un art de vivre ?","2022×2"],
+      ["Faire de sa vie une œuvre d'art","2021"],
+      ["Réussir sa vie","2022×2"],
+      ["Le bonheur est-il affaire de volonté ?","2019"],
+      ["Peut-on être heureux tout seul ?","2024"],
+      ["Vivre selon la nature","2022"],
+      ["Faut-il changer ses désirs plutôt que l'ordre du monde ?","2022"],
+      ["Y a-t-il un art de vivre ?","2019"],
+      ["Qu'est-ce que le bonheur ?","2017"],
+      ["Avons-nous le devoir de vivre ?","2021"],
+      ["La valeur de la vie","2021"],
+      ["La vie est-elle une valeur ?","2023"],
+      ["Y a-t-il des techniques pour être heureux ?","2024"],
+      ["Pourquoi désirer la sagesse ?","2019"],
+      ["La sagesse","2025"],
+    ]
+  },
+  {
+    id:"normes_transgression",
+    label:"Normes, transgression et limites morales",
+    color:"c-pink",
+    sujets:[
+      ["Le scandale","2019"],
+      ["L'indécence","2015"],
+      ["La honte","2019×2"],
+      ["La pudeur","2021×2"],
+      ["Le tabou","2025"],
+      ["La transgression","2025"],
+      ["L'interdit","2025"],
+      ["La prohibition de l'inceste","2025"],
+      ["Les bonnes mœurs","2025"],
+      ["Faut-il respecter la nature ?","2022"],
+      ["Que faire de la violence ?","2023"],
+      ["La violence peut-elle être légitime ?","2022"],
+      ["Y a-t-il des violences légitimes ?","2019"],
+      ["Ne pas tuer","2021"],
+      ["La peine de mort","2025"],
+      ["La cruauté","2025"],
+      ["De quoi faut-il avoir honte ?","2022"],
+      ["Être vulgaire","2024"],
+      ["Le mauvais goût","2023"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('mor_cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="mor_toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('mor_pg' + i);
+  const btn = document.getElementById('mor_tbtn' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+window["mor_toggle"] = toggle;
+render();
+})();
+
+(function(){
+
+const data = [
+  {
+    id:"etat_souverainete",
+    label:"État, souveraineté et pouvoir politique",
+    color:"c-purple",
+    sujets:[
+      ["Pourquoi l'État ?","2025×2"],
+      ["L'État peut-il être fondé sur un contrat ?","2025"],
+      ["Y a-t-il un sens à opposer la société et l'État ?","2025"],
+      ["La souveraineté","2019×2"],
+      ["La souveraineté peut-elle se partager ?","2018×2"],
+      ["La souveraineté peut-elle être limitée ?","2022"],
+      ["La volonté peut-elle être déléguée ?","2022"],
+      ["Qui est souverain ?","2022"],
+      ["Le gouvernement de l'imagination","2025"],
+      ["Gouverner","2023×2"],
+      ["Ceux qui savent doivent-ils gouverner ?","2023×2"],
+      ["Le philosophe roi","2025"],
+      ["Y a-t-il un art de gouverner ?","2019"],
+      ["Qu'est-ce qu'être efficace en politique ?","2018"],
+      ["La raison d'État","2019×2"],
+      ["Y a-t-il une raison d'État ?","2025"],
+      ["La science politique est-elle une science ?","2025"],
+      ["La politique est-elle une science ?","2017"],
+      ["Qu'est-ce qu'un corps politique ?","2025"],
+    ]
+  },
+  {
+    id:"democratie_regimes",
+    label:"Démocratie, régimes politiques et participation",
+    color:"c-blue",
+    sujets:[
+      ["La démocratie","2022×2"],
+      ["La démocratie a-t-elle des limites ?","2019"],
+      ["N'y a-t-il de démocratie que représentative ?","2019"],
+      ["République et démocratie","2025"],
+      ["Qu'est-ce qu'un régime politique ?","2019×2"],
+      ["Le peuple peut-il se tromper ?","2025"],
+      ["Un peuple peut-il être souverain ?","2023"],
+      ["Quand y a-t-il peuple ?","2024"],
+      ["Qu'est-ce qu'un peuple ?","2019×3"],
+      ["Qu'est-ce qui fait un peuple ?","2019×2"],
+      ["La volonté du peuple","2024"],
+      ["Le suffrage universel","2025"],
+      ["Élire","2024"],
+      ["Tout est-il politique ?","2022×3"],
+      ["Qu'est-ce qui n'est pas politique ?","2023"],
+      ["La politique est-elle l'affaire de tous ?","2019"],
+      ["Politique et participation","2025"],
+      ["Peut-on être apolitique ?","2025"],
+      ["Être un bon citoyen","2025"],
+      ["Qu'est-ce qu'un citoyen ?","2019"],
+    ]
+  },
+  {
+    id:"justice_droit",
+    label:"Justice, droit et égalité",
+    color:"c-teal",
+    sujets:[
+      ["La justice est-elle de ce monde ?","2025"],
+      ["La justice sociale","2019×2"],
+      ["Toute inégalité est-elle injuste ?","2022"],
+      ["L'égalité des chances","2024×2"],
+      ["Égalité et équité","2025"],
+      ["L'équité","2019"],
+      ["Le droit du plus fort","2025"],
+      ["Force et droit","2023×2"],
+      ["Justice et force","2019×2"],
+      ["Le droit ne fait-il que traduire les rapports de force ?","2022"],
+      ["Droit et moralité","2023"],
+      ["La force du droit","2025"],
+      ["Qu'est-ce qui fait la force des lois ?","2025"],
+      ["Qu'est-ce qui fait la force de la loi ?","2019"],
+      ["Le sentiment d'injustice","2023"],
+      ["L'injustice","2022"],
+      ["\"Pas de liberté pour les ennemis de la liberté\"","2024"],
+      ["Quel est le fondement de la propriété ?","2024"],
+      ["La propriété est-elle un droit ?","2025"],
+      ["Tout est-il appropriable ?","2025"],
+    ]
+  },
+  {
+    id:"loi_obligation",
+    label:"Loi, obligation et désobéissance",
+    color:"c-amber",
+    sujets:[
+      ["\"C'est la loi\"","2025"],
+      ["Lois et coutumes","2023"],
+      ["La loi et les mœurs","2015"],
+      ["La loi et l'ordre","2015"],
+      ["Les lois logiques peuvent-elles changer ?","2025"],
+      ["Appartient-il aux lois d'éduquer les hommes ?","2024"],
+      ["Peut-on désobéir à la loi ?","2022"],
+      ["La désobéissance civile","2018×2"],
+      ["Le droit de résistance","2022"],
+      ["La désobéissance peut-elle être légitime ?","2024"],
+      ["L'insurrection est-elle un droit ?","2018"],
+      ["La révolte","2022×2"],
+      ["La résistance","2024"],
+      ["Obéir","2024"],
+      ["A qui devons-nous obéir ?","2018"],
+      ["\"Vivre libre ou mourir\"","2024"],
+      ["Le service public","2025"],
+      ["Les limites du pouvoir","2025"],
+      ["L'état de droit","2018"],
+    ]
+  },
+  {
+    id:"violence_guerre",
+    label:"Violence, guerre et paix",
+    color:"c-red",
+    sujets:[
+      ["Guerre et paix","2023"],
+      ["Y a-t-il des guerres justes ?","2022×3"],
+      ["Faire la paix","2019×3"],
+      ["La guerre civile","2024"],
+      ["La paix met-elle fin à l'histoire ?","2025"],
+      ["La violence","2017×2"],
+      ["La violence peut-elle être légitime ?","2022"],
+      ["Y a-t-il des violences légitimes ?","2019"],
+      ["Que faire de la violence ?","2023"],
+      ["La guerre juste","2024"],
+      ["Faut-il être pacifiste ?","2025"],
+      ["La terreur","2022"],
+      ["Terroriser","2024"],
+      ["Qu'est-ce qu'un terroriste ?","2024"],
+      ["Ami et ennemi","2024"],
+      ["L'ennemi","2022×2"],
+      ["Peut-il y avoir un droit de la guerre ?","2018"],
+      ["Pourquoi la guerre ?","2019"],
+      ["Le droit et la violence","2024"],
+    ]
+  },
+  {
+    id:"liberte_politique",
+    label:"Liberté politique, droits et citoyenneté",
+    color:"c-coral",
+    sujets:[
+      ["Liberté et égalité","2025×2"],
+      ["La liberté d'expression","2024"],
+      ["\"Les hommes naissent et demeurent libres et égaux en droits\"","2022"],
+      ["Peut-on forcer quelqu'un à être libre ?","2022×2"],
+      ["L'égalité est-elle une condition de la liberté ?","2018"],
+      ["Droits et devoirs","2023"],
+      ["Qui a des droits ?","2025"],
+      ["Le vivant a-t-il des droits ?","2025"],
+      ["Les droits de l'enfant","2023"],
+      ["N'y a-t-il des droits que de l'homme ?","2023×2"],
+      ["L'homme est-il le seul sujet de droit ?","2024"],
+      ["La nature a-t-elle des droits ?","2024×2"],
+      ["\"J'ai le droit\"","2024"],
+      ["Le droit à la différence","2023"],
+      ["Être citoyen du monde","2024"],
+      ["Y a-t-il un sens à se dire citoyen du monde ?","2024"],
+      ["Le cosmopolitisme","2024×2"],
+      ["Peut-on être citoyen du monde ?","2018×2"],
+      ["État et liberté","2025"],
+      ["État et nation","2025"],
+    ]
+  },
+  {
+    id:"punition_crime",
+    label:"Punition, crime et justice pénale",
+    color:"c-green",
+    sujets:[
+      ["Pourquoi punir ?","2019×4"],
+      ["Le droit de punir","2023"],
+      ["Crime et châtiment","2023"],
+      ["La peine de mort","2025"],
+      ["Peut-on rire de tout ?","2022×2"],
+      ["Comprendre, est-ce excuser ?","2024"],
+      ["Peut-on tout pardonner ?","2023"],
+      ["Le pardon","2025"],
+      ["La clémence","2025"],
+      ["Le tribunal","2025"],
+      ["\"L'histoire jugera\"","2025×3"],
+      ["Le tribunal de l'histoire","2021"],
+      ["La responsabilité","2024"],
+      ["La corruption","2025"],
+      ["L'abus de pouvoir","2019"],
+      ["La vengeance","2017"],
+      ["\"Œil pour œil, dent pour dent\"","2022"],
+      ["\"Pas de liberté pour les ennemis de la liberté\"","2024"],
+    ]
+  },
+  {
+    id:"societe_lien",
+    label:"Société, lien social et contrat",
+    color:"c-pink",
+    sujets:[
+      ["Le lien social","2025×2"],
+      ["La société existe-t-elle ?","2024"],
+      ["Une société est-elle une somme d'individus ?","2025"],
+      ["N'existe-t-il que des individus ?","2022×2"],
+      ["Les rapports sociaux sont-ils des rapports entre individus ?","2025"],
+      ["Y a-t-il des pathologies sociales ?","2025"],
+      ["La division du travail","2025×2"],
+      ["Le contrat social","2025"],
+      ["L'idée d'état de nature","2025"],
+      ["Territoire et peuplement","2025"],
+      ["Murs et frontières","2025"],
+      ["La frontière","2024×2"],
+      ["Qu'est-ce qu'une nation ?","2023"],
+      ["Le nationalisme","2025"],
+      ["Le cosmopolitisme","2024×2"],
+      ["L'intérêt peut-il être général ?","2024"],
+      ["Le bien commun","2025"],
+      ["Le service public","2025"],
+      ["La bureaucratie","2024"],
+      ["Les inégalités","2025"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('pol_cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="pol_toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('pol_pg' + i);
+  const btn = document.getElementById('pol_tbtn' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+window["pol_toggle"] = toggle;
+render();
+})();
+
+(function(){
+
+const data = [
+  {
+    id:"statut_shs",
+    label:"Statut épistémologique des sciences humaines",
+    color:"c-purple",
+    sujets:[
+      ["Les sciences humaines sont-elles des sciences ?","2022"],
+      ["Y a-t-il une spécificité des sciences humaines ?","2022×2"],
+      ["Une science de l'homme est-elle possible ?","2021"],
+      ["Une science de la culture est-elle possible ?","2025"],
+      ["Peut-il y avoir une science de l'éducation ?","2025"],
+      ["Quel est l'objet des sciences humaines ?","2025"],
+      ["La science politique est-elle une science ?","2025"],
+      ["L'écologie est-elle une science naturelle ou une science sociale ?","2025"],
+      ["Comprendre et expliquer","2019×2"],
+      ["Expliquer et comprendre","2019"],
+      ["Faut-il considérer les faits sociaux comme des choses ?","2021"],
+      ["Qu'est-ce qu'un fait social ?","2025"],
+      ["Les rapports sociaux sont-ils des rapports entre individus ?","2025"],
+      ["L'observation participante","2025"],
+      ["Le travail sur le terrain","2025"],
+      ["A-t-on besoin de spécialistes ?","2025"],
+      ["Sociologie et anthropologie","2021"],
+      ["Suffit-il d'être informé pour comprendre ?","2022"],
+    ]
+  },
+  {
+    id:"histoire_sciences",
+    label:"Histoire, mémoire et sciences historiques",
+    color:"c-teal",
+    sujets:[
+      ["L'historien est-il un homme qui se souvient du passé ?","2025"],
+      ["Qu'est-ce qu'un fait historique ?","2025"],
+      ["L'histoire a-t-elle un sens ?","2024×2"],
+      ["L'histoire a-t-elle une fin ?","2024"],
+      ["L'histoire se répète-t-elle ?","2025"],
+      ["Peut-on penser l'histoire comme progrès ?","2024"],
+      ["Y a-t-il des sociétés sans histoire ?","2025"],
+      ["En histoire, tout est-il affaire d'interprétation ?","2021"],
+      ["Y a-t-il une vérité en histoire ?","2021"],
+      ["Faut-il tirer des leçons de l'histoire ?","2025"],
+      ["La réalité du passé","2022"],
+      ["Qui fait l'histoire ?","2019×2"],
+      ["L'histoire est-elle rationnelle ?","2019"],
+      ["Mythe et histoire","2017"],
+      ["La préhistoire","2023"],
+      ["Histoire et géographie","2025×2"],
+      ["Nature et histoire","2024"],
+      ["Commémorer","2025"],
+      ["Le devoir de mémoire","2024"],
+      ["Y a-t-il un tribunal de l'histoire ?","2021"],
+    ]
+  },
+  {
+    id:"anthropo_culture",
+    label:"Anthropologie, culture et altérité",
+    color:"c-coral",
+    sujets:[
+      ["Anthropologie et politique","2025"],
+      ["Peut-on faire l'ethnologie de sa propre culture ?","2025"],
+      ["Puis-je juger une culture à laquelle je n'appartiens pas ?","2025"],
+      ["L'ethnocentrisme","2024"],
+      ["Ethnologie et ethnocentrisme","2021"],
+      ["Comparer les cultures","2024"],
+      ["La diversité des cultures","2024×2"],
+      ["Une science de la culture est-elle possible ?","2025"],
+      ["Peut-on sortir de sa culture ?","2024"],
+      ["La culture est-elle une seconde nature ?","2019"],
+      ["L'homme est-il un animal ?","2025"],
+      ["L'homme est-il un animal comme les autres ?","2022×2"],
+      ["Qu'est-ce qu'être humain ?","2025"],
+      ["La condition humaine","2025"],
+      ["L'espèce humaine","2022"],
+      ["La nature humaine","2021×2"],
+      ["Existe-t-il une nature humaine ?","2022"],
+      ["Le primitif","2022×2"],
+      ["Le sauvage","2022×3"],
+      ["L'état de nature","2025"],
+    ]
+  },
+  {
+    id:"langage_pensee",
+    label:"Langage et pensée",
+    color:"c-amber",
+    sujets:[
+      ["Langage et réalité","2025"],
+      ["Le mot et la chose","2025×2"],
+      ["Les mots disent-ils les choses ?","2024"],
+      ["Penser et parler","2022"],
+      ["La grammaire contraint-elle notre pensée ?","2024"],
+      ["Peut-on penser sans signes ?","2024"],
+      ["Peut-on penser sans langage ?","2025"],
+      ["Langage naturel et langage symbolique","2025"],
+      ["Y a-t-il un au-delà du langage ?","2019"],
+      ["Le langage est-il un instrument ?","2019×2"],
+      ["Les mots peuvent-ils nous manquer ?","2024"],
+      ["Le pouvoir des mots","2025"],
+      ["Avoir peur des mots","2021"],
+      ["L'imperfection du langage","2025"],
+      ["Que perdrait la pensée en perdant l'écriture ?","2019"],
+      ["Parler pour ne rien dire","2025×2"],
+      ["Dire et faire","2025"],
+      ["Signe et symbole","2025"],
+    ]
+  },
+  {
+    id:"langue_diversite",
+    label:"Langues, diversité linguistique et traduction",
+    color:"c-blue",
+    sujets:[
+      ["La diversité des langues","2022×3"],
+      ["Les langues meurent-elles ?","2025"],
+      ["La langue universelle","2025"],
+      ["Y a-t-il un langage universel ?","2021"],
+      ["Un langage universel est-il concevable ?","2017"],
+      ["L'origine des langues","2019"],
+      ["Traduire, est-ce trahir ?","2023"],
+      ["Traduire","2025×2"],
+      ["Que nous apporte la traduction ?","2021"],
+      ["La pluralité des langues","2021×3"],
+      ["Y a-t-il un langage animal ?","2022×2"],
+      ["La musique est-elle un langage ?","2024×2"],
+      ["Y a-t-il une langue de la philosophie ?","2018"],
+      ["Les limites du langage","2025"],
+      ["Bien parler, est-ce bien penser ?","2024"],
+      ["Que signifie signifier ?","2022"],
+    ]
+  },
+  {
+    id:"parole_communication",
+    label:"Parole, communication et actes de langage",
+    color:"c-green",
+    sujets:[
+      ["Parler, est-ce agir ?","2022×2"],
+      ["Communiquer","2021"],
+      ["Comment sait-on qu'on se comprend ?","2025"],
+      ["L'implicite dans la communication","2025"],
+      ["Qu'est-ce que parler veut dire ?","2023"],
+      ["N'exprime-t-on que ce dont on a conscience ?","2024"],
+      ["Peut-on tout exprimer ?","2018×2"],
+      ["Peut-on tout dire ?","2019×3"],
+      ["Y a-t-il des limites à l'exprimable ?","2019"],
+      ["La voix","2023"],
+      ["Le silence","2025×2"],
+      ["Parler tout seul","2024"],
+      ["Le bavardage","2021×2"],
+      ["L'écriture","2024"],
+      ["L'écriture est-elle une technique parmi d'autres ?","2023"],
+      ["Que nous apporte l'écriture ?","2024"],
+      ["Pourquoi écrire ?","2024×2"],
+      ["Interprétation et langage","2025"],
+    ]
+  },
+  {
+    id:"interpretation_sens",
+    label:"Interprétation, sens et herméneutique",
+    color:"c-pink",
+    sujets:[
+      ["Interpréter, est-ce un art ?","2025"],
+      ["L'interprétation est-elle un art ?","2024"],
+      ["Toutes les interprétations se valent-elles ?","2017"],
+      ["Qu'est-ce qu'interpréter ?","2019×2"],
+      ["Les choses ont-elles un sens ?","2023"],
+      ["Qu'est-ce qui a un sens ?","2024"],
+      ["La métaphore","2024"],
+      ["Signe et symbole","2025"],
+      ["Concept et image","2023"],
+      ["Les images empêchent-elles de penser ?","2023"],
+      ["La haine des images","2025×2"],
+      ["L'image","2023"],
+      ["Qu'est-ce qu'une image ?","2021×2"],
+      ["Représenter","2023"],
+      ["Qu'est-ce qu'une représentation ?","2023×2"],
+      ["La représentation du monde","2024"],
+      ["Le regard","2025"],
+      ["Apprendre à voir","2025"],
+    ]
+  },
+  {
+    id:"psycho_inconscient",
+    label:"Psychologie, inconscient et sciences de l'esprit",
+    color:"c-red",
+    sujets:[
+      ["L'inconscient est-il un destin ?","2021"],
+      ["De quoi peut-on être inconscient ?","2022"],
+      ["Comment expliquer les phénomènes mentaux ?","2021"],
+      ["La réalité mentale","2025"],
+      ["Suis-je mon cerveau ?","2023"],
+      ["L'esprit et le cerveau","2022"],
+      ["Qu'est-ce qu'être psychologue ?","2021"],
+      ["Conscience de soi et connaissance de soi","2021"],
+      ["La connaissance de soi","2025"],
+      ["La connaissance du singulier","2021"],
+      ["Y a-t-il une pensée animale ?","2022"],
+      ["Les animaux pensent-ils ?","2018"],
+      ["L'intelligence des bêtes","2019"],
+      ["Une machine peut-elle penser ?","2019"],
+      ["Les machines pensent-elles ?","2017"],
+      ["Qu'est-ce qu'être normal ?","2023×2"],
+      ["Perdre la raison","2024×2"],
+      ["La folie","2025"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('shs_cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="shs_toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('shs_pg' + i);
+  const btn = document.getElementById('shs_tbtn' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+window["shs_toggle"] = toggle;
+render();
+})();
+
+(function(){
+
+const data = [
+  {
+    id:"statut",
+    label:"Statut et légitimité de la métaphysique",
+    color:"c-purple",
+    sujets:[
+      ["La métaphysique est-elle une science ?","2018"],
+      ["Avons-nous besoin de métaphysique ?","2025"],
+      ["En quoi la métaphysique est-elle une science ?","2021"],
+      ["La métaphysique répond-elle à un besoin ?","2023"],
+      ["La philosophie peut-elle se passer de métaphysique ?","2025"],
+      ["La science peut-elle se passer de métaphysique ?","2025"],
+      ["Science et métaphysique","2021"],
+      ["La logique est-elle utile à la métaphysique ?","2017"],
+      ["Existe-t-il des démonstrations métaphysiques ?","2023"],
+      ["Y a-t-il des expériences métaphysiques ?","2018"],
+      ["De quoi les métaphysiciens parlent-ils ?","2023"],
+      ["Qu'est-ce qu'une expérience de pensée ?","2022"],
+      ["Pourquoi y a-t-il plusieurs philosophies ?","2023×2"],
+      ["La philosophie a-t-elle une histoire ?","2025"],
+      ["Qu'est-ce qu'une vérité philosophique ?","2021"],
+      ["Y a-t-il des vérités philosophiques ?","2021"],
+    ]
+  },
+  {
+    id:"etre_existence",
+    label:"L'être, l'existence et l'ontologie",
+    color:"c-blue",
+    sujets:[
+      ["Pourquoi y a-t-il quelque chose plutôt que rien ?","2022×2"],
+      ["Qu'est-ce qu'être ?","2018"],
+      ["Qu'est-ce qui est réel ?","2022×2"],
+      ["La réalité","2022"],
+      ["Chose et objet","2025×2"],
+      ["Substance et sujet","2023"],
+      ["L'existence a-t-elle un sens ?","2021"],
+      ["Essence et existence","2022"],
+      ["Le monde est-il ma représentation ?","2022"],
+      ["Prouver l'existence du monde extérieur","2023"],
+      ["L'existence d'autrui","2021×2"],
+      ["L'existence des corps","2025"],
+      ["Qu'est-ce qui n'existe pas ?","2022"],
+      ["Le virtuel existe-t-il ?","2025"],
+      ["Les mondes possibles","2022×2"],
+      ["Possibilité et nécessité","2025"],
+      ["L'intemporel","2025"],
+      ["Y a-t-il un ordre des choses ?","2025"],
+    ]
+  },
+  {
+    id:"dieu_religion",
+    label:"Dieu, religion et théologie rationnelle",
+    color:"c-amber",
+    sujets:[
+      ["L'existence de Dieu","2025"],
+      ["Les preuves de l'existence de Dieu","2025"],
+      ["Que prouvent les preuves de l'existence de Dieu ?","2019×2"],
+      ["Dieu est-il mort ?","2021×2"],
+      ["Dieu est-il une invention humaine ?","2022×2"],
+      ["Si Dieu n'existe pas, tout est-il permis ?","2022×2"],
+      ["La mort de Dieu","2018"],
+      ["Croire en Dieu","2022"],
+      ["L'idée de Dieu","2023"],
+      ["Peut-on croire aux miracles ?","2022"],
+      ["\"Il n'y a pas de miracle\"","2025"],
+      ["La vie après la mort","2023"],
+      ["Éternité et immortalité","2023"],
+      ["L'immortalité","2022×2"],
+      ["Vivre en immortel","2021"],
+      ["L'au-delà","2025"],
+      ["La vérité de la religion","2021"],
+      ["Foi et savoir","2021×2"],
+    ]
+  },
+  {
+    id:"temps_espace",
+    label:"Temps, espace et infini",
+    color:"c-teal",
+    sujets:[
+      ["Le temps existe-t-il ?","2018"],
+      ["Le temps passe-t-il ?","2022"],
+      ["L'instant","2025×2"],
+      ["Vivre le moment présent","2023"],
+      ["Vivre au présent","2025"],
+      ["Ici et maintenant","2025×2"],
+      ["Exister hors du temps","2023"],
+      ["Peut-on se baigner deux fois dans le même fleuve ?","2025"],
+      ["Le continu et le discret","2025"],
+      ["L'éternité","2025×3"],
+      ["Le vide","2025×3"],
+      ["L'infini","2022×2"],
+      ["Le fini et l'infini","2022"],
+      ["L'espace","2023"],
+      ["Espace mathématique et espace physique","2021"],
+      ["Le mouvement perpétuel","2025"],
+      ["Peut-on échapper au temps ?","2018"],
+      ["Suis-je mon passé ?","2025"],
+      ["Le passé est-il irrévocable ?","2025"],
+    ]
+  },
+  {
+    id:"identite_sujet",
+    label:"Identité, sujet et personne",
+    color:"c-coral",
+    sujets:[
+      ["Qu'est-ce qu'une personne ?","2019×2"],
+      ["Personne et individu","2021"],
+      ["Qui suis-je ?","2021×2"],
+      ["Moi","2025"],
+      ["Le moi","2017×2"],
+      ["Je","2022"],
+      ["Suis-je le même dans des temps différents ?","2022"],
+      ["L'identité personnelle","2022×2"],
+      ["L'individuation","2024"],
+      ["La relation d'identité","2025"],
+      ["Avons-nous une identité ?","2021"],
+      ["Devenir ce que l'on est","2024"],
+      ["Être soi-même","2023×2"],
+      ["Rester soi-même","2023"],
+      ["Peut-on ne pas être soi-même ?","2018"],
+      ["L'authenticité","2022×2"],
+      ["Corps et identité","2024"],
+      ["Suis-je mon corps ?","2022"],
+      ["Avons-nous un corps ?","2019"],
+    ]
+  },
+  {
+    id:"cause_necessite",
+    label:"Causalité, nécessité et déterminisme",
+    color:"c-green",
+    sujets:[
+      ["Le principe de causalité","2025"],
+      ["Cause et raison","2025"],
+      ["Corrélation et causalité","2025"],
+      ["La nécessité de l'art","2025"],
+      ["Nécessité et contrainte","2022"],
+      ["Le mécanisme","2023"],
+      ["Les causes finales","2022×2"],
+      ["Y a-t-il des fins dans la nature ?","2022"],
+      ["La nature obéit-elle à des fins ?","2023"],
+      ["Le déterminisme","2025"],
+      ["Peut-on abolir le hasard ?","2025"],
+      ["Le hasard","2024×2"],
+      ["\"Par hasard\"","2024×2"],
+      ["Le futur est-il contingent ?","2021"],
+      ["La contingence","2025"],
+      ["Le destin","2019×2"],
+      ["Le fatalisme","2016"],
+      ["Le libre arbitre","2021×2"],
+      ["Une cause peut-elle être libre ?","2022"],
+    ]
+  },
+  {
+    id:"mort_finitude",
+    label:"Mort, finitude et condition humaine",
+    color:"c-red",
+    sujets:[
+      ["Qu'est-ce que mourir ?","2022×2"],
+      ["La mort a-t-elle un sens ?","2022"],
+      ["Faut-il craindre la mort ?","2021"],
+      ["Ne pas tuer","2021"],
+      ["Vivre, est-ce résister à la mort ?","2025"],
+      ["Naître","2025×2"],
+      ["La naissance","2022×2"],
+      ["La finitude","2017×2"],
+      ["Avons-nous le devoir de vivre ?","2021"],
+      ["La valeur de la vie","2021"],
+      ["La vie est-elle une valeur ?","2023"],
+      ["Vouloir être immortel","2019"],
+      ["La condition humaine","2025"],
+      ["L'anthropocentrisme","2025"],
+      ["Vivre en immortel","2021"],
+      ["Peut-on fuir hors du monde ?","2021×2"],
+      ["L'inhumain","2022×2"],
+      ["Le suicide","2022"],
+    ]
+  },
+  {
+    id:"absolu_infini",
+    label:"L'absolu, le transcendant et les limites de la raison",
+    color:"c-pink",
+    sujets:[
+      ["L'absolu","2017"],
+      ["L'absolu et le relatif","2023"],
+      ["Le savoir peut-il être absolu ?","2025"],
+      ["Le savoir absolu","2021×2"],
+      ["L'intemporel","2025"],
+      ["L'indicible","2021"],
+      ["Y a-t-il de l'indicible ?","2021×2"],
+      ["Y a-t-il de l'impensable ?","2018"],
+      ["Y a-t-il des limites à la pensée ?","2021"],
+      ["Les limites de la raison","2023×2"],
+      ["La haine de la raison","2018"],
+      ["Le monde intelligible","2021"],
+      ["Les choses en soi","2021"],
+      ["L'a priori","2021×2"],
+      ["Qu'est-ce qu'une connaissance a priori ?","2025"],
+      ["L'inné et l'acquis","2024×2"],
+      ["Le sublime","2017×2"],
+      ["Qu'est-ce qui est sublime ?","2025"],
+    ]
+  },
+];
+
+function render() {
+  const cont = document.getElementById('meta_cats');
+  data.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'cat ' + cat.color;
+    const pillsHtml = cat.sujets.map(([s]) =>
+      `<span class="pill">${s}</span>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="meta_toggle(${i})">
+        <span class="cat-title">${cat.label}</span>
+        <span class="cat-count">${cat.sujets.length} sujets</span>
+        <span class="toggle-btn" id="tbtn-${i}">▾</span>
+      </div>
+      <div class="pill-grid" id="pg-${i}">${pillsHtml}</div>
+    `;
+    if (i < data.length - 1) {
+      const d = document.createElement('div');
+      d.className = 'divider';
+      div.appendChild(d);
+    }
+    cont.appendChild(div);
+  });
+}
+
+function toggle(i) {
+  const pg = document.getElementById('meta_pg' + i);
+  const btn = document.getElementById('meta_tbtn' + i);
+  const hidden = pg.style.display === 'none';
+  pg.style.display = hidden ? 'flex' : 'none';
+  btn.textContent = hidden ? '▾' : '▸';
+}
+
+window["meta_toggle"] = toggle;
+render();
+})();
+
+(function(){
+
+const data = [
+  {name:"Molière",       count:72, era:"xvii",  color:"#534AB7"},
+  {name:"Voltaire",      count:62, era:"xviii", color:"#0F6E56"},
+  {name:"Rousseau",      count:60, era:"xviii", color:"#0F6E56"},
+  {name:"Baudelaire",    count:55, era:"xix",   color:"#993C1D"},
+  {name:"Corneille",     count:49, era:"xvii",  color:"#534AB7"},
+  {name:"La Fontaine",   count:48, era:"xvii",  color:"#534AB7"},
+  {name:"Proust",        count:45, era:"xx",    color:"#185FA5"},
+  {name:"Diderot",       count:44, era:"xviii", color:"#0F6E56"},
+  {name:"Racine",        count:41, era:"xvii",  color:"#534AB7"},
+  {name:"La Bruyère",    count:36, era:"xvii",  color:"#534AB7"},
+  {name:"Flaubert",      count:36, era:"xix",   color:"#993C1D"},
+  {name:"Stendhal",      count:35, era:"xix",   color:"#993C1D"},
+  {name:"Bossuet",       count:31, era:"xvii",  color:"#534AB7"},
+  {name:"Marivaux",      count:31, era:"xviii", color:"#0F6E56"},
+  {name:"Ronsard",       count:26, era:"xvi",   color:"#3B6D11"},
+  {name:"Laclos",        count:24, era:"xviii", color:"#0F6E56"},
+  {name:"Musset",        count:24, era:"xix",   color:"#993C1D"},
+  {name:"Apollinaire",   count:23, era:"xx",    color:"#185FA5"},
+  {name:"Chateaubriand", count:23, era:"xix",   color:"#993C1D"},
+  {name:"Perrault",      count:21, era:"xvii",  color:"#534AB7"},
+  {name:"Rimbaud",       count:21, era:"xix",   color:"#993C1D"},
+  {name:"Beaumarchais",  count:20, era:"xviii", color:"#0F6E56"},
+  {name:"D'Aubigné",     count:20, era:"xvi",   color:"#3B6D11"},
+  {name:"Montaigne",     count:19, era:"xvi",   color:"#3B6D11"},
+  {name:"Du Bellay",     count:19, era:"xvi",   color:"#3B6D11"},
+  {name:"Céline",        count:19, era:"xx",    color:"#185FA5"},
+  {name:"Verlaine",      count:19, era:"xix",   color:"#993C1D"},
+  {name:"Mallarmé",      count:18, era:"xix",   color:"#993C1D"},
+  {name:"Saint-Simon",   count:18, era:"xvii",  color:"#534AB7"},
+  {name:"Claudel",       count:18, era:"xx",    color:"#185FA5"},
+  {name:"Ionesco",       count:18, era:"xx",    color:"#185FA5"},
+  {name:"Labé",          count:18, era:"xvi",   color:"#3B6D11"},
+  {name:"La Rochefoucauld",count:17,era:"xvii", color:"#534AB7"},
+  {name:"Perec",         count:16, era:"xx",    color:"#185FA5"},
+  {name:"Beckett",       count:16, era:"xx",    color:"#185FA5"},
+  {name:"Desbordes-Valmore",count:15,era:"xix", color:"#993C1D"},
+  {name:"Sartre",        count:15, era:"xx",    color:"#185FA5"},
+  {name:"Giraudoux",     count:14, era:"xx",    color:"#185FA5"},
+  {name:"Vigny",         count:14, era:"xix",   color:"#993C1D"},
+  {name:"Chénier",       count:13, era:"xviii", color:"#0F6E56"},
+  {name:"Viau",          count:13, era:"xvii",  color:"#534AB7"},
+  {name:"Ponge",         count:13, era:"xx",    color:"#185FA5"},
+  {name:"Malherbe",      count:13, era:"xvii",  color:"#534AB7"},
+  {name:"Marguerite de Navarre",count:13,era:"xvi",color:"#3B6D11"},
+  {name:"Koltès",        count:13, era:"xx",    color:"#185FA5"},
+  {name:"Guilleragues",  count:13, era:"xvii",  color:"#534AB7"},
+  {name:"Crébillon",     count:12, era:"xviii", color:"#0F6E56"},
+  {name:"Fénelon",       count:12, era:"xvii",  color:"#534AB7"},
+  {name:"Camus",         count:12, era:"xx",    color:"#185FA5"},
+  {name:"Corbière",      count:12, era:"xix",   color:"#993C1D"},
+  {name:"Sévigné",       count:12, era:"xvii",  color:"#534AB7"},
+  {name:"La Fayette",    count:11, era:"xvii",  color:"#534AB7"},
+  {name:"Pascal",        count:11, era:"xvii",  color:"#534AB7"},
+  {name:"Fontenelle",    count:11, era:"xvii",  color:"#534AB7"},
+  {name:"Hugo",          count:11, era:"xix",   color:"#993C1D"},
+  {name:"Zola",          count:11, era:"xix",   color:"#993C1D"},
+  {name:"Balzac",        count:11, era:"xix",   color:"#993C1D"},
+  {name:"Bertrand",      count:10, era:"xix",   color:"#993C1D"},
+  {name:"Laforgue",      count:10, era:"xix",   color:"#993C1D"},
+  {name:"Colette",       count:10, era:"xx",    color:"#185FA5"},
+  {name:"Jaccottet",     count:10, era:"xx",    color:"#185FA5"},
+  {name:"Prévost",       count:10, era:"xviii", color:"#0F6E56"},
+  {name:"Boileau",       count:9,  era:"xvii",  color:"#534AB7"},
+  {name:"Gide",          count:9,  era:"xx",    color:"#185FA5"},
+  {name:"Saint-Amant",   count:9,  era:"xvii",  color:"#534AB7"},
+  {name:"Saint-John Perse",count:9,era:"xx",    color:"#185FA5"},
+  {name:"Breton",        count:9,  era:"xx",    color:"#185FA5"},
+  {name:"Scève",         count:9,  era:"xvi",   color:"#3B6D11"},
+  {name:"Rostand",       count:8,  era:"xix",   color:"#993C1D"},
+  {name:"Marot",         count:8,  era:"xvi",   color:"#3B6D11"},
+  {name:"Valéry",        count:8,  era:"xx",    color:"#185FA5"},
+  {name:"Huysmans",      count:7,  era:"xix",   color:"#993C1D"},
+  {name:"Lamartine",     count:7,  era:"xix",   color:"#993C1D"},
+  {name:"Retz",          count:7,  era:"xvii",  color:"#534AB7"},
+  {name:"Barbey d'Aurevilly",count:7,era:"xix", color:"#993C1D"},
+  {name:"Michaux",       count:7,  era:"xx",    color:"#185FA5"},
+  {name:"Aragon",        count:7,  era:"xx",    color:"#185FA5"},
+  {name:"Bernardin de Saint-Pierre",count:6,era:"xviii",color:"#0F6E56"},
+  {name:"Maupassant",    count:6,  era:"xix",   color:"#993C1D"},
+  {name:"Genet",         count:6,  era:"xx",    color:"#185FA5"},
+  {name:"Yourcenar",     count:6,  era:"xx",    color:"#185FA5"},
+  {name:"Nerval",        count:6,  era:"xix",   color:"#993C1D"},
+  {name:"Ernaux",        count:5,  era:"xx",    color:"#185FA5"},
+  {name:"Bernanos",      count:5,  era:"xx",    color:"#185FA5"},
+  {name:"Senghor",       count:5,  era:"xx",    color:"#185FA5"},
+  {name:"Michon",        count:5,  era:"xx",    color:"#185FA5"},
+];
+
+const eraLabels = {xvi:"XVIe",xvii:"XVIIe",xviii:"XVIIIe",xix:"XIXe",xx:"XXe–XXIe"};
+const medals = {1:"🥇",2:"🥈",3:"🥉"};
+let current = 'all';
+
+function filter(era, btn) {
+  current = era;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  const filtered = current === 'all' ? data : data.filter(d => d.era === current);
+  const max = filtered[0]?.count || 1;
+  const list = document.getElementById('fr_list');
+  list.innerHTML = filtered.map((d, i) => {
+    const pct = Math.round(d.count / max * 100);
+    return `<div class="row">
+      <span class="rank">${i+1}</span>
+      <span class="medal">${medals[i+1] || ''}</span>
+      <span class="name">${d.name}</span>
+      <div class="bar-wrap"><div class="bar" style="width:${pct}%;background:${d.color}"></div></div>
+      <span class="count">${d.count}</span>
+      <span class="era" style="background:${d.color}22;color:${d.color}">${eraLabels[d.era]}</span>
+    </div>`;
+  }).join('');
+}
+
+render();
+
+window["fr_filter"] = filter;
+window["fr_render"] = render;
+})();
+
+(function(){
+
+const GM={
+  prose:{label:"Prose narrative",bg:"#E1F5EE",tc:"#085041",dkbg:"#04342C",dktc:"#9FE1CB",col:"#1D9E75"},
+  poesie:{label:"Poésie",bg:"#FAECE7",tc:"#712B13",dkbg:"#4A1B0C",dktc:"#F5C4B3",col:"#D85A30"},
+  theatre:{label:"Théâtre",bg:"#EEEDFE",tc:"#3C3489",dkbg:"#26215C",dktc:"#CECBF6",col:"#534AB7"},
+};
+const PLABELS={xix:"XIXe s.",xx:"XXe s.",xxi:"XXIe s.",earlier:"XVIe–XVIIIe s."};
+const isDark=matchMedia("(prefers-color-scheme:dark)").matches;
+function ts(g){const m=GM[g];return isDark?`background:${m.dkbg};color:${m.dktc}`:`background:${m.bg};color:${m.tc}`;}
+
+// Données consolidées — nombre d'occurrences cumulées sur les 5 sessions disponibles
+// Source: rapports 2018, 2021, 2022, sujets PDF 2023, rapport 2024
+const D=[
+// ── ESPAGNE ────────────────────────────────────────────────────────────
+{n:"Federico García Lorca",p:"xx",g:"poesie",a:"es",c:9},
+{n:"Federico García Lorca",p:"xx",g:"theatre",a:"es",c:4},
+{n:"Federico García Lorca",p:"xx",g:"prose",a:"es",c:3},
+{n:"Jaime Gil de Biedma",p:"xx",g:"poesie",a:"es",c:8},
+{n:"Miguel Hernández",p:"xx",g:"poesie",a:"es",c:7},
+{n:"Benito Pérez Galdós",p:"xix",g:"prose",a:"es",c:6},
+{n:"Juan Benet",p:"xx",g:"prose",a:"es",c:5},
+{n:"Leopoldo Alas Clarín",p:"xix",g:"prose",a:"es",c:5},
+{n:"Miguel Delibes",p:"xx",g:"prose",a:"es",c:5},
+{n:"Ángel González",p:"xx",g:"poesie",a:"es",c:4},
+{n:"Carmen Laforet",p:"xx",g:"prose",a:"es",c:4},
+{n:"Gustavo Adolfo Bécquer",p:"xix",g:"poesie",a:"es",c:4},
+{n:"Ángela Figuera Aymerich",p:"xx",g:"poesie",a:"es",c:3},
+{n:"Ana María Matute",p:"xx",g:"prose",a:"es",c:3},
+{n:"Blas de Otero",p:"xx",g:"poesie",a:"es",c:3},
+{n:"Miguel de Unamuno",p:"xx",g:"prose",a:"es",c:3},
+{n:"Antonio Muñoz Molina",p:"xx",g:"prose",a:"es",c:2},
+{n:"Javier Marías",p:"xx",g:"prose",a:"es",c:2},
+{n:"Carmen Martín Gaite",p:"xx",g:"prose",a:"es",c:2},
+{n:"Almudena Grandes",p:"xxi",g:"prose",a:"es",c:2},
+{n:"Francisca Aguirre",p:"xx",g:"poesie",a:"es",c:2},
+{n:"Gloria Fuertes",p:"xx",g:"poesie",a:"es",c:2},
+{n:"Emilia Pardo Bazán",p:"xix",g:"prose",a:"es",c:2},
+{n:"José Zorrilla",p:"xix",g:"theatre",a:"es",c:2},
+{n:"Ignacio Aldecoa",p:"xx",g:"prose",a:"es",c:2},
+{n:"Mariano José de Larra",p:"xix",g:"prose",a:"es",c:2},
+{n:"Juan Mayorga",p:"xxi",g:"theatre",a:"es",c:2},
+{n:"Rosa Chacel",p:"xx",g:"prose",a:"es",c:1},
+{n:"Juan Goytisolo",p:"xx",g:"prose",a:"es",c:1},
+{n:"Camilo José Cela",p:"xx",g:"prose",a:"es",c:1},
+{n:"Rosa Regás",p:"xx",g:"prose",a:"es",c:1},
+{n:"Carmen Conde",p:"xx",g:"poesie",a:"es",c:1},
+{n:"Mario Cuenca Sandoval",p:"xxi",g:"prose",a:"es",c:1},
+{n:"Sylvia Molloy",p:"xxi",g:"prose",a:"es",c:1},
+// ── AMÉRIQUE LATINE ───────────────────────────────────────────────────
+{n:"Jorge Luis Borges",p:"xx",g:"prose",a:"la",c:8},
+{n:"Juan Rulfo",p:"xx",g:"prose",a:"la",c:5},
+{n:"Julio Cortázar",p:"xx",g:"prose",a:"la",c:5},
+{n:"Pablo Neruda",p:"xx",g:"poesie",a:"la",c:5},
+{n:"César Vallejo",p:"xx",g:"poesie",a:"la",c:5},
+{n:"Juan Gelman",p:"xx",g:"poesie",a:"la",c:5},
+{n:"Horacio Quiroga",p:"xx",g:"prose",a:"la",c:4},
+{n:"Augusto Roa Bastos",p:"xx",g:"prose",a:"la",c:4},
+{n:"Octavio Paz",p:"xx",g:"poesie",a:"la",c:3},
+{n:"Rosario Castellanos",p:"xx",g:"poesie",a:"la",c:3},
+{n:"Vicente Huidobro",p:"xx",g:"poesie",a:"la",c:3},
+{n:"Alejo Carpentier",p:"xx",g:"prose",a:"la",c:3},
+{n:"Nicolás Guillén",p:"xx",g:"poesie",a:"la",c:3},
+{n:"Diamela Eltit",p:"xx",g:"prose",a:"la",c:3},
+{n:"Juan José Saer",p:"xx",g:"prose",a:"la",c:3},
+{n:"Enrique Lihn",p:"xx",g:"poesie",a:"la",c:3},
+{n:"Fernando Vallejo",p:"xxi",g:"prose",a:"la",c:3},
+{n:"Rubén Darío",p:"xix",g:"poesie",a:"la",c:2},
+{n:"Arturo Uslar Pietri",p:"xx",g:"prose",a:"la",c:2},
+{n:"María Luisa Bombal",p:"xx",g:"prose",a:"la",c:2},
+{n:"Juan José Arreola",p:"xx",g:"prose",a:"la",c:2},
+{n:"Gabriel García Márquez",p:"xx",g:"prose",a:"la",c:2},
+{n:"Idea Vilariño",p:"xx",g:"poesie",a:"la",c:2},
+{n:"Mario Benedetti",p:"xx",g:"theatre",a:"la",c:2},
+{n:"José Emilio Pacheco",p:"xx",g:"poesie",a:"la",c:2},
+{n:"Reinaldo Arenas",p:"xx",g:"prose",a:"la",c:2},
+{n:"Roberto Arlt",p:"xx",g:"prose",a:"la",c:2},
+{n:"Gastón Baquero",p:"xx",g:"poesie",a:"la",c:1},
+{n:"Nellie Campobello",p:"xx",g:"prose",a:"la",c:1},
+{n:"Calvert Casey",p:"xx",g:"prose",a:"la",c:1},
+{n:"Elena Garro",p:"xx",g:"prose",a:"la",c:1},
+{n:"José Martí",p:"xix",g:"poesie",a:"la",c:1},
+{n:"Salvador Novo",p:"xx",g:"poesie",a:"la",c:1},
+{n:"José Asunción Silva",p:"xix",g:"poesie",a:"la",c:1},
+{n:"Rodolfo Usigli",p:"xx",g:"theatre",a:"la",c:1},
+{n:"Karina Sainz Borgo",p:"xxi",g:"prose",a:"la",c:1},
+{n:"Horacio Castellanos Moya",p:"xxi",g:"prose",a:"la",c:1},
+{n:"Leila Guerriero",p:"xxi",g:"prose",a:"la",c:1},
+{n:"Lina Meruane",p:"xxi",g:"prose",a:"la",c:1},
+{n:"Juan Villoro",p:"xxi",g:"prose",a:"la",c:1},
+{n:"Diego Vecchio",p:"xxi",g:"prose",a:"la",c:1},
+];
+
+let cf="all",ca="all";
+function sf(v,b){cf=v;document.querySelectorAll("#es_fb .btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();}
+function sa(v,b){ca=v;document.querySelectorAll("#es_ab .btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();}
+
+function render(){
+  const filt=D.filter(x=>(cf==="all"||x.g===cf)&&(ca==="all"||x.a===ca));
+  const div=document.getElementById('es_content');
+  if(!filt.length){div.innerHTML='<p class="empty">Aucun auteur.</p>';return;}
+  const genres=cf==="all"?["poesie","prose","theatre"].filter(g=>filt.some(x=>x.g===g)):[cf];
+  let html="";
+  for(const g of genres){
+    const byG=filt.filter(x=>x.g===g).sort((a,b)=>b.c-a.c);
+    if(!byG.length)continue;
+    const maxC=byG[0].c;
+    const gm=GM[g];
+    html+=`<div class="sec"><div class="sh"><span class="stag" style="${ts(g)}">${gm.label}</span><span style="font-size:11px;color:var(--color-text-tertiary)">${byG.length} auteurs</span></div><div class="grid">`;
+    for(const x of byG){
+      const pct=Math.round(x.c/maxC*100);
+      const alab=x.a==="es"?"🇪🇸":"🌎";
+      html+=`<div class="card"><div class="bc"><div class="an">${x.n}</div><div class="am">${PLABELS[x.p]} ${alab}</div><div class="bw"><div class="bf" style="width:${pct}%;background:${gm.col}"></div></div></div><span class="cnt" style="color:${gm.col}">${x.c}</span></div>`;
+    }
+    html+=`</div></div><div class="div"></div>`;
+  }
+  div.innerHTML=html;
+}
+render();
+
+window["es_ts"] = ts;
+window["es_sf"] = sf;
+window["es_sa"] = sa;
+window["es_render"] = render;
+})();
+
+(function(){
+
+const GM={
+  poesie:{label:"Poésie",bg:"#FAECE7",tc:"#712B13",dkbg:"#4A1B0C",dktc:"#F5C4B3",col:"#D85A30"},
+  prose:{label:"Prose narrative",bg:"#E1F5EE",tc:"#085041",dkbg:"#04342C",dktc:"#9FE1CB",col:"#1D9E75"},
+  theatre:{label:"Théâtre",bg:"#EEEDFE",tc:"#3C3489",dkbg:"#26215C",dktc:"#CECBF6",col:"#534AB7"},
+};
+const PL={xvii:"XVIIe s.",xviii:"XVIIIe s.",xix:"XIXe s.",xx:"XXe s.",xxi:"XXIe s."};
+const isDark=matchMedia("(prefers-color-scheme:dark)").matches;
+function ts(g){const m=GM[g];return isDark?`background:${m.dkbg};color:${m.dktc}`:`background:${m.bg};color:${m.tc}`;}
+
+const D=[
+// ── POÉSIE ──────────────────────────────────────────────────────────────
+{n:"Johann Wolfgang Goethe",p:"xviii",g:"poesie",c:5},
+{n:"Heinrich Heine",p:"xix",g:"poesie",c:5},
+{n:"Friedrich Hölderlin",p:"xix",g:"poesie",c:4},
+{n:"Bertolt Brecht",p:"xx",g:"poesie",c:4},
+{n:"Ingeborg Bachmann",p:"xx",g:"poesie",c:4},
+{n:"Paul Celan",p:"xx",g:"poesie",c:4},
+{n:"Friedrich Schiller",p:"xviii",g:"poesie",c:4},
+{n:"Georg Trakl",p:"xx",g:"poesie",c:4},
+{n:"Rainer Maria Rilke",p:"xx",g:"poesie",c:3},
+{n:"Andreas Gryphius",p:"xvii",g:"poesie",c:3},
+{n:"Stefan George",p:"xix",g:"poesie",c:3},
+{n:"Theodor Fontane",p:"xix",g:"poesie",c:3},
+{n:"Gottfried Benn",p:"xx",g:"poesie",c:3},
+{n:"Günter Eich",p:"xx",g:"poesie",c:3},
+{n:"August von Platen",p:"xix",g:"poesie",c:3},
+{n:"Friedrich Klopstock",p:"xviii",g:"poesie",c:3},
+{n:"Paul Fleming",p:"xvii",g:"poesie",c:2},
+{n:"Friedrich von Hagedorn",p:"xviii",g:"poesie",c:2},
+{n:"H. M. Enzensberger",p:"xx",g:"poesie",c:2},
+{n:"Durs Grünbein",p:"xxi",g:"poesie",c:2},
+{n:"Georg Heym",p:"xx",g:"poesie",c:2},
+{n:"Jan Wagner",p:"xxi",g:"poesie",c:1},
+{n:"Walter Höllerer",p:"xx",g:"poesie",c:1},
+{n:"Johann Peter Uz",p:"xviii",g:"poesie",c:1},
+{n:"Carl Zuckmayer",p:"xx",g:"poesie",c:1},
+{n:"Arno Holz",p:"xix",g:"poesie",c:1},
+{n:"Grimmelshausen",p:"xvii",g:"poesie",c:1},
+// ── PROSE ────────────────────────────────────────────────────────────────
+{n:"Johann Wolfgang Goethe",p:"xviii",g:"prose",c:5},
+{n:"E.T.A. Hoffmann",p:"xix",g:"prose",c:4},
+{n:"Heinrich Heine",p:"xix",g:"prose",c:4},
+{n:"Franz Kafka",p:"xx",g:"prose",c:4},
+{n:"Friedrich Schiller",p:"xviii",g:"prose",c:3},
+{n:"Herta Müller",p:"xx",g:"prose",c:3},
+{n:"Anna Seghers",p:"xx",g:"prose",c:3},
+{n:"Theodor Storm",p:"xix",g:"prose",c:3},
+{n:"Gottfried Keller",p:"xix",g:"prose",c:3},
+{n:"Alfred Döblin",p:"xx",g:"prose",c:3},
+{n:"Robert Musil",p:"xx",g:"prose",c:3},
+{n:"Thomas Mann",p:"xx",g:"prose",c:3},
+{n:"Achim von Arnim",p:"xix",g:"prose",c:2},
+{n:"Wilhelm Raabe",p:"xix",g:"prose",c:2},
+{n:"Eduard von Keyserling",p:"xix",g:"prose",c:2},
+{n:"Jean Paul",p:"xviii",g:"prose",c:2},
+{n:"Christoph Wieland",p:"xviii",g:"prose",c:2},
+{n:"Irmgard Keun",p:"xx",g:"prose",c:2},
+{n:"Jurek Becker",p:"xx",g:"prose",c:2},
+{n:"Hermann Broch",p:"xx",g:"prose",c:1},
+{n:"Joseph von Eichendorff",p:"xix",g:"prose",c:1},
+{n:"Karoline von Günderode",p:"xix",g:"prose",c:1},
+{n:"Peter Handke",p:"xx",g:"prose",c:1},
+{n:"Katja Petrowskaja",p:"xxi",g:"prose",c:1},
+{n:"Friedrich von Schlegel",p:"xix",g:"prose",c:1},
+{n:"Christa Wolf",p:"xx",g:"prose",c:1},
+{n:"Gottfried August Bürger",p:"xviii",g:"prose",c:1},
+// ── THÉÂTRE ──────────────────────────────────────────────────────────────
+{n:"Friedrich Schiller",p:"xviii",g:"theatre",c:6},
+{n:"Johann Wolfgang Goethe",p:"xviii",g:"theatre",c:5},
+{n:"Georg Büchner",p:"xix",g:"theatre",c:5},
+{n:"Gotthold Ephraim Lessing",p:"xviii",g:"theatre",c:5},
+{n:"Heinrich von Kleist",p:"xix",g:"theatre",c:5},
+{n:"Bertolt Brecht",p:"xx",g:"theatre",c:5},
+{n:"Jakob Michael Reinhold Lenz",p:"xviii",g:"theatre",c:4},
+{n:"Frank Wedekind",p:"xix",g:"theatre",c:3},
+{n:"Friedrich Hölderlin",p:"xix",g:"theatre",c:3},
+{n:"Carl Sternheim",p:"xx",g:"theatre",c:2},
+{n:"Ernst Toller",p:"xx",g:"theatre",c:2},
+{n:"Christian Grabbe",p:"xix",g:"theatre",c:2},
+{n:"Max Frisch",p:"xx",g:"theatre",c:2},
+{n:"Ödön von Horváth",p:"xx",g:"theatre",c:2},
+{n:"Falk Richter",p:"xxi",g:"theatre",c:1},
+];
+
+let cf="all",cp="all";
+function sf(v,b){cf=v;document.querySelectorAll("#de_fb .btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();}
+function sp(v,b){cp=v;document.querySelectorAll("#de_pb .btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();}
+
+function render(){
+  const filt=D.filter(x=>(cf==="all"||x.g===cf)&&(cp==="all"||x.p===cp));
+  const div=document.getElementById('de_content');
+  if(!filt.length){div.innerHTML='<p class="empty">Aucun auteur.</p>';return;}
+  const genres=cf==="all"?["poesie","prose","theatre"].filter(g=>filt.some(x=>x.g===g)):[cf];
+  let html="";
+  for(const g of genres){
+    const byG=filt.filter(x=>x.g===g).sort((a,b)=>b.c-a.c);
+    if(!byG.length)continue;
+    const maxC=byG[0].c;
+    const gm=GM[g];
+    html+=`<div class="sec"><div class="sh"><span class="stag" style="${ts(g)}">${gm.label}</span><span style="font-size:11px;color:var(--color-text-tertiary)">${byG.length} auteurs</span></div><div class="grid">`;
+    for(const x of byG){
+      const pct=Math.round(x.c/maxC*100);
+      html+=`<div class="card"><div class="bc"><div class="an">${x.n}</div><div class="am">${PL[x.p]}</div><div class="bw"><div class="bf" style="width:${pct}%;background:${gm.col}"></div></div></div><span class="cnt" style="color:${gm.col}">${x.c}</span></div>`;
+    }
+    html+=`</div></div><div class="div"></div>`;
+  }
+  div.innerHTML=html;
+}
+render();
+
+window["de_ts"] = ts;
+window["de_sf"] = sf;
+window["de_sp"] = sp;
+window["de_render"] = render;
+})();
+
+(function(){
+
+const data = [
+  {
+    id: "theatre-16-uk", group: "theatre", region: "uk",
+    title: "Théâtre · 16e–17e · UK",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["William Shakespeare", 19], ["Christopher Marlowe", 11], ["Aphra Behn", 7],
+      ["Ben Jonson", 6], ["John Webster", 5]
+    ]
+  },
+  {
+    id: "theatre-18-uk", group: "theatre", region: "uk",
+    title: "Théâtre · 18e · UK/Ireland",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["R. B. Sheridan", 8]
+    ]
+  },
+  {
+    id: "theatre-19-uk", group: "theatre", region: "uk",
+    title: "Théâtre · 19e–20e · UK/Ireland",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["Samuel Beckett", 13], ["Harold Pinter", 12], ["Tom Stoppard", 10],
+      ["Oscar Wilde", 17], ["G. B. Shaw", 8], ["J. M. Synge", 5], ["Brian Friel", 2]
+    ]
+  },
+  {
+    id: "theatre-20-us", group: "theatre", region: "us",
+    title: "Théâtre · 20e · US",
+    color: "#534AB7", badge: "Théâtre",
+    authors: [
+      ["Tennessee Williams", 14], ["Arthur Miller", 10], ["Eugene O'Neill", 8]
+    ]
+  },
+  {
+    id: "poesie-16-uk", group: "poesie", region: "uk",
+    title: "Poésie · 16e–17e · UK (métaphysique)",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["John Donne", 13], ["Andrew Marvell", 12], ["George Herbert", 8],
+      ["John Milton", 6], ["Edmund Spenser", 4], ["Robert Herrick", 4],
+      ["Sir Philip Sidney", 4], ["Richard Crashaw", 1]
+    ]
+  },
+  {
+    id: "poesie-18-uk", group: "poesie", region: "uk",
+    title: "Poésie · 18e–19e · UK (romantique)",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["William Blake", 12], ["William Wordsworth", 13], ["John Keats", 12],
+      ["S. T. Coleridge", 8], ["Thomas Hardy", 14], ["P. B. Shelley", 7],
+      ["Lord Byron", 5], ["Alfred Tennyson", 5], ["Robert Browning", 4],
+      ["G. M. Hopkins", 4], ["Christina Rossetti", 4]
+    ]
+  },
+  {
+    id: "poesie-20-uk", group: "poesie", region: "uk",
+    title: "Poésie · 20e · UK/Ireland",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["W. B. Yeats", 14], ["W. H. Auden", 11], ["T. S. Eliot", 11],
+      ["Seamus Heaney", 9], ["Ted Hughes", 8], ["Dylan Thomas", 8],
+      ["Louis MacNeice", 8], ["Philip Larkin", 7], ["Wilfred Owen", 7],
+      ["Siegfried Sassoon", 3]
+    ]
+  },
+  {
+    id: "poesie-19-us", group: "poesie", region: "us",
+    title: "Poésie · 19e · US",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["Walt Whitman", 16], ["Emily Dickinson", 16], ["Edgar Allan Poe", 15],
+      ["H. W. Longfellow", 5]
+    ]
+  },
+  {
+    id: "poesie-20-us", group: "poesie", region: "us",
+    title: "Poésie · 20e · US",
+    color: "#0F6E56", badge: "Poésie",
+    authors: [
+      ["Sylvia Plath", 13], ["Allen Ginsberg", 9], ["Robert Frost", 8],
+      ["Langston Hughes", 8], ["Elizabeth Bishop", 7], ["W. C. Williams", 7],
+      ["Adrienne Rich", 5], ["E. E. Cummings", 5], ["Carl Sandburg", 5],
+      ["Wallace Stevens", 4], ["H. D.", 4], ["Denise Levertov", 3]
+    ]
+  },
+  {
+    id: "roman-18-uk", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 18e · UK",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Jonathan Swift", 12], ["Daniel Defoe", 9], ["Henry Fielding", 9],
+      ["Laurence Sterne", 9], ["Samuel Richardson", 5], ["Tobias Smollett", 5]
+    ]
+  },
+  {
+    id: "roman-19-uk", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 19e · UK",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Charles Dickens", 18], ["Jane Austen", 15], ["Charlotte Brontë", 13],
+      ["Lewis Carroll", 12], ["George Eliot", 11], ["Thomas Hardy", 14],
+      ["Emily Brontë", 8], ["R. L. Stevenson", 7], ["Elizabeth Gaskell", 6],
+      ["William Thackeray", 6], ["Wilkie Collins", 5]
+    ]
+  },
+  {
+    id: "roman-ireland", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 19e–20e · Ireland",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["James Joyce", 13], ["Bram Stoker", 5]
+    ]
+  },
+  {
+    id: "roman-20-uk", group: "fiction", region: "uk",
+    title: "Roman/Nouvelle · 20e · UK",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Virginia Woolf", 17], ["Joseph Conrad", 11], ["D. H. Lawrence", 11],
+      ["E. M. Forster", 6], ["Zadie Smith", 6], ["Ian McEwan", 5],
+      ["Kazuo Ishiguro", 5], ["Angela Carter", 4], ["Aldous Huxley", 3],
+      ["Evelyn Waugh", 1], ["Alan Hollinghurst", 2], ["Graham Swift", 3]
+    ]
+  },
+  {
+    id: "roman-19-us", group: "fiction", region: "us",
+    title: "Roman/Nouvelle · 19e · US",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Henry James", 17], ["Nathaniel Hawthorne", 15], ["Herman Melville", 14],
+      ["Washington Irving", 13], ["Mark Twain", 11], ["Edith Wharton", 11],
+      ["Kate Chopin", 9], ["Willa Cather", 8], ["Charlotte P. Gilman", 7],
+      ["H. D. Thoreau", 8], ["Stephen Crane", 5], ["Harriet Beecher Stowe", 4],
+      ["Theodore Dreiser", 4], ["Frederick Douglass", 3]
+    ]
+  },
+  {
+    id: "roman-20-us", group: "fiction", region: "us",
+    title: "Roman/Nouvelle · 20e · US",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["William Faulkner", 9], ["F. S. Fitzgerald", 9], ["Vladimir Nabokov", 9],
+      ["Sherwood Anderson", 9], ["Flannery O'Connor", 8], ["Toni Morrison", 8],
+      ["Cormac McCarthy", 8], ["John Steinbeck", 7], ["Carson McCullers", 7],
+      ["Salman Rushdie", 7], ["Philip Roth", 6], ["Ralph Ellison", 4],
+      ["John Updike", 4], ["Colson Whitehead", 5]
+    ]
+  },
+  {
+    id: "roman-commonwealth", group: "fiction", region: "commonwealth",
+    title: "Roman/Nouvelle · 20e · Commonwealth / Postcolonial",
+    color: "#185FA5", badge: "Fiction",
+    authors: [
+      ["Katherine Mansfield", 10], ["Alice Munro", 8], ["Derek Walcott", 8],
+      ["Margaret Atwood", 7], ["Chinua Achebe", 7], ["J. M. Coetzee", 7],
+      ["Salman Rushdie", 7], ["V. S. Naipaul", 5], ["Jean Rhys", 5],
+      ["Nadine Gordimer", 4], ["Doris Lessing", 2]
+    ]
+  }
+];
+
+const maxCount = 19;
+
+function buildBar(count, color) {
+  const pct = Math.round((count / maxCount) * 100);
+  return `<div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${color}22;border:1px solid ${color}55;box-sizing:border-box;"></div></div>`;
+}
+
+function render(filter) {
+  const container = document.getElementById('en_cats');
+  container.innerHTML = '';
+  data.forEach(cat => {
+    const show = filter === 'all'
+      || (filter === 'theatre' && cat.group === 'theatre')
+      || (filter === 'poesie' && cat.group === 'poesie')
+      || (filter === 'fiction' && cat.group === 'fiction')
+      || (filter === 'uk' && cat.region === 'uk')
+      || (filter === 'us' && cat.region === 'us')
+      || (filter === 'commonwealth' && cat.region === 'commonwealth');
+    if (!show) return;
+
+    const div = document.createElement('div');
+    div.className = 'cat-block';
+    const top3 = cat.authors.slice(0, 3).map(a => a[0]).join(', ');
+    const rows = cat.authors.slice(0, 10).map(([name, count]) =>
+      `<div class="author-row">
+        <span class="author-name">${name}</span>
+        ${buildBar(count, cat.color)}
+        <span class="count">${count}×</span>
+      </div>`
+    ).join('');
+    div.innerHTML = `
+      <div class="cat-header" onclick="en_toggle(this)">
+        <span>
+          <span class="cat-title">${cat.title}</span>
+          <span class="cat-meta" style="margin-left:10px;display:inline-block;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${top3}…</span>
+        </span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="cat-body" style="display:none">${rows}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const block = header.parentElement;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  block.classList.toggle('open', !open);
+}
+
+document.getElementById('en_filters').addEventListener('click', e => {
+  if (!e.target.dataset.filter) return;
+  document.querySelectorAll('#en_filters .filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  render(e.target.dataset.filter);
+});
+
+render('all');
+
+window["en_buildBar"] = buildBar;
+window["en_render"] = render;
+window["en_toggle"] = toggle;
+})();
+
+
+</script>
+</body>
+</html>
